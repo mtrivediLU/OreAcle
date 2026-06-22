@@ -38,7 +38,7 @@
       if ((code.className || "").includes("language-mermaid")) {
         const note = document.createElement("div");
         note.className = "docs-mermaid-note";
-        note.innerHTML = '📐 <b>Architecture diagram</b>: view the interactive, on-brand version in the ' +
+        note.innerHTML = '<b>Architecture diagram</b>: view the interactive, on-brand version in the ' +
           '<a href="#architecture" data-scroll>Architecture section</a>. (Raw Mermaid source hidden for readability.)';
         const pre = code.closest("pre") || code;
         pre.replaceWith(note);

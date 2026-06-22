@@ -222,7 +222,7 @@ flowchart LR
 | The "ventilation fan" (the wow moment) | **DC motor + fan blade** via kit's **motor driver/transistor** | PWM | GP21 |
 | Vent louver (optional flourish) | **Servo** | PWM | GP22 |
 
-> ⚠️ **One hardware safety note:** never drive the DC motor directly from a GPIO pin; use the **transistor/motor-driver module included in the kit** (the SunFounder lessons show this exact circuit). The motor has its own power rail. This is the only "real" electronics step; everything else is plug-a-wire-into-a-hole.
+> **One hardware safety note:** never drive the DC motor directly from a GPIO pin; use the **transistor/motor-driver module included in the kit** (the SunFounder lessons show this exact circuit). The motor has its own power rail. This is the only "real" electronics step; everything else is plug-a-wire-into-a-hole.
 
 ### Gas sensing for the demo
 
@@ -327,13 +327,13 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 | **5** | Pitch, story, slides, rehearsal | Fri Jun 26 eve | 2-3 h |
 | **6** | Event day: assemble, extend with Cursor, present | Sat Jun 27 | event |
 
-> **⚖️ Hackathon-rules note: read this once.** Rules differ on how much you may pre-build. **Universally allowed** before the event: learning the hardware, installing tools, designing the architecture, preparing datasets, and writing your pitch. **Sometimes restricted:** writing the final application code beforehand. **Safe strategy that still wins:** during the prep week, treat Phases 0-4 as *learning + de-risking + building a throwaway practice prototype* so you know exactly what to type. On event day, **rebuild fast in Cursor** (you'll fly, because you've done it once) and use the day to extend and polish. **Confirm the specific event rules** (Luma page / organizers) and, if pre-built code is allowed, simply bring the repo and spend the day going deeper. Either way, the prep week is what separates you from the field.
+> ** Hackathon-rules note: read this once.** Rules differ on how much you may pre-build. **Universally allowed** before the event: learning the hardware, installing tools, designing the architecture, preparing datasets, and writing your pitch. **Sometimes restricted:** writing the final application code beforehand. **Safe strategy that still wins:** during the prep week, treat Phases 0-4 as *learning + de-risking + building a throwaway practice prototype* so you know exactly what to type. On event day, **rebuild fast in Cursor** (you'll fly, because you've done it once) and use the day to extend and polish. **Confirm the specific event rules** (Luma page / organizers) and, if pre-built code is allowed, simply bring the repo and spend the day going deeper. Either way, the prep week is what separates you from the field.
 
 ---
 
 ### PHASE 0: Environment and Repo Setup
-**🎯 Layman's goal:** Get your laptop ready so that the moment the kit arrives, you're building, not installing. Prove the free AI model talks to you.
-**🗓️ When:** Sunday eve June 21 → Monday June 22 (before kit arrives). **No hardware needed.**
+** Layman's goal:** Get your laptop ready so that the moment the kit arrives, you're building, not installing. Prove the free AI model talks to you.
+** When:** Sunday eve June 21 → Monday June 22 (before kit arrives). **No hardware needed.**
 
 **Technical steps**
 1. Install tooling: **Homebrew**, **Python 3.11** (`pyenv` or python.org), **Node.js 20 LTS**, **git**, **Cursor**, **Thonny** (for Pico later), **Ollama** (`brew install ollama` or the macOS app).
@@ -341,19 +341,19 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
    ```bash
    ollama pull llama3.2:3b
    ollama run llama3.2:3b "Reply in one sentence: confirm you are running locally."
-   ```
-   Also pull a fallback: `ollama pull gemma2:2b`.
+ ```
+ Also pull a fallback: `ollama pull gemma2:2b`.
 3. Create the repo skeleton from §10 (folders + empty files). `git init`, first commit.
 4. Python venv + base deps: `pip install fastapi uvicorn pyserial scikit-learn pandas numpy requests ollama paho-mqtt`.
 5. Scaffold the Next.js app: `npx create-next-app@latest frontend` (TypeScript, Tailwind, App Router).
 6. Write a 3-line `llm.py` that calls Ollama and prints a response, confirming Python → local LLM works end-to-end.
 
-**🤖 Cursor prompt to paste**
+** Cursor prompt to paste**
 > "Create a Python module `backend/llm.py` using the `ollama` Python package. Expose `generate_alert(context: dict) -> str` and `ask_copilot(question: str, recent_rows: list[dict]) -> str`. Both call a local model (default `llama3.2:3b`, configurable via env var `OR_MODEL`). Keep outputs under 2 sentences. Add a `__main__` block that runs a sample call and prints the result. Include a timeout and a graceful fallback string if Ollama isn't running."
 
-**⏱️ Estimate:** 2-3 h. **[CUT IF SHORT]** Docker; MQTT broker (use serial).
+** Estimate:** 2-3 h. **[CUT IF SHORT]** Docker; MQTT broker (use serial).
 
-**✅ Definition of Done: Phase 0**
+** Definition of Done: Phase 0**
 - [ ] `ollama run llama3.2:3b` returns a sentence in < 5 s.
 - [ ] `python backend/llm.py` prints an LLM response (Python → local model works).
 - [ ] Repo skeleton committed to git; Next.js app runs at `localhost:3000` (default page).
@@ -363,8 +363,8 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 ---
 
 ### PHASE 1: Hardware Bring-Up
-**🎯 Layman's goal:** Make the little board feel the world and shout the numbers to your laptop over the USB cable. Keep it dead simple.
-**🗓️ When:** Monday June 22 (kit arrives) → Tuesday June 23.
+** Layman's goal:** Make the little board feel the world and shout the numbers to your laptop over the USB cable. Keep it dead simple.
+** When:** Monday June 22 (kit arrives) → Tuesday June 23.
 
 **Technical steps**
 1. **Flash MicroPython:** open **Thonny → Run → Configure interpreter → MicroPython (Raspberry Pi Pico) → Install/Update firmware.** One click. (Follow the SunFounder Kepler "Get Started" page.)
@@ -372,14 +372,14 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 3. **Write `firmware/main.py`:** every ~0.5 s, read all sensors, assemble the §7 JSON object, and `print()` it as one line over USB serial at 115200 baud. Add a tiny serial-input reader so an incoming `{"fan_pct": 80}` sets the motor PWM (this is the "act" path).
 4. **Prove the link from the Mac:** a 10-line `pyserial` script that opens the port, reads lines, and prints parsed JSON.
 
-**🤖 Cursor prompts to paste**
+** Cursor prompts to paste**
 > (firmware) "Write MicroPython `main.py` for a Raspberry Pi Pico W. Read DHT11 on GP15, MPU6050 over I²C0 (SDA GP0/SCL GP1) computing a vibration RMS from accelerometer magnitude, PIR on GP16, HC-SR04 ultrasonic (TRIG GP3/ECHO GP2) for distance_cm, and drive a buzzer GP14, RGB LED GP18/19/20, I²C LCD1602 (I²C1 SDA GP6/SCL GP7), and a DC motor PWM on GP21. Every 500 ms, print one JSON line with keys ts, zone='Z3', vib_rms, temp_c, humidity, occupancy (1 if PIR or distance<200cm else 0), distance_cm, fan_pct. Also non-blockingly read stdin for a JSON command `{\"fan_pct\": N}` and set motor PWM + show 'VENT N%' on the LCD. Use only standard MicroPython libs; include the LCD I2C driver inline."
 >
 > (host check) "Write `backend/serial_check.py` using pyserial: auto-detect the Pico's serial port, read lines at 115200, parse each as JSON, and pretty-print. Handle malformed lines gracefully."
 
-**⏱️ Estimate:** 3-4 h. **MVP:** DHT11 + MPU6050 + PIR + motor + LCD. **[CUT IF SHORT]** ultrasonic, servo louver, WS2812 strip. **Hard rule:** any sensor that fights you for >20 min gets dropped and simulated.
+** Estimate:** 3-4 h. **MVP:** DHT11 + MPU6050 + PIR + motor + LCD. **[CUT IF SHORT]** ultrasonic, servo louver, WS2812 strip. **Hard rule:** any sensor that fights you for >20 min gets dropped and simulated.
 
-**✅ Definition of Done: Phase 1**
+** Definition of Done: Phase 1**
 - [ ] Pico W runs MicroPython and auto-starts `main.py` on power-up.
 - [ ] One clean JSON line per ~0.5 s appears over USB serial with real values that change when you tap/breathe-on/wave-at the sensors.
 - [ ] Sending `{"fan_pct": 80}` from the Mac **physically speeds up the motor/fan** and updates the LCD.
@@ -389,8 +389,8 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 ---
 
 ### PHASE 2: The AI Brain
-**🎯 Layman's goal:** Teach the laptop to store the readings, notice when something's wrong, decide how much fan is needed, and write a human a plain-English warning, all locally, for free.
-**🗓️ When:** Tuesday June 23 → Wednesday June 24. **This is the most important phase. Spend your best hours here.**
+** Layman's goal:** Teach the laptop to store the readings, notice when something's wrong, decide how much fan is needed, and write a human a plain-English warning, all locally, for free.
+** When:** Tuesday June 23 → Wednesday June 24. **This is the most important phase. Spend your best hours here.**
 
 **Technical steps**
 1. **Ingest → SQLite (`ingest.py`, `db.py`).** Read the serial stream, write every reading into a `readings` table. Keep an in-memory rolling window (last N minutes) for fast scoring.
@@ -399,16 +399,16 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 4. **Ventilation-on-Demand (`vod.py`).** Pure function: given occupancy + air quality + temp, output a target `fan_pct` (e.g., baseline 30%; +per person; +scaled to CO/heat; clamp 0-100). This mirrors Vale's real VOD logic. Send the setpoint to the Pico.
 5. **LLM alerts (`llm.py`).** When status escalates, call the local LLM with a tight prompt → a 1-2 sentence alert *with cause + recommended action*. Cache/debounce so it doesn't spam.
 
-**🤖 Cursor prompts to paste**
+** Cursor prompts to paste**
 > (anomaly) "Implement `backend/anomaly.py`. Train a scikit-learn IsolationForest on a pandas DataFrame of baseline readings (features: vib_rms, temp_c, humidity, co_ppm, no2_ppm, airflow). Provide `score(reading: dict) -> {anomaly: bool, score: float}`. Add `rule_check(reading)` for hard limits: co_ppm>35 → 'ALERT gas', heat_index(temp,humidity)>32 → 'WATCH heat', vib_rms>0.25 → 'ALERT vibration'. Provide `assess(reading) -> {status: 'OK|WATCH|ALERT', reasons: [..]}` combining ML + rules."
 >
 > (VOD) "Implement `backend/vod.py` with `target_fan_pct(occupancy, co_ppm, temp_c) -> int`: base 30, +15 per occupant (cap +45), +scaled term so co_ppm 35→+40 linearly, +heat term, clamp 0..100. Pure, documented, unit-tested."
 >
 > (LLM prompt design) "In `backend/llm.py`, set the alert system prompt to: 'You are OreAcle, an underground-mine safety co-pilot. Given sensor JSON and detected reasons, write ONE urgent sentence a shift supervisor can act on: state the zone, the hazard, and the single recommended action. No preamble.' Provide `generate_alert(zone, reading, reasons)`. Add `ask_copilot(question, recent_rows)` that answers from the provided rows only, and says 'insufficient data' if unknown."
 
-**⏱️ Estimate:** 5-7 h. **MVP:** ingest + IsolationForest + rules + one LLM alert. **[STRETCH]** copilot Q&A, debounce tuning, multi-zone.
+** Estimate:** 5-7 h. **MVP:** ingest + IsolationForest + rules + one LLM alert. **[STRETCH]** copilot Q&A, debounce tuning, multi-zone.
 
-**✅ Definition of Done: Phase 2**
+** Definition of Done: Phase 2**
 - [ ] Live readings persist to SQLite; you can `SELECT` recent rows.
 - [ ] Scenario generator can deterministically produce `gas_buildup` and `bearing_failure` on command.
 - [ ] IsolationForest + rules output a correct `OK/WATCH/ALERT` status that flips when you trigger a scenario.
@@ -418,8 +418,8 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 ---
 
 ### PHASE 3: The Operator Dashboard UI
-**🎯 Layman's goal:** Build the beautiful, genuinely usable screen that makes judges go "oh, *that's* how it should look." This is your differentiator; spend real care here.
-**🗓️ When:** Wednesday June 24 → Thursday June 25.
+** Layman's goal:** Build the beautiful, genuinely usable screen that makes judges go "oh, *that's* how it should look." This is your differentiator; spend real care here.
+** When:** Wednesday June 24 → Thursday June 25.
 
 **Design principles (the "practical UI" the industry lacks)**
 - **Glanceable:** a tired person sees green/amber/red and the headline in < 2 seconds.
@@ -434,14 +434,14 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 4. **AI copilot chat:** ask "Which zones are unsafe and why?" → LLM answers from live data.
 5. **Ventilation control:** Auto (VOD) vs Manual toggle; slider sends `fan_pct` to the Pico; shows the closed loop.
 
-**🤖 Cursor prompts to paste**
+** Cursor prompts to paste**
 > "Build a Next.js (App Router, TypeScript, Tailwind) operator dashboard for OreAcle. Connect to a WebSocket at ws://localhost:8000/ws receiving the reading+status JSON. Create components: `ZoneStatusCard` (green/amber/red, headline), `Gauge` (Recharts radial), `TrendSparkline`, `AlertFeed` (severity-coloured list), `CopilotChat` (POST /copilot), `FanControl` (Auto/Manual, slider POST /fan). Control-room dark theme, large legible type, responsive. Add a subtle animated fan SVG whose rotation speed = fan_pct. Mark simulated values with a small 'SIM' badge."
 >
 > "Add a top status bar that turns red and pulses when any zone is ALERT, with the AI's headline sentence in large text and a 'Recommended action' chip."
 
-**⏱️ Estimate:** 5-7 h. **MVP:** overview + alert feed + copilot. **[STRETCH]** trends page, manual vent slider, animated mine map.
+** Estimate:** 5-7 h. **MVP:** overview + alert feed + copilot. **[STRETCH]** trends page, manual vent slider, animated mine map.
 
-**✅ Definition of Done: Phase 3**
+** Definition of Done: Phase 3**
 - [ ] Dashboard shows **live** data via WebSocket, updating ~2×/sec without flicker.
 - [ ] Triggering `gas_buildup` flips a zone card to red and shows the AI's plain-English headline + action within a few seconds.
 - [ ] Copilot chat answers a real question from live data correctly.
@@ -451,8 +451,8 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 ---
 
 ### PHASE 4: Integration, Closed Loop and Demo Polish
-**🎯 Layman's goal:** Wire everything into one smooth story that runs with a single command and survives a chaotic demo room. Make the "wow" moment bulletproof.
-**🗓️ When:** Thursday June 25 → Friday June 26.
+** Layman's goal:** Wire everything into one smooth story that runs with a single command and survives a chaotic demo room. Make the "wow" moment bulletproof.
+** When:** Thursday June 25 → Friday June 26.
 
 **Technical steps**
 1. **One-command launch.** A `Makefile` / script that: starts Ollama, runs ingest, starts FastAPI, launches Next.js. Add a `--sim` flag that runs the **whole system with no hardware** (simulator feeds the pipeline) as your safety net.
@@ -461,14 +461,14 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 4. **Pre-warm + fail-safes.** Auto-run one LLM query at startup (load model into RAM). If serial drops, auto-fallback to `--sim` without crashing. Cache the last good LLM alerts so the feed is never empty.
 5. **Harden the UI.** Loading states, empty states, a "Demo Controls" panel (hidden hotkey) to fire scenarios on cue.
 
-**🤖 Cursor prompts to paste**
+** Cursor prompts to paste**
 > "Create a `Makefile` with `make demo` that launches Ollama (if not running), `backend/ingest.py`, `uvicorn backend.api:app`, and the Next.js dev server concurrently, and `make sim` that runs everything in hardware-free simulation mode. Add graceful shutdown."
 >
 > "Add a hidden 'Demo Controls' panel (toggle with the \` key) to the dashboard with buttons: Normal, Trigger Gas Buildup, Trigger Bearing Failure, Trigger Blast Clearance, Reset. Each POSTs to /scenario/{name}."
 
-**⏱️ Estimate:** 4-6 h. **MVP:** `make demo` + `make sim` + 2 clean scenarios + closed loop. **[STRETCH]** scenario (c), Docker, multi-zone map.
+** Estimate:** 4-6 h. **MVP:** `make demo` + `make sim` + 2 clean scenarios + closed loop. **[STRETCH]** scenario (c), Docker, multi-zone map.
 
-**✅ Definition of Done: Phase 4**
+** Definition of Done: Phase 4**
 - [ ] `make demo` brings up the entire system in one command; `make sim` runs it with **no hardware**.
 - [ ] The full closed loop works on cue: trigger → AI alert → UI red → fan spins → resolves.
 - [ ] Two demo scenarios are repeatable and reset cleanly; total "wow" sequence ≤ 60 s.
@@ -478,8 +478,8 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 ---
 
 ### PHASE 5: Pitch, Story and Slides
-**🎯 Layman's goal:** Package the build into a 3-4 minute story that any judge (technical or not) finds obvious, credible, and impressive. The build is only half the score; this is the other half.
-**🗓️ When:** Friday June 26 evening.
+** Layman's goal:** Package the build into a 3-4 minute story that any judge (technical or not) finds obvious, credible, and impressive. The build is only half the score; this is the other half.
+** When:** Friday June 26 evening.
 
 **Technical/creative steps**
 1. **Slides (≤ 8).** Use the outline in §13. One idea per slide, big visuals, a screenshot of your dashboard on slide 1.
@@ -488,12 +488,12 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 4. **Rehearse the demo script (§12) three times**, including the failure-recovery line ("and because it's all local, even if I lose the cable, the system keeps running in simulation (like this)").
 5. **Prepare the Q&A** (Appendix-style): cost (\$0), privacy (all local/offline), scalability (drops onto existing sensor networks), "why not just buy Maestro?" (you complement it with the open AI + UI layer), accuracy/false-alarms (ML + rules + human-in-the-loop).
 
-**🤖 Cursor/AI prompt to paste**
+** Cursor/AI prompt to paste**
 > "From this README and architecture, draft an 8-slide pitch script for a 3-minute mining-AI hackathon demo. Slide 1 a one-line value prop, slides on problem (with Vale/Maestro/Glencore named), solution, live-demo cue, AI stack ($0 open-source), why-it-matters/commercial, and a closing line. Give speaker notes ≤ 30 words per slide."
 
-**⏱️ Estimate:** 2-3 h.
+** Estimate:** 2-3 h.
 
-**✅ Definition of Done: Phase 5**
+** Definition of Done: Phase 5**
 - [ ] ≤ 8 slides exist, slide 1 shows your real dashboard and the one-line promise.
 - [ ] You can deliver the 3-minute pitch from memory, naming ≥ 2 real companies correctly.
 - [ ] README runs anyone from clone → `make demo` (or `make sim`) in under 5 minutes.
@@ -503,8 +503,8 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 ---
 
 ### PHASE 6: Event Day, Assemble, Extend, Present
-**🎯 Layman's goal:** Show up calm, set up fast, use the day to go deeper with Cursor, and deliver a clean, confident demo.
-**🗓️ When:** Saturday June 27 (event).
+** Layman's goal:** Show up calm, set up fast, use the day to go deeper with Cursor, and deliver a clean, confident demo.
+** When:** Saturday June 27 (event).
 
 **Run-of-day**
 1. **Arrive early; set up the physical node** (breadboard pre-wired the night before, taped to a small board so nothing pops loose in transit). Test `make demo` on venue power and, if needed, the venue Wi-Fi (but you default to USB serial, so Wi-Fi issues don't matter).
@@ -513,9 +513,9 @@ You receive the kit **Monday, June 22**, and the event is **Saturday, June 27**.
 4. **Submit** whatever the platform requires (Devpost/Luma): repo link, 1-2 min video (record a clean run as backup in case live fails), and the README.
 5. **Present** per §12. Invite a judge to trigger a scenario themselves.
 
-**⏱️ Estimate:** event hours. **MVP:** a flawless run of the Phase-4 demo. **[STRETCH]** one new Cursor-built feature shown live.
+** Estimate:** event hours. **MVP:** a flawless run of the Phase-4 demo. **[STRETCH]** one new Cursor-built feature shown live.
 
-**✅ Definition of Done: Phase 6**
+** Definition of Done: Phase 6**
 - [ ] Physical node set up and `make demo` verified on venue power before judging.
 - [ ] A backup **screen-recording** of a perfect run is saved locally and uploaded.
 - [ ] Submission complete on the event platform (repo + video + README) before deadline.
@@ -653,14 +653,14 @@ All via **Ollama**, local, offline, free. Tuned for your **Intel i9 / 16 GB / CP
 
 | Model (Ollama tag) | Params | ~RAM (Q4) | Feel on your Mac (CPU) | Best for | Verdict |
 | --- | --- | --- | --- | --- | --- |
-| `llama3.2:3b` | 3B | ~3 GB | Snappy for short outputs | Alerts + copilot | ✅ **Primary** |
-| `gemma2:2b` | 2B | ~2 GB | Fastest | Latency fallback | ✅ Safety net |
-| `phi3.5` | 3.8B | ~3 GB | Snappy, strong reasoning | Crisper alerts | ◻ Alt |
-| `qwen2.5:3b` | 3B | ~3 GB | Snappy, good structured output | Copilot Q&A | ◻ Alt |
-| `llama3.1:8b` | 8B | ~5-6 GB | Slower (~2-3×) | Max wording quality | ◻ Stretch only |
-| `mistral:7b` | 7B | ~5 GB | Slower | Quality alt | ◻ Stretch only |
-| **scikit-learn IsolationForest** | N/A | tiny | Instant | Anomaly detection | ✅ **Required** |
-| `faster-whisper` (base) | N/A | ~0.2 GB | Near real-time | Voice input | ◻ Stretch |
+| `llama3.2:3b` | 3B | ~3 GB | Snappy for short outputs | Alerts + copilot | **Primary** |
+| `gemma2:2b` | 2B | ~2 GB | Fastest | Latency fallback | Safety net |
+| `phi3.5` | 3.8B | ~3 GB | Snappy, strong reasoning | Crisper alerts | Alt |
+| `qwen2.5:3b` | 3B | ~3 GB | Snappy, good structured output | Copilot Q&A | Alt |
+| `llama3.1:8b` | 8B | ~5-6 GB | Slower (~2-3×) | Max wording quality | Stretch only |
+| `mistral:7b` | 7B | ~5 GB | Slower | Quality alt | Stretch only |
+| **scikit-learn IsolationForest** | N/A | tiny | Instant | Anomaly detection | **Required** |
+| `faster-whisper` (base) | N/A | ~0.2 GB | Near real-time | Voice input | Stretch |
 
 **Operating rules:** keep prompts short; pre-warm before demo; set `OR_MODEL` env var to switch models without code changes; if a model stalls, fall back to `gemma2:2b`.
 
@@ -686,10 +686,10 @@ All via **Ollama**, local, offline, free. Tuned for your **Intel i9 / 16 GB / CP
 
 | Item | Source | Cost | Status |
 | --- | --- | --- | --- |
-| Raspberry Pi Pico W + breadboard, wires, all sensors (DHT11, MPU6050, PIR, ultrasonic, LCD1602, buzzer, RGB LED, DC motor + driver, servo) | **In your SunFounder Kepler kit** | **$0 (owned)** | ✅ Ordered, arrives ~Jun 22 |
-| USB cable (Pico ↔ Mac) | In kit | $0 | ✅ |
-| Laptop, Ollama models, all software | Owned / open-source | **$0** | ✅ |
-| *(Optional)* MQ-7 (CO) or MQ-2 gas sensor module | Amazon Prime | **~$10** | ◻ Optional production-swap demo |
+| Raspberry Pi Pico W + breadboard, wires, all sensors (DHT11, MPU6050, PIR, ultrasonic, LCD1602, buzzer, RGB LED, DC motor + driver, servo) | **In your SunFounder Kepler kit** | **$0 (owned)** | Ordered, arrives ~Jun 22 |
+| USB cable (Pico ↔ Mac) | In kit | $0 | |
+| Laptop, Ollama models, all software | Owned / open-source | **$0** | |
+| *(Optional)* MQ-7 (CO) or MQ-2 gas sensor module | Amazon Prime | **~$10** | Optional production-swap demo |
 | **Total required spend** | | **$0** | |
 
 **Headline for the pitch:** *"Total bill of materials for the AI: zero. It runs on hardware mines already own."*
