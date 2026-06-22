@@ -1,25 +1,25 @@
-# MineGuardian — Project Site & Live Mock Console
+# OreAcle: Project Site and Live Mock Console
 
-A production-style, single-page website for **MineGuardian**, an open-source AI safety & ventilation co-pilot for underground mines (Cursor Hackathon Sudbury · "Build the North" · Track 03).
+A production-style, single-page website for **OreAcle**, the offline AI oracle for underground mine intelligence (Cursor Hackathon Sudbury, "Build the North", Track 03).
 
 It does three jobs in one app:
 
-1. **Showcase** — a polished landing experience explaining the project, the problem, the real-world industry context (Vale, Glencore, Maestro, Newtrax), a custom **architecture diagram**, the **hardware** used, and the **open-source AI** stack.
-2. **Live Console** — a fully interactive **mock operator dashboard** running on a built-in simulator (no hardware needed). Trigger scenarios and watch anomaly detection, AI alerts, the copilot, and the ventilation fan respond in real time. This is the "feel" of the production app before any hardware arrives.
-3. **Documentation** — the **entire master project plan** rendered inside the app with an auto-generated table of contents.
+1. **Showcase:** a polished landing experience explaining the project, the problem, the real-world industry context (Vale, Glencore, Maestro, Newtrax), a custom **architecture diagram**, the **hardware** used, and the **open-source AI** stack.
+2. **Live Console:** a fully interactive **mock operator dashboard** running on a built-in simulator (no hardware needed). Trigger scenarios and watch anomaly detection, AI alerts, the copilot, and the ventilation fan respond in real time. This is the "feel" of the production app before any hardware arrives.
+3. **Documentation:** the **entire master project plan** rendered inside the app with an auto-generated table of contents.
 
-> Everything is plain **HTML + CSS + vanilla JS** — no build step, no framework, no backend. It runs as static files and is ready for **GitHub Pages**.
+> Everything is plain **HTML + CSS + vanilla JS** (no build step, no framework, no backend). It runs as static files and is ready for **GitHub Pages**.
 
 ---
 
 ## Quick start
 
-**Option A — open directly:** double-click `index.html`. Works offline; the only things that need internet are the web-fonts and the markdown renderer (used by the Docs tab). If offline, the Docs tab gracefully falls back to plain text and the rest of the site is unaffected.
+**Option A: open directly.** Double-click `index.html`. Works offline; the only things that need internet are the web-fonts and the markdown renderer (used by the Docs tab). If offline, the Docs tab gracefully falls back to plain text and the rest of the site is unaffected.
 
-**Option B — run a tiny local server (best fidelity):**
+**Option B: run a tiny local server (best fidelity):**
 
 ```bash
-cd mineguardian-website
+cd oreacle-website
 python3 -m http.server 8080
 # open http://localhost:8080
 ```
@@ -28,16 +28,15 @@ python3 -m http.server 8080
 
 ## Publish on GitHub Pages
 
-1. Create a new GitHub repo (e.g. `mineguardian`) and push the contents of this `mineguardian-website/` folder to the repo root.
+1. Create a new GitHub repo (e.g. `oreacle`) and push the contents of this folder to the repo root.
    ```bash
-   cd mineguardian-website
-   git init && git add . && git commit -m "MineGuardian site"
+   git init && git add . && git commit -m "OreAcle site"
    git branch -M main
-   git remote add origin https://github.com/<you>/mineguardian.git
+   git remote add origin https://github.com/<you>/oreacle.git
    git push -u origin main
    ```
 2. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, pick **main / (root)**, Save.
-3. Wait ~1 minute; your site is live at `https://<you>.github.io/mineguardian/`.
+3. Wait ~1 minute; your site is live at `https://<you>.github.io/oreacle/`.
 4. Edit the **GitHub** button link in `index.html` (`id="githubLink"`) to point at your repo.
 
 The included `.nojekyll` file tells GitHub Pages to serve everything as-is.
@@ -47,18 +46,18 @@ The included `.nojekyll` file tells GitHub Pages to serve everything as-is.
 ## File structure
 
 ```
-mineguardian-website/
-├── index.html                 # all 3 views (Home / Live Console / Docs)
+oreacle-website/
+├── index.html                       # all 3 views (Home / Live Console / Docs)
 ├── css/
-│   └── styles.css             # full design system (dark + light themes)
+│   └── styles.css                   # full design system (dark + light themes)
 ├── js/
-│   ├── plan-content.js        # the master plan embedded as a JS string (AUTO-GENERATED)
-│   ├── dashboard.js           # the mock console simulation + UI
-│   ├── docs.js                # renders the plan + builds the TOC
-│   └── main.js                # router, theme toggle, nav, scroll-spy, animations
-├── MineGuardian_Master_Project_Plan.md   # the source document (also viewable on GitHub)
+│   ├── plan-content.js              # the master plan embedded as a JS string (AUTO-GENERATED)
+│   ├── dashboard.js                 # the mock console simulation + UI
+│   ├── docs.js                      # renders the plan + builds the TOC
+│   └── main.js                      # router, theme toggle, nav, scroll-spy, animations
+├── OreAcle_Master_Project_Plan.md   # the source document (also viewable on GitHub)
 ├── .nojekyll
-└── README.md                  # this file
+└── README.md                        # this file
 ```
 
 ---
@@ -77,7 +76,7 @@ Everything is clearly labelled **SAMPLE DATA · SIMULATION** and **SIM** badges 
 
 ---
 
-## Roadmap — swapping the mock for the real system
+## Roadmap: swapping the mock for the real system
 
 When the hardware + AI are ready (see the full plan), you replace the simulation with live data **without changing the UI**:
 
@@ -95,10 +94,10 @@ The cleanest path: keep this UI, point the data layer at `ws://localhost:8000/ws
 
 ## Updating the embedded document
 
-The Docs tab reads `js/plan-content.js`, which is generated from `MineGuardian_Master_Project_Plan.md`. To refresh it after editing the plan:
+The Docs tab reads `js/plan-content.js`, which is generated from `OreAcle_Master_Project_Plan.md`. To refresh it after editing the plan:
 
 ```bash
-python3 - "MineGuardian_Master_Project_Plan.md" "js/plan-content.js" <<'PY'
+python3 - "OreAcle_Master_Project_Plan.md" "js/plan-content.js" <<'PY'
 import json,sys
 src,dst=sys.argv[1],sys.argv[2]
 md=open(src,encoding="utf-8").read()
@@ -110,10 +109,9 @@ PY
 
 ## Customisation
 
-- **Colors / theme:** edit the CSS variables at the top of `css/styles.css` (`--accent`, `--accent-2`, status colors). A light theme is included via the toggle in the navbar.
-- **Fonts:** Space Grotesk (display), Inter (body), JetBrains Mono (data) — swap in the `<link>` in `index.html`.
-- **Rename the product:** search/replace `MineGuardian` across `index.html`.
-- **Content:** the Home sections (Overview, Architecture, Hardware, AI Stack) are plain HTML in `index.html` — edit freely.
+- **Colors / theme:** edit the CSS variables at the top of `css/styles.css` (`--accent`, `--accent-2`, status colors). Both light and dark themes are available via the toggle in the navbar.
+- **Fonts:** Space Grotesk (display), Inter (body), JetBrains Mono (data). Swap in the `<link>` in `index.html`.
+- **Content:** the Home sections (Overview, Architecture, Hardware, AI Stack, Industry) are plain HTML in `index.html`. Edit freely.
 
 ---
 

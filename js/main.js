@@ -1,5 +1,5 @@
 /* ============================================================
-   MineGuardian — app controller
+   OreAcle: app controller
    View router (home / console / docs), theme, nav, scroll-spy, reveals.
    ============================================================ */
 (function () {
@@ -10,7 +10,7 @@
   /* ---------- theme ---------- */
   function initTheme() {
     const saved = (() => { try { return localStorage.getItem("mg-theme"); } catch (e) { return null; } })();
-    document.documentElement.setAttribute("data-theme", saved || "dark");
+    document.documentElement.setAttribute("data-theme", saved || "light");
   }
   function toggleTheme() {
     const cur = document.documentElement.getAttribute("data-theme");
@@ -96,7 +96,7 @@
 
   /* ---------- home scroll-spy ---------- */
   function initScrollSpy() {
-    const ids = ["overview", "architecture", "hardware", "ai-stack"];
+    const ids = ["overview", "architecture", "hardware", "ai-stack", "industry"];
     const map = {};
     ids.forEach(id => { const a = $(`.nav-link[href="#${id}"]`); if (a) map[id] = a; });
     const obs = new IntersectionObserver((entries) => {

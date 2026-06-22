@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MineGuardian — Open-Source AI Safety & Ventilation Co-Pilot for Underground Mines</title>
-<meta name="description" content="MineGuardian is a free, open-source AI co-pilot that watches an underground mine's sensors, detects danger, explains it in plain English, and controls ventilation — running locally at $0 AI cost. Built for the Cursor Hackathon Sudbury, Track 03 Mining & Industrial Innovation." />
+<title>OreAcle: The Offline AI Oracle for Underground Mine Intelligence</title>
+<meta name="description" content="OreAcle is a free, open-source AI oracle that watches an underground mine's sensors, detects danger, explains it in plain English, and controls ventilation, running locally at $0 AI cost. Built for the Cursor Hackathon Sudbury, Track 03 Mining and Industrial Innovation." />
 <meta name="author" content="Mihir Trivedi" />
-<meta property="og:title" content="MineGuardian — AI Safety & Ventilation Co-Pilot" />
-<meta property="og:description" content="Open-source, local, $0-cost AI for underground mine safety. Live mock console + full project plan." />
+<meta property="og:title" content="OreAcle: The Offline AI Oracle for Underground Mines" />
+<meta property="og:description" content="Open-source, offline, $0-cost AI oracle for underground mine safety. Live mock console + full project plan." />
 <meta property="og:type" content="website" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 8v9c0 7 5 11 12 13 7-2 12-6 12-13V8z' fill='%23FFB020'/%3E%3Cpath d='M16 9l-6 11h12z' fill='%230B0F14'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,11 +20,11 @@
 <!-- ============================ NAVBAR ============================ -->
 <header class="navbar" id="navbar">
   <div class="nav-inner">
-    <a class="brand" href="#/home" data-view="home" aria-label="MineGuardian home">
+    <a class="brand" href="#/home" data-view="home" aria-label="OreAcle home">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 32 32" width="26" height="26"><path d="M16 2 4 8v9c0 7 5 11 12 13 7-2 12-6 12-13V8z" fill="var(--accent)"/><path d="M16 9l-6 11h12z" fill="var(--bg)"/></svg>
       </span>
-      <span class="brand-text">Mine<span class="brand-accent">Guardian</span></span>
+      <span class="brand-text"><span class="brand-accent">Ore</span>Acle</span>
     </a>
 
     <nav class="nav-links" id="navLinks" aria-label="Primary">
@@ -32,6 +32,7 @@
       <a href="#architecture" class="nav-link" data-scroll>Architecture</a>
       <a href="#hardware" class="nav-link" data-scroll>Hardware</a>
       <a href="#ai-stack" class="nav-link" data-scroll>AI Stack</a>
+      <a href="#industry" class="nav-link" data-scroll>Industry</a>
       <a href="#/console" class="nav-link nav-cta-soft" data-view="console">▶ Live Console</a>
       <a href="#/docs" class="nav-link" data-view="docs">Documentation</a>
     </nav>
@@ -63,8 +64,8 @@
         <span class="pill pill-accent">Cursor Hackathon Sudbury · Track 03</span>
         <span class="pill">Build the North · 2026</span>
       </div>
-      <h1 class="hero-title">The open-source AI <span class="grad">safety &amp; ventilation</span> co-pilot for underground mines.</h1>
-      <p class="hero-sub">MineGuardian watches a mine's sensors, detects danger before a human would, explains it in plain English, recommends the action, and drives the ventilation fan itself — running locally on a laptop at <strong>$0 AI cost</strong>.</p>
+      <h1 class="hero-title">The offline AI <span class="grad">oracle</span> for underground mine intelligence.</h1>
+      <p class="hero-sub">OreAcle watches a mine's sensors, detects danger before a human would, explains it in plain English, recommends the action, and drives the ventilation fan itself, all running locally on a laptop at <strong>$0 AI cost</strong>.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
         <a class="btn btn-ghost" href="#/docs" data-view="docs">Read the Full Plan</a>
@@ -84,7 +85,7 @@
       <div class="section-head reveal">
         <span class="eyebrow">The idea, in plain language</span>
         <h2>The mine already measures everything. It just isn't <em>understood</em> fast enough.</h2>
-        <p class="lead">Two kilometres underground, three things quietly cause harm — bad air, failing equipment, and mismatched ventilation — and none announce themselves clearly. Today a human is expected to watch dozens of live numbers across many zones and connect the dots, every time, all shift. That's exactly the job a machine should help with.</p>
+        <p class="lead">Two kilometres underground, three things quietly cause harm: bad air, failing equipment, and mismatched ventilation. None announce themselves clearly. Today a human is expected to watch dozens of live numbers across many zones and connect the dots, every time, all shift. That's exactly the job a machine should help with.</p>
       </div>
 
       <div class="cards-3">
@@ -96,7 +97,7 @@
         <article class="card reveal">
           <div class="card-ic ic-gear">⚙</div>
           <h3>Failing equipment</h3>
-          <p>Pumps, fans, and drills vibrate differently for days before they fail. Miss it, and a $500K breakdown — or worse — follows.</p>
+          <p>Pumps, fans, and drills vibrate differently for days before they fail. Miss it, and a $500K breakdown, or worse, follows.</p>
         </article>
         <article class="card reveal">
           <div class="card-ic ic-fan">🌀</div>
@@ -109,9 +110,9 @@
         <div class="split-text">
           <span class="eyebrow">The gap we close</span>
           <h3>The sensors exist. The <span class="grad">brain</span> and the <span class="grad">friendly face</span> don't.</h3>
-          <p>Maestro Digital Mine has air-quality stations running in Vale's Sudbury mines — including Creighton, 2.4&nbsp;km deep — since 2015. Sandvik's Newtrax platform monitors Glencore's people and equipment underground. Vale runs a remote operations centre in Sudbury watching all five Ontario mines, with ventilation-on-demand saving millions.</p>
-          <p>So the data is there. What's missing is the <strong>AI interpretation layer</strong> that turns raw numbers into a prioritised, plain-English decision — and a <strong>practical operator interface</strong> built for the person on shift, not just an engineer. MineGuardian is that missing layer, built with free open-source AI.</p>
-          <div class="quote-line">"Vale and Glencore have the eyes and the muscles. MineGuardian is the open-source, zero-cost brain and friendly face that connects them — proven end-to-end on a $40 board."</div>
+          <p><a href="https://www.maestrodigitalmine.com/products/vigilante-aqs-air-quality-station" target="_blank" rel="noopener">Maestro Digital Mine</a> has air-quality stations running in Vale's Sudbury mines (including Creighton, 2.4&nbsp;km deep) since 2015. <a href="https://www.mining.sandvik/en/digital-solutions/operations-and-connected-fleet/mixed-fleet-telemetry/" target="_blank" rel="noopener">Sandvik's Newtrax</a> platform monitors Glencore's people and equipment underground. <a href="https://im-mining.com/2024/01/11/vale-base-metals-iroc-in-sudbury-now-overseeing-all-five-of-its-ontario-mines/" target="_blank" rel="noopener">Vale runs a remote operations centre</a> in Sudbury watching all five Ontario mines, with ventilation-on-demand saving millions.</p>
+          <p>So the data is there. What's missing is the <strong>AI interpretation layer</strong> that turns raw numbers into a prioritised, plain-English decision, and a <strong>practical operator interface</strong> built for the person on shift, not just an engineer. OreAcle is that missing layer, built with free open-source AI.</p>
+          <div class="quote-line">"Vale and Glencore have the eyes and the muscles. OreAcle is the open-source, zero-cost brain and friendly face that connects them, proved end-to-end on a $40 board."</div>
         </div>
         <div class="split-visual">
           <div class="flow-mini">
@@ -123,7 +124,7 @@
             <div class="fm-arrow">→</div>
             <div class="fm-step"><span class="fm-dot"></span>Act</div>
           </div>
-          <p class="fm-cap">The whole story is one round trip: feel the world, decide, explain it to a human, and turn the fan — closing the loop.</p>
+          <p class="fm-cap">The whole story is one round trip: feel the world, decide, explain it to a human, and turn the fan, closing the loop.</p>
         </div>
       </div>
     </div>
@@ -135,7 +136,94 @@
       <div class="section-head reveal">
         <span class="eyebrow">How it works</span>
         <h2>System architecture</h2>
-        <p class="lead">The Pico W is the nervous system — it feels the world and reports back over a USB cable. Your MacBook is the brain — it thinks, decides, explains, and shows everything on screen — and sends a command back to spin the fan. Everything below runs locally and free.</p>
+        <p class="lead">The Pico W is the nervous system: it feels the world and reports back over a USB cable. Your MacBook is the brain: it thinks, decides, explains, and shows everything on screen, then sends a command back to spin the fan. Everything below runs locally and free.</p>
+      </div>
+
+      <!-- CONTEXT DIAGRAM: How it works in a real mine -->
+      <figure class="ctx-diagram reveal" aria-label="How OreAcle works in a real underground mine: miners and equipment underground feed sensor data up to a surface control room running offline AI, with automated responses sent back down.">
+        <div class="ctx-inner">
+          <!-- Underground zone -->
+          <div class="ctx-zone ctx-underground">
+            <div class="ctx-zone-label">Underground</div>
+            <div class="ctx-items">
+              <div class="ctx-item">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="20" width="28" height="14" rx="3" fill="var(--accent)" opacity=".18"/><rect x="6" y="20" width="28" height="14" rx="3" stroke="var(--accent)" stroke-width="1.5" fill="none"/><circle cx="11" cy="34" r="3" fill="var(--accent)" opacity=".7"/><circle cx="29" cy="34" r="3" fill="var(--accent)" opacity=".7"/><rect x="14" y="14" width="12" height="8" rx="2" fill="var(--accent)" opacity=".28"/><path d="M16 20v-4l4-2 4 2v4" stroke="var(--accent)" stroke-width="1.2" fill="none"/></svg>
+                <span>Equipment + Haul Truck</span>
+              </div>
+              <div class="ctx-item ctx-item-miner">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="10" r="5" fill="var(--accent)" opacity=".7"/><path d="M12 28c0-7 16-7 16 0" fill="var(--accent)" opacity=".18" stroke="var(--accent)" stroke-width="1.5"/><rect x="16" y="7" width="8" height="4" rx="2" fill="var(--accent)" opacity=".5"/></svg>
+                <span class="ctx-persona">Miner</span>
+              </div>
+              <div class="ctx-item ctx-item-hazard">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="22" rx="13" ry="9" fill="var(--watch)" opacity=".18"/><ellipse cx="20" cy="22" rx="13" ry="9" stroke="var(--watch)" stroke-width="1.5" fill="none"/><text x="20" y="26" text-anchor="middle" font-size="13" fill="var(--watch)" font-weight="700">CO</text></svg>
+                <span class="ctx-hazard">Gas / Air Hazard</span>
+              </div>
+              <div class="ctx-item ctx-item-node">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="8" y="10" width="24" height="20" rx="4" fill="var(--accent-2)" opacity=".18"/><rect x="8" y="10" width="24" height="20" rx="4" stroke="var(--accent-2)" stroke-width="1.5" fill="none"/><circle cx="14" cy="20" r="2.5" fill="var(--accent-2)"/><circle cx="20" cy="20" r="2.5" fill="var(--accent-2)"/><circle cx="26" cy="20" r="2.5" fill="var(--accent-2)"/></svg>
+                <span>OreAcle Edge Node</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connectivity arrow -->
+          <div class="ctx-connector" aria-hidden="true">
+            <div class="ctx-conn-line">
+              <div class="ctx-conn-pulse"></div>
+            </div>
+            <div class="ctx-conn-label">Wi-Fi / LTE / USB<br/>up the shaft</div>
+          </div>
+
+          <!-- Surface Control Room -->
+          <div class="ctx-zone ctx-surface">
+            <div class="ctx-zone-label">Surface Control Room</div>
+            <div class="ctx-items">
+              <div class="ctx-item">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="8" width="30" height="20" rx="3" fill="var(--accent-3)" opacity=".18"/><rect x="5" y="8" width="30" height="20" rx="3" stroke="var(--accent-3)" stroke-width="1.5" fill="none"/><rect x="14" y="28" width="12" height="3" rx="1.5" fill="var(--accent-3)" opacity=".5"/><rect x="8" y="12" width="24" height="12" rx="1.5" fill="var(--accent-3)" opacity=".12"/></svg>
+                <span>OreAcle Offline AI</span>
+              </div>
+              <div class="ctx-item">
+                <div class="ctx-badge-row">
+                  <span class="ctx-badge ctx-badge-offline">Offline</span>
+                  <span class="ctx-badge ctx-badge-free">$0 AI</span>
+                  <span class="ctx-badge ctx-badge-oss">Open-source</span>
+                </div>
+              </div>
+              <div class="ctx-item ctx-item-supervisor">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="10" r="5" fill="var(--ok)" opacity=".7"/><path d="M12 28c0-7 16-7 16 0" fill="var(--ok)" opacity=".18" stroke="var(--ok)" stroke-width="1.5"/><rect x="15" y="26" width="10" height="6" rx="2" fill="var(--ok)" opacity=".4"/></svg>
+                <span class="ctx-persona">Shift Supervisor</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Return arrow -->
+          <div class="ctx-connector ctx-conn-return" aria-hidden="true">
+            <div class="ctx-conn-line ctx-conn-line-return">
+              <div class="ctx-conn-pulse ctx-conn-pulse-return"></div>
+            </div>
+            <div class="ctx-conn-label">Automated actions:<br/>Fan ramp-up, Alarm</div>
+          </div>
+
+          <!-- Ventilation / Actions -->
+          <div class="ctx-zone ctx-actions">
+            <div class="ctx-zone-label">Automated Response</div>
+            <div class="ctx-items">
+              <div class="ctx-item">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" stroke="var(--accent)" stroke-width="1.5" fill="none"/><g style="transform-origin:20px 20px;animation:spin 2s linear infinite"><path d="M20 20 C20 10 14 4 20 0 C26 4 20 10 20 20Z" fill="var(--accent)" opacity=".7"/><path d="M20 20 C30 20 36 14 40 20 C36 26 30 20 20 20Z" fill="var(--accent)" opacity=".7"/><path d="M20 20 C20 30 26 36 20 40 C14 36 20 30 20 20Z" fill="var(--accent)" opacity=".7"/><path d="M20 20 C10 20 4 26 0 20 C4 14 10 20 20 20Z" fill="var(--accent)" opacity=".7"/></g><circle cx="20" cy="20" r="3" fill="var(--text)"/></svg>
+                <span>Ventilation Fan</span>
+              </div>
+              <div class="ctx-item">
+                <svg class="ctx-icon" viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,6 36,32 4,32" fill="var(--alert)" opacity=".18"/><polygon points="20,6 36,32 4,32" stroke="var(--alert)" stroke-width="1.5" fill="none"/><text x="20" y="27" text-anchor="middle" font-size="14" fill="var(--alert)" font-weight="700">!</text></svg>
+                <span>Local Alarm + LCD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="ctx-caption">OreAcle closes the loop: sensors underground feed an offline AI on the surface, which automatically ramps ventilation and alerts the shift supervisor.</figcaption>
+      </figure>
+
+      <div class="section-head reveal" style="margin-top:48px;margin-bottom:24px">
+        <span class="eyebrow">Technical detail</span>
+        <h3 style="font-size:1.4rem">System architecture</h3>
       </div>
 
       <div class="arch reveal" id="archDiagram">
@@ -154,7 +242,7 @@
         </div>
 
         <div class="arch-lane arch-lane-brain">
-          <div class="lane-head"><span class="lane-ic">💻</span><div><div class="lane-title">The Brain — MacBook</div><div class="lane-sub">all local · $0 AI cost</div></div></div>
+          <div class="lane-head"><span class="lane-ic">💻</span><div><div class="lane-title">The Brain: MacBook</div><div class="lane-sub">all local · $0 AI cost</div></div></div>
           <div class="node node-brain"><b>Ingest → SQLite</b><span>time-series store</span></div>
           <div class="node node-brain"><b>Isolation Forest</b><span>ML anomaly detection · scikit-learn</span></div>
           <div class="node node-brain"><b>Rules + Ventilation-on-Demand</b><span>safety limits · fan setpoint</span></div>
@@ -189,7 +277,7 @@
         <pre class="code"><code>{ "ts": 1750550400, "zone": "Z3", "vib_rms": 0.07, "temp_c": 24.1,
   "humidity": 58, "occupancy": 2, "distance_cm": 180,
   "co_ppm": 12, "no2_ppm": 0.4, "airflow": 0.42, "fan_pct": 40 }</code></pre>
-        <span class="sim-note"><span class="sim-badge">SIM</span> <code>co_ppm</code>, <code>no2_ppm</code>, and <code>airflow</code> are software-simulated in the POC — swapping in a ~$10 gas sensor is a one-wire change.</span>
+        <span class="sim-note"><span class="sim-badge">SIM</span> <code>co_ppm</code>, <code>no2_ppm</code>, and <code>airflow</code> are software-simulated in the POC; swapping in a ~$10 gas sensor is a one-wire change.</span>
       </div>
     </div>
   </section>
@@ -198,9 +286,9 @@
   <section class="section" id="hardware">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">What we use — and how little</span>
+        <span class="eyebrow">What we use, and how little</span>
         <h2>Hardware: humble, plug-and-play, in the box</h2>
-        <p class="lead">Everything comes from one <b>SunFounder Raspberry Pi Pico W Ultimate Starter Kit</b>. No soldering. Hardware is ~10% of the effort — the idea, the AI, and the interface are the stars.</p>
+        <p class="lead">Everything comes from one <b>SunFounder Raspberry Pi Pico W Ultimate Starter Kit</b>. No soldering. Hardware is ~10% of the effort; the idea, the AI, and the interface are the stars.</p>
       </div>
 
       <div class="hw-grid">
@@ -217,12 +305,12 @@
             <li><span>Language</span><b>MicroPython</b></li>
             <li><span>Link to Mac</span><b>USB serial (primary)</b></li>
           </ul>
-          <p class="hw-myth"><b>Myth-buster:</b> Amazon lists "Tegra / FreeRTOS" — that's auto-fill error. It's an RP2040 microcontroller. It's <em>too small</em> to run the AI, which is exactly why the brain lives on the MacBook.</p>
+          <p class="hw-myth"><b>Myth-buster:</b> Amazon lists "Tegra / FreeRTOS", that's an auto-fill error. It's an RP2040 microcontroller. It's <em>too small</em> to run the AI, which is exactly why the brain lives on the MacBook.</p>
         </div>
 
         <div class="hw-table-wrap reveal">
           <table class="hw-table">
-            <thead><tr><th>Role in MineGuardian</th><th>Component</th><th>Interface</th></tr></thead>
+            <thead><tr><th>Role in OreAcle</th><th>Component</th><th>Interface</th></tr></thead>
             <tbody>
               <tr><td>Equipment vibration / ground movement</td><td><b>MPU6050</b></td><td>I²C 0x68</td></tr>
               <tr><td>Air temperature + humidity (heat-stress)</td><td><b>DHT11</b></td><td>1-wire</td></tr>
@@ -234,7 +322,7 @@
               <tr><td>The "ventilation fan" (the wow)</td><td><b>DC motor + driver</b></td><td>PWM</td></tr>
             </tbody>
           </table>
-          <p class="hw-cost">Extra spend on AI &amp; hardware to make this run: <b class="grad">$0</b> — it all runs on a laptop and gear mines already own.</p>
+          <p class="hw-cost">Extra spend on AI &amp; hardware to make this run: <b class="grad">$0</b>: it all runs on a laptop and gear mines already own.</p>
         </div>
       </div>
     </div>
@@ -244,9 +332,9 @@
   <section class="section section-alt" id="ai-stack">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">The AI — open-source, local, free</span>
+        <span class="eyebrow">The AI: open-source, local, free</span>
         <h2>Two kinds of AI, zero dollars, no internet required</h2>
-        <p class="lead">Everything runs on the laptop with no API keys and nothing leaving the machine — which matters underground, where connectivity is poor and data is sensitive.</p>
+        <p class="lead">Everything runs on the laptop with no API keys and nothing leaving the machine, which matters underground, where connectivity is poor and data is sensitive.</p>
       </div>
 
       <div class="cards-3">
@@ -254,7 +342,7 @@
           <div class="ai-tag">Detection</div>
           <h3>Isolation Forest</h3>
           <p class="ai-lib">scikit-learn</p>
-          <p>A lightweight, explainable machine-learning model that learns what "normal" looks like and flags abnormal <em>combinations</em> of readings — even when no single number crossed a hard limit.</p>
+          <p>A lightweight, explainable machine-learning model that learns what "normal" looks like and flags abnormal <em>combinations</em> of readings, even when no single number crossed a hard limit.</p>
           <ul class="ticks"><li>Instant on CPU</li><li>Explainable</li><li>Backed by hard safety rules</li></ul>
         </article>
         <article class="card ai-card ai-card-hero reveal">
@@ -275,8 +363,81 @@
 
       <div class="why-free reveal">
         <div class="wf-item"><div class="wf-num">$0</div><p>No API bills, ever. The model files are downloaded once and run forever for free.</p></div>
-        <div class="wf-item"><div class="wf-num">⛓️‍💥</div><p>No internet needed at demo time — critical underground and for data privacy.</p></div>
+        <div class="wf-item"><div class="wf-num">⛓️‍💥</div><p>No internet needed at demo time. Critical underground and for data privacy.</p></div>
         <div class="wf-item"><div class="wf-num">⚡</div><p>Small models keep alerts snappy; outputs are kept to ≤ 2 sentences and pre-warmed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRY IN ACTION -->
+  <section class="section section-alt" id="industry">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Proven in the field</span>
+        <h2>Industry in action</h2>
+        <p class="lead">OreAcle is the open-source AI interpretation and operator-interface layer that complements these proven deployments. The sensors, the data, and the infrastructure already exist underground.</p>
+      </div>
+
+      <div class="industry-grid">
+
+        <article class="card industry-card reveal">
+          <div class="ind-tag">Air Quality Monitoring</div>
+          <h3>Maestro Digital Mine</h3>
+          <p class="ind-company">Vigilante AQS in Vale's Sudbury Mines</p>
+          <p>Hundreds of Vigilante AQS air-quality stations have been running in Vale's underground operations since 2015, covering airflow, gas, temperature, and dust. Deployed at Creighton Mine (2,400 m deep), one of the deepest in Canada.</p>
+          <div class="ind-links">
+            <a href="https://www.maestrodigitalmine.com/products/vigilante-aqs-air-quality-station" target="_blank" rel="noopener" class="ind-link">Vigilante AQS</a>
+            <a href="https://www.maestrodigitalmine.com/images/case-studies/Plexus-Case-Study-Vale-Creighton.pdf" target="_blank" rel="noopener" class="ind-link">Vale Creighton case study</a>
+          </div>
+        </article>
+
+        <article class="card industry-card reveal">
+          <div class="ind-tag">Fleet Telemetry &amp; Safety</div>
+          <h3>Sandvik + Glencore</h3>
+          <p class="ind-company">Newtrax Collision-Avoidance Expansion (July 2025)</p>
+          <p>Sandvik and Glencore expanded their partnership in July 2025 to deploy Newtrax collision-avoidance and the Mining Data Platform across Glencore's mixed underground fleet at Raglan (Canada) and Kamoto (DRC).</p>
+          <div class="ind-links">
+            <a href="https://www.mining.sandvik/en/news-and-media/news-archive/2025/07/sandvik-glencore-expand-partnership-to-include-newtrax-collision-avoidance-technology/" target="_blank" rel="noopener" class="ind-link">Partnership announcement</a>
+            <a href="https://www.mining.sandvik/en/digital-solutions/operations-and-connected-fleet/mixed-fleet-telemetry/" target="_blank" rel="noopener" class="ind-link">Mining Data Platform</a>
+          </div>
+        </article>
+
+        <article class="card industry-card reveal">
+          <div class="ind-tag">Remote Operations</div>
+          <h3>Vale IROC + VOD</h3>
+          <p class="ind-company">Sudbury, Ontario</p>
+          <p>Vale's Integrated Remote Operations Centre (IROC) in Sudbury oversees all five Ontario underground mines from surface. Ventilation-on-Demand systems save millions of dollars annually by matching airflow to activity.</p>
+          <div class="ind-links">
+            <a href="https://im-mining.com/2024/01/11/vale-base-metals-iroc-in-sudbury-now-overseeing-all-five-of-its-ontario-mines/" target="_blank" rel="noopener" class="ind-link">IROC (International Mining)</a>
+            <a href="https://www.northernontariobusiness.com/industry-news/mining/mine-ventilation-goes-digital-759997" target="_blank" rel="noopener" class="ind-link">Ventilation on demand</a>
+            <a href="https://www.sudbury.com/local-news/vales-digital-evolution-takes-shape-1703581" target="_blank" rel="noopener" class="ind-link">Digital evolution</a>
+          </div>
+        </article>
+
+        <article class="card industry-card reveal">
+          <div class="ind-tag">Air Quality Monitoring</div>
+          <h3>Accutron Instruments</h3>
+          <p class="ind-company">MAQS Mine Air Quality Station</p>
+          <p>The MAQS station monitors gas concentrations, airflow, and environmental conditions in Northern Ontario mines. A well-established Sudbury-region instrument measuring the same parameters OreAcle interprets.</p>
+          <div class="ind-links">
+            <a href="https://accutroninstruments.com/maqs-mine-air-quality-station-2/" target="_blank" rel="noopener" class="ind-link">MAQS product page</a>
+          </div>
+        </article>
+
+        <article class="card industry-card reveal">
+          <div class="ind-tag">Hackathon Sponsor</div>
+          <h3>Key Logic Software</h3>
+          <p class="ind-company">Sudbury, Ontario: software wrapped around mining hardware</p>
+          <p>Key Logic builds embedded systems, AR/VR (VirtualMine), and custom sensor-data algorithms for mining clients including <a href="https://www.minewise.com/shaftrack" target="_blank" rel="noopener">Minewise ShafTrack</a>, <a href="https://geosight.ca/nx-150/" target="_blank" rel="noopener">GeoSight NX-150</a>, and <a href="https://www.canadianminingjournal.com/news/tesman-teams-with-dyno-nobel-to-advance-underground-tech/" target="_blank" rel="noopener">TesMan remote loading</a>.</p>
+          <div class="ind-links">
+            <a href="https://www.keylogicsoftware.com" target="_blank" rel="noopener" class="ind-link">Key Logic Software</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="industry-note reveal">
+        <b>OreAcle's role:</b> These companies excel at collecting data and keeping workers safe physically. OreAcle is the open-source AI layer that adds plain-English interpretation and a human-centred operator interface on top, vendor-neutral across all their sensor networks.
       </div>
     </div>
   </section>
@@ -286,7 +447,7 @@
     <div class="container cta-inner reveal">
       <div>
         <h2>See it before the hardware arrives.</h2>
-        <p class="lead">The Live Console below runs the entire experience on <b>sample data</b> — trigger a gas build-up or a bearing failure and watch the AI alert, the fan response, and the copilot react in real time.</p>
+        <p class="lead">The Live Console below runs the entire experience on <b>sample data</b>. Trigger a gas build-up or a bearing failure and watch the AI alert, the fan response, and the copilot react in real time.</p>
       </div>
       <div class="cta-actions">
         <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
@@ -298,14 +459,15 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="brand-text">Mine<span class="brand-accent">Guardian</span></span>
-        <p>Open-source AI safety &amp; ventilation co-pilot for underground mines. A proof-of-concept by Mihir Trivedi for the Cursor Hackathon Sudbury — "Build the North", Track 03.</p>
+        <span class="brand-text"><span class="brand-accent">Ore</span>Acle</span>
+        <p>The offline AI oracle for underground mine intelligence. Open-source, $0 AI cost. A proof-of-concept by Mihir Trivedi for the Cursor Hackathon Sudbury, "Build the North", Track 03.</p>
       </div>
       <div class="footer-links">
         <a href="#overview" data-scroll>Overview</a>
         <a href="#architecture" data-scroll>Architecture</a>
         <a href="#hardware" data-scroll>Hardware</a>
         <a href="#ai-stack" data-scroll>AI Stack</a>
+        <a href="#industry" data-scroll>Industry</a>
         <a href="#/console" data-view="console">Live Console</a>
         <a href="#/docs" data-view="docs">Documentation</a>
       </div>
@@ -322,7 +484,7 @@
       <div class="cb-left">
         <span class="cb-title">Operator Console</span>
         <span class="cb-zone">Cluster: <b>North-3</b></span>
-        <span class="badge-sample" title="No real hardware connected — this runs on a built-in simulator">SAMPLE DATA · SIMULATION</span>
+        <span class="badge-sample" title="No real hardware connected. This runs on a built-in simulator">SAMPLE DATA · SIMULATION</span>
       </div>
       <div class="cb-right">
         <span class="cb-clock" id="simClock">--:--:--</span>
@@ -396,7 +558,7 @@
 
       <!-- Gauges -->
       <section class="panel panel-gauges">
-        <div class="panel-head"><h3>Sensors — North-3</h3><span class="panel-sub">real-time</span></div>
+        <div class="panel-head"><h3>Sensors: North-3</h3><span class="panel-sub">real-time</span></div>
         <div class="gauges" id="gauges"><!-- JS --></div>
       </section>
 

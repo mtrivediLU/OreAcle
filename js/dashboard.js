@@ -1,5 +1,5 @@
 /* ============================================================
-   MineGuardian — Mock Operator Console
+   OreAcle: Mock Operator Console
    A self-contained simulation that mimics the production app:
    sensors -> anomaly detection -> AI alerts -> ventilation control -> copilot.
    ALL DATA IS SIMULATED. In production these come from the Pico W + a local LLM.
@@ -89,16 +89,16 @@
     const co = Math.round(z.co), vib = z.vib.toFixed(2), t = Math.round(z.temp), h = Math.round(z.humidity);
     switch (key) {
       case "gas": return { sev: z.co >= TH.co.alert ? "alert" : "watch",
-        text: `<b>${z.name}</b> — CO rising to ${co} ppm with ${z.occupancy} worker${z.occupancy === 1 ? "" : "s"} present.`,
+        text: `<b>${z.name}</b>: CO rising to ${co} ppm with ${z.occupancy} worker${z.occupancy === 1 ? "" : "s"} present.`,
         action: "Increase ventilation now · check diesel equipment" };
       case "vib": return { sev: z.vib >= TH.vib.alert ? "alert" : "watch",
-        text: `<b>${z.name}</b> — abnormal vibration (RMS ${vib}); likely bearing wear before failure.`,
+        text: `<b>${z.name}</b>: abnormal vibration (RMS ${vib}); likely bearing wear before failure.`,
         action: "Schedule equipment inspection" };
       case "heat": return { sev: heatIndex(z.temp, z.humidity) >= TH.heat.alert ? "alert" : "watch",
-        text: `<b>${z.name}</b> — heat-stress index elevated (${t}°C / ${h}% RH).`,
+        text: `<b>${z.name}</b>: heat-stress index elevated (${t}°C / ${h}% RH).`,
         action: "Rotate crew · raise airflow" };
       default: return { sev: "ok",
-        text: `<b>${z.name}</b> — conditions normalised; ventilation easing to baseline.`, action: "" };
+        text: `<b>${z.name}</b>: conditions normalised; ventilation easing to baseline.`, action: "" };
     }
   }
 
@@ -231,7 +231,7 @@
             <path d="${arc(50, 40, 33, GA_START, GA_START + GA_SWEEP)}" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round"/>
             <path class="g-val" d="" fill="none" stroke="var(--accent)" stroke-width="8" stroke-linecap="round"/>
           </svg>
-          <div class="gauge-val"><span class="g-num">–</span></div>
+          <div class="gauge-val"><span class="g-num">-</span></div>
           <div class="gauge-label">${g.label}${g.sim ? ' <span class="sim-badge">SIM</span>' : ""}</div>
         </div>`).join("");
       el.dataset.built = "1";
@@ -278,7 +278,7 @@
 
   function renderFeed() {
     const el = $("#feed"); if (!el) return;
-    if (!state.feed.length) { el.innerHTML = `<li class="feed-empty">No alerts yet — trigger a scenario above to see the AI respond.</li>`; return; }
+    if (!state.feed.length) { el.innerHTML = `<li class="feed-empty">No alerts yet. Trigger a scenario above to see the AI respond.</li>`; return; }
     el.innerHTML = state.feed.map(f =>
       `<li class="feed-item sev-${f.sev}"><span class="feed-time">${f.t}</span><span class="feed-text">${f.text}</span></li>`).join("");
   }
@@ -324,20 +324,20 @@
     const reasonText = (x) => x.reasons.map(r => ({ gas: `CO ${Math.round(x.co)} ppm`, vib: `vibration RMS ${x.vib.toFixed(2)}`, heat: `heat index ${Math.round(heatIndex(x.temp, x.humidity))}` }[r.key])).join(", ");
     if (/(unsafe|which zone|status|danger|alert|risk)/.test(q)) {
       if (!unsafe.length) return "All four zones are within safe limits right now. Fans are matching demand and no anomalies are flagged.";
-      return unsafe.map(x => `${x.name} is in ${x.status.toUpperCase()} — ${reasonText(x)} (${x.occupancy} present, fan ${x.fan}%).`).join(" ");
+      return unsafe.map(x => `${x.name} is in ${x.status.toUpperCase()}: ${reasonText(x)} (${x.occupancy} present, fan ${x.fan}%).`).join(" ");
     }
     if (/(what.*do|action|recommend|should i|next step)/.test(q)) {
-      if (w.status === "ok") return "Nothing required — conditions are normal. Keep ventilation in Auto (demand-based) mode.";
+      if (w.status === "ok") return "Nothing required. Conditions are normal. Keep ventilation in Auto (demand-based) mode.";
       const key = (w.reasons[0] || {}).key;
       return alertText(w, key).action + ` for ${w.name}, and keep the crew clear until levels normalise.`;
     }
     if (/(co|gas|carbon|air quality)/.test(q)) return state.zones.map(x => `${x.name}: ${Math.round(x.co)} ppm`).join(" · ") + ". Alert limit is 35 ppm.";
-    if (/(vibration|bearing|equipment|machine)/.test(q)) return state.zones.map(x => `${x.name}: RMS ${x.vib.toFixed(2)}`).join(" · ") + ". Alert limit is 0.25 — rising RMS signals bearing wear.";
+    if (/(vibration|bearing|equipment|machine)/.test(q)) return state.zones.map(x => `${x.name}: RMS ${x.vib.toFixed(2)}`).join(" · ") + ". Alert limit is 0.25; rising RMS signals bearing wear.";
     if (/(fan|ventilation|vod|airflow)/.test(q)) return `${z.name} fan is at ${z.fan}% in ${z.mode === "auto" ? "Auto (demand-based)" : "Manual"} mode, airflow ${z.airflow.toFixed(2)} m³/s. Demand logic uses occupancy + air quality + heat.`;
     if (/(temp|heat|humid)/.test(q)) return `${z.name}: ${Math.round(z.temp)}°C, ${Math.round(z.humidity)}% RH (heat index ${Math.round(heatIndex(z.temp, z.humidity))}). Watch above 30.`;
     if (/(summary|report|overview|brief|last)/.test(q)) {
       const al = unsafe.length ? `${unsafe.length} zone(s) need attention: ${unsafe.map(x => x.name + " (" + x.status + ")").join(", ")}.` : "No active alerts.";
-      return `Shift snapshot @ ${fmtClock(state.clock)} — 4 zones monitored, ${state.zones.reduce((a, x) => a + x.occupancy, 0)} workers underground. ${al} Ventilation running demand-based.`;
+      return `Shift snapshot @ ${fmtClock(state.clock)}: 4 zones monitored, ${state.zones.reduce((a, x) => a + x.occupancy, 0)} workers underground. ${al} Ventilation running demand-based.`;
     }
     return "I can answer about zone status, gas/CO, vibration, ventilation, temperature/heat, or give a shift summary. Try one of the suggestions below.";
   }
@@ -345,14 +345,14 @@
     const box = $("#cpMessages"); if (!box) return null;
     const el = document.createElement("div");
     el.className = "cp-msg " + (who === "user" ? "cp-user" : "cp-ai");
-    el.innerHTML = who === "ai" ? `<div class="cp-who">MineGuardian AI</div>${html}` : html;
+    el.innerHTML = who === "ai" ? `<div class="cp-who">OreAcle AI</div>${html}` : html;
     box.appendChild(el); box.scrollTop = box.scrollHeight; return el;
   }
   function cpAsk(q) {
     if (!q.trim()) return;
     cpAdd("user", escapeHtml(q));
     const thinking = cpAdd("ai", `<div class="cp-typing"><span></span><span></span><span></span></div>`);
-    setTimeout(() => { thinking.innerHTML = `<div class="cp-who">MineGuardian AI</div>${escapeHtml(copilotAnswer(q))}`;
+    setTimeout(() => { thinking.innerHTML = `<div class="cp-who">OreAcle AI</div>${escapeHtml(copilotAnswer(q))}`;
       $("#cpMessages").scrollTop = $("#cpMessages").scrollHeight; }, 650);
   }
   function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }

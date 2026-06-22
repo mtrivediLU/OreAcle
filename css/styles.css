@@ -1,5 +1,5 @@
 /* ============================================================
-   MineGuardian — design system
+   OreAcle — design system
    Fonts: Space Grotesk (display) · Inter (body) · JetBrains Mono (data)
    ============================================================ */
 
@@ -456,4 +456,77 @@ main{padding-top:var(--nav-h)}
   .sc-hint{display:none}
   .alert-banner{flex-wrap:wrap}
   .ab-ack{order:3}
+}
+
+/* ============================================================
+   CONTEXT DIAGRAM
+   ============================================================ */
+.ctx-diagram{margin:0 0 8px;border:0;padding:0}
+.ctx-inner{display:grid;grid-template-columns:1fr 72px 1fr 72px 1fr;gap:10px;align-items:center;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 18px}
+.ctx-zone{display:flex;flex-direction:column;gap:10px}
+.ctx-zone-label{font-family:var(--f-display);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:4px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+.ctx-items{display:flex;flex-direction:column;gap:8px}
+.ctx-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);
+  border-radius:10px;padding:8px 10px;font-size:.82rem;color:var(--muted)}
+.ctx-item-miner{border-left:3px solid var(--accent)}
+.ctx-item-supervisor{border-left:3px solid var(--ok)}
+.ctx-item-hazard{border-left:3px solid var(--watch)}
+.ctx-item-node{border-left:3px solid var(--accent-2)}
+.ctx-icon{width:36px;height:36px;flex-shrink:0}
+.ctx-persona{font-weight:700;color:var(--text);font-family:var(--f-display)}
+.ctx-hazard{font-weight:600;color:var(--watch)}
+.ctx-badge-row{display:flex;gap:5px;flex-wrap:wrap;padding:4px 0}
+.ctx-badge{font-size:.68rem;font-weight:700;letter-spacing:.04em;padding:.2em .55em;border-radius:var(--r-pill)}
+.ctx-badge-offline{background:rgba(139,108,255,.14);color:var(--accent-3);border:1px solid rgba(139,108,255,.3)}
+.ctx-badge-free{background:rgba(255,176,32,.12);color:var(--accent);border:1px solid rgba(255,176,32,.3)}
+.ctx-badge-oss{background:rgba(54,214,231,.12);color:var(--accent-2);border:1px solid rgba(54,214,231,.3)}
+.ctx-connector{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:60px}
+.ctx-conn-line{position:relative;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  border-radius:2px;overflow:hidden}
+.ctx-conn-line-return{background:linear-gradient(90deg,var(--ok),var(--accent))}
+.ctx-conn-pulse{position:absolute;top:-2px;left:-20%;width:20%;height:7px;background:rgba(255,255,255,.7);
+  border-radius:4px;animation:ctx-move 1.8s linear infinite}
+.ctx-conn-pulse-return{animation-direction:reverse}
+@keyframes ctx-move{0%{left:-20%}100%{left:110%}}
+.ctx-conn-label{font-size:.66rem;color:var(--faint);text-align:center;font-family:var(--f-mono);line-height:1.35}
+.ctx-caption{margin-top:14px;font-size:.84rem;color:var(--muted);text-align:center;font-style:italic;padding:0 8px}
+
+/* ============================================================
+   INDUSTRY IN ACTION
+   ============================================================ */
+.industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:22px}
+.industry-card{display:flex;flex-direction:column;gap:8px}
+.ind-tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);margin-bottom:2px}
+.ind-company{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);margin:0}
+.industry-card p{color:var(--muted);font-size:.9rem;margin:0;flex:1}
+.ind-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
+.ind-link{font-size:.78rem;font-weight:600;color:var(--accent-2);text-decoration:underline;text-underline-offset:2px;transition:.15s}
+.ind-link:hover{color:var(--accent)}
+.industry-note{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:0 var(--r) var(--r) 0;padding:14px 18px;font-size:.9rem;color:var(--muted)}
+.industry-note b{color:var(--text)}
+.industry-card a{color:var(--accent-2);text-underline-offset:2px}
+.industry-card a:hover{color:var(--accent)}
+
+/* ---------- light theme polish ---------- */
+[data-theme="light"] .ctx-inner{background:var(--surface);border-color:var(--line)}
+[data-theme="light"] .ctx-item{background:var(--surface-2)}
+[data-theme="light"] .arch{background:var(--surface)}
+[data-theme="light"] .node{background:var(--surface-2)}
+[data-theme="light"] .arch-lane-brain .node-llm{background:linear-gradient(135deg,rgba(139,108,255,.10),rgba(54,214,231,.06))}
+[data-theme="light"] .hero-bg{opacity:.55}
+[data-theme="light"] .docs-content pre,[data-theme="light"] .code{background:#1a2236}
+
+@media (max-width:980px){
+  .ctx-inner{grid-template-columns:1fr;gap:8px}
+  .ctx-connector{flex-direction:row;min-width:auto;min-height:40px;padding:0 8px}
+  .ctx-conn-line{height:100%;width:3px;flex:1}
+  .ctx-conn-pulse{top:-20%;left:-2px;width:7px;height:20%;animation-name:ctx-move-v}
+  @keyframes ctx-move-v{0%{top:-20%}100%{top:110%}}
+  .industry-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  .industry-grid{grid-template-columns:1fr}
 }
