@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MineGuardian — Open-Source AI Safety & Ventilation Co-Pilot for Underground Mines</title>
+<meta name="description" content="MineGuardian is a free, open-source AI co-pilot that watches an underground mine's sensors, detects danger, explains it in plain English, and controls ventilation — running locally at $0 AI cost. Built for the Cursor Hackathon Sudbury, Track 03 Mining & Industrial Innovation." />
+<meta name="author" content="Mihir Trivedi" />
+<meta property="og:title" content="MineGuardian — AI Safety & Ventilation Co-Pilot" />
+<meta property="og:description" content="Open-source, local, $0-cost AI for underground mine safety. Live mock console + full project plan." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 8v9c0 7 5 11 12 13 7-2 12-6 12-13V8z' fill='%23FFB020'/%3E%3Cpath d='M16 9l-6 11h12z' fill='%230B0F14'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ============================ NAVBAR ============================ -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a class="brand" href="#/home" data-view="home" aria-label="MineGuardian home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26"><path d="M16 2 4 8v9c0 7 5 11 12 13 7-2 12-6 12-13V8z" fill="var(--accent)"/><path d="M16 9l-6 11h12z" fill="var(--bg)"/></svg>
+      </span>
+      <span class="brand-text">Mine<span class="brand-accent">Guardian</span></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#overview" class="nav-link" data-scroll>Overview</a>
+      <a href="#architecture" class="nav-link" data-scroll>Architecture</a>
+      <a href="#hardware" class="nav-link" data-scroll>Hardware</a>
+      <a href="#ai-stack" class="nav-link" data-scroll>AI Stack</a>
+      <a href="#/console" class="nav-link nav-cta-soft" data-view="console">▶ Live Console</a>
+      <a href="#/docs" class="nav-link" data-view="docs">Documentation</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" title="Toggle light / dark" aria-label="Toggle theme">
+        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A6 6 0 0 1 12.36 3.1 9.1 9.1 0 0 0 12 3z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-13h0M12 20v0M4 12H1m22 0h-3M5.6 5.6 4 4m16 16-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
+      </button>
+      <a class="btn btn-ghost nav-github" href="#" id="githubLink" target="_blank" rel="noopener">GitHub</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HOME VIEW ============================ -->
+<section class="view view-active" id="view-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-badges">
+        <span class="pill pill-accent">Cursor Hackathon Sudbury · Track 03</span>
+        <span class="pill">Build the North · 2026</span>
+      </div>
+      <h1 class="hero-title">The open-source AI <span class="grad">safety &amp; ventilation</span> co-pilot for underground mines.</h1>
+      <p class="hero-sub">MineGuardian watches a mine's sensors, detects danger before a human would, explains it in plain English, recommends the action, and drives the ventilation fan itself — running locally on a laptop at <strong>$0 AI cost</strong>.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
+        <a class="btn btn-ghost" href="#/docs" data-view="docs">Read the Full Plan</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">$0</div><div class="stat-label">AI running cost</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Open-source &amp; local</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">AI techniques (ML + LLM)</div></div>
+        <div class="stat"><div class="stat-num">$40</div><div class="stat-label">Edge node (Pico W)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The idea, in plain language</span>
+        <h2>The mine already measures everything. It just isn't <em>understood</em> fast enough.</h2>
+        <p class="lead">Two kilometres underground, three things quietly cause harm — bad air, failing equipment, and mismatched ventilation — and none announce themselves clearly. Today a human is expected to watch dozens of live numbers across many zones and connect the dots, every time, all shift. That's exactly the job a machine should help with.</p>
+      </div>
+
+      <div class="cards-3">
+        <article class="card reveal">
+          <div class="card-ic ic-air">☁</div>
+          <h3>Bad air</h3>
+          <p>Diesel exhaust (CO, NO₂), blasting gases, dust, and falling oxygen. Often you can't smell the danger until it's serious.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-ic ic-gear">⚙</div>
+          <h3>Failing equipment</h3>
+          <p>Pumps, fans, and drills vibrate differently for days before they fail. Miss it, and a $500K breakdown — or worse — follows.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-ic ic-fan">🌀</div>
+          <h3>Wasted ventilation</h3>
+          <p>Fans can be 40%+ of a mine's energy bill. Too much wastes money; too little is a safety risk. Matching airflow to people is hard by hand.</p>
+        </article>
+      </div>
+
+      <div class="split reveal">
+        <div class="split-text">
+          <span class="eyebrow">The gap we close</span>
+          <h3>The sensors exist. The <span class="grad">brain</span> and the <span class="grad">friendly face</span> don't.</h3>
+          <p>Maestro Digital Mine has air-quality stations running in Vale's Sudbury mines — including Creighton, 2.4&nbsp;km deep — since 2015. Sandvik's Newtrax platform monitors Glencore's people and equipment underground. Vale runs a remote operations centre in Sudbury watching all five Ontario mines, with ventilation-on-demand saving millions.</p>
+          <p>So the data is there. What's missing is the <strong>AI interpretation layer</strong> that turns raw numbers into a prioritised, plain-English decision — and a <strong>practical operator interface</strong> built for the person on shift, not just an engineer. MineGuardian is that missing layer, built with free open-source AI.</p>
+          <div class="quote-line">"Vale and Glencore have the eyes and the muscles. MineGuardian is the open-source, zero-cost brain and friendly face that connects them — proven end-to-end on a $40 board."</div>
+        </div>
+        <div class="split-visual">
+          <div class="flow-mini">
+            <div class="fm-step"><span class="fm-dot"></span>Sense</div>
+            <div class="fm-arrow">→</div>
+            <div class="fm-step"><span class="fm-dot"></span>Think</div>
+            <div class="fm-arrow">→</div>
+            <div class="fm-step"><span class="fm-dot"></span>Explain</div>
+            <div class="fm-arrow">→</div>
+            <div class="fm-step"><span class="fm-dot"></span>Act</div>
+          </div>
+          <p class="fm-cap">The whole story is one round trip: feel the world, decide, explain it to a human, and turn the fan — closing the loop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section section-alt" id="architecture">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>System architecture</h2>
+        <p class="lead">The Pico W is the nervous system — it feels the world and reports back over a USB cable. Your MacBook is the brain — it thinks, decides, explains, and shows everything on screen — and sends a command back to spin the fan. Everything below runs locally and free.</p>
+      </div>
+
+      <div class="arch reveal" id="archDiagram">
+        <div class="arch-lane">
+          <div class="lane-head"><span class="lane-ic">🔌</span><div><div class="lane-title">Edge Node</div><div class="lane-sub">Raspberry Pi Pico W · MicroPython</div></div></div>
+          <div class="node node-sense"><b>MPU6050</b><span>vibration / tilt</span></div>
+          <div class="node node-sense"><b>DHT11</b><span>temperature · humidity</span></div>
+          <div class="node node-sense"><b>PIR + Ultrasonic</b><span>worker occupancy</span></div>
+          <div class="node node-out"><b>Buzzer · RGB · LCD</b><span>local alarm &amp; readout</span></div>
+          <div class="node node-act"><b>DC motor "fan"</b><span>driven by AI command</span></div>
+        </div>
+
+        <div class="arch-flow">
+          <div class="flow-arrow">→</div>
+          <div class="flow-label">JSON<br/>USB serial</div>
+        </div>
+
+        <div class="arch-lane arch-lane-brain">
+          <div class="lane-head"><span class="lane-ic">💻</span><div><div class="lane-title">The Brain — MacBook</div><div class="lane-sub">all local · $0 AI cost</div></div></div>
+          <div class="node node-brain"><b>Ingest → SQLite</b><span>time-series store</span></div>
+          <div class="node node-brain"><b>Isolation Forest</b><span>ML anomaly detection · scikit-learn</span></div>
+          <div class="node node-brain"><b>Rules + Ventilation-on-Demand</b><span>safety limits · fan setpoint</span></div>
+          <div class="node node-brain node-llm"><b>Ollama LLM</b><span>Llama 3.2 3B · alerts + copilot</span></div>
+          <div class="node node-brain"><b>FastAPI + WebSocket</b><span>live push to UI</span></div>
+        </div>
+
+        <div class="arch-flow">
+          <div class="flow-arrow">⇄</div>
+          <div class="flow-label">WebSocket</div>
+        </div>
+
+        <div class="arch-lane">
+          <div class="lane-head"><span class="lane-ic">🖥️</span><div><div class="lane-title">Operator UI</div><div class="lane-sub">Next.js · React</div></div></div>
+          <div class="node node-ui"><b>Live gauges + zone map</b><span>glanceable status</span></div>
+          <div class="node node-ui"><b>AI alert feed</b><span>plain-English warnings</span></div>
+          <div class="node node-ui"><b>AI copilot chat</b><span>ask in natural language</span></div>
+          <div class="node node-ui"><b>Ventilation control</b><span>fan spins on screen <em>and</em> in real life</span></div>
+        </div>
+      </div>
+
+      <div class="arch-ribbon reveal">
+        <span><b>Sense → Think → Explain → Act</b></span>
+        <span class="dotsep">•</span><span>100% local</span>
+        <span class="dotsep">•</span><span>open-source</span>
+        <span class="dotsep">•</span><span>$0 AI cost</span>
+        <span class="dotsep">•</span><span>works offline (no connectivity needed underground)</span>
+      </div>
+
+      <div class="note reveal">
+        <b>Data contract.</b> The edge node emits one JSON object per reading (~2/sec) that flows unchanged through ingest → DB → ML → LLM → UI:
+        <pre class="code"><code>{ "ts": 1750550400, "zone": "Z3", "vib_rms": 0.07, "temp_c": 24.1,
+  "humidity": 58, "occupancy": 2, "distance_cm": 180,
+  "co_ppm": 12, "no2_ppm": 0.4, "airflow": 0.42, "fan_pct": 40 }</code></pre>
+        <span class="sim-note"><span class="sim-badge">SIM</span> <code>co_ppm</code>, <code>no2_ppm</code>, and <code>airflow</code> are software-simulated in the POC — swapping in a ~$10 gas sensor is a one-wire change.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARDWARE -->
+  <section class="section" id="hardware">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">What we use — and how little</span>
+        <h2>Hardware: humble, plug-and-play, in the box</h2>
+        <p class="lead">Everything comes from one <b>SunFounder Raspberry Pi Pico W Ultimate Starter Kit</b>. No soldering. Hardware is ~10% of the effort — the idea, the AI, and the interface are the stars.</p>
+      </div>
+
+      <div class="hw-grid">
+        <div class="hw-board reveal">
+          <div class="hw-board-top">
+            <div class="chip">RP2040</div>
+            <h3>Raspberry Pi Pico W</h3>
+            <p class="hw-sub">The edge "nervous system"</p>
+          </div>
+          <ul class="hw-specs">
+            <li><span>CPU</span><b>Dual-core Arm Cortex-M0+ @ 133 MHz</b></li>
+            <li><span>Memory</span><b>264 KB SRAM · 2 MB flash</b></li>
+            <li><span>Wireless</span><b>2.4 GHz Wi-Fi (CYW43439)</b></li>
+            <li><span>Language</span><b>MicroPython</b></li>
+            <li><span>Link to Mac</span><b>USB serial (primary)</b></li>
+          </ul>
+          <p class="hw-myth"><b>Myth-buster:</b> Amazon lists "Tegra / FreeRTOS" — that's auto-fill error. It's an RP2040 microcontroller. It's <em>too small</em> to run the AI, which is exactly why the brain lives on the MacBook.</p>
+        </div>
+
+        <div class="hw-table-wrap reveal">
+          <table class="hw-table">
+            <thead><tr><th>Role in MineGuardian</th><th>Component</th><th>Interface</th></tr></thead>
+            <tbody>
+              <tr><td>Equipment vibration / ground movement</td><td><b>MPU6050</b></td><td>I²C 0x68</td></tr>
+              <tr><td>Air temperature + humidity (heat-stress)</td><td><b>DHT11</b></td><td>1-wire</td></tr>
+              <tr><td>Worker occupancy in zone</td><td><b>PIR motion</b></td><td>digital</td></tr>
+              <tr><td>Distance / presence backup</td><td><b>Ultrasonic HC-SR04</b></td><td>trig/echo</td></tr>
+              <tr><td>Local danger alarm (sound)</td><td><b>Active buzzer</b></td><td>PWM</td></tr>
+              <tr><td>Status light (green/amber/red)</td><td><b>RGB LED</b></td><td>PWM</td></tr>
+              <tr><td>Local readout ("VENT ↑")</td><td><b>I²C LCD1602</b></td><td>I²C 0x27</td></tr>
+              <tr><td>The "ventilation fan" (the wow)</td><td><b>DC motor + driver</b></td><td>PWM</td></tr>
+            </tbody>
+          </table>
+          <p class="hw-cost">Extra spend on AI &amp; hardware to make this run: <b class="grad">$0</b> — it all runs on a laptop and gear mines already own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI STACK -->
+  <section class="section section-alt" id="ai-stack">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The AI — open-source, local, free</span>
+        <h2>Two kinds of AI, zero dollars, no internet required</h2>
+        <p class="lead">Everything runs on the laptop with no API keys and nothing leaving the machine — which matters underground, where connectivity is poor and data is sensitive.</p>
+      </div>
+
+      <div class="cards-3">
+        <article class="card ai-card reveal">
+          <div class="ai-tag">Detection</div>
+          <h3>Isolation Forest</h3>
+          <p class="ai-lib">scikit-learn</p>
+          <p>A lightweight, explainable machine-learning model that learns what "normal" looks like and flags abnormal <em>combinations</em> of readings — even when no single number crossed a hard limit.</p>
+          <ul class="ticks"><li>Instant on CPU</li><li>Explainable</li><li>Backed by hard safety rules</li></ul>
+        </article>
+        <article class="card ai-card ai-card-hero reveal">
+          <div class="ai-tag">Explanation + Copilot</div>
+          <h3>Llama 3.2 (3B)</h3>
+          <p class="ai-lib">via Ollama · runs locally</p>
+          <p>A small open-source large language model turns each anomaly into a one-sentence alert with a recommended action, and powers a chat copilot you can ask in plain English.</p>
+          <ul class="ticks"><li>$0 / offline</li><li>Tuned for an Intel-i9 / 16&nbsp;GB Mac</li><li><code>gemma2:2b</code> fast fallback</li></ul>
+        </article>
+        <article class="card ai-card reveal">
+          <div class="ai-tag">Optional</div>
+          <h3>faster-whisper</h3>
+          <p class="ai-lib">speech-to-text</p>
+          <p>A stretch goal that lets a supervisor <em>speak</em> a question hands-free ("is Zone 3 safe?"). Runs on CPU, fully local.</p>
+          <ul class="ticks"><li>Hands-free</li><li>Local</li><li>Add only after core is done</li></ul>
+        </article>
+      </div>
+
+      <div class="why-free reveal">
+        <div class="wf-item"><div class="wf-num">$0</div><p>No API bills, ever. The model files are downloaded once and run forever for free.</p></div>
+        <div class="wf-item"><div class="wf-num">⛓️‍💥</div><p>No internet needed at demo time — critical underground and for data privacy.</p></div>
+        <div class="wf-item"><div class="wf-num">⚡</div><p>Small models keep alerts snappy; outputs are kept to ≤ 2 sentences and pre-warmed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME CTA -->
+  <section class="section cta-band">
+    <div class="container cta-inner reveal">
+      <div>
+        <h2>See it before the hardware arrives.</h2>
+        <p class="lead">The Live Console below runs the entire experience on <b>sample data</b> — trigger a gas build-up or a bearing failure and watch the AI alert, the fan response, and the copilot react in real time.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
+        <a class="btn btn-ghost" href="#/docs" data-view="docs">Read the Full Plan</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-text">Mine<span class="brand-accent">Guardian</span></span>
+        <p>Open-source AI safety &amp; ventilation co-pilot for underground mines. A proof-of-concept by Mihir Trivedi for the Cursor Hackathon Sudbury — "Build the North", Track 03.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#overview" data-scroll>Overview</a>
+        <a href="#architecture" data-scroll>Architecture</a>
+        <a href="#hardware" data-scroll>Hardware</a>
+        <a href="#ai-stack" data-scroll>AI Stack</a>
+        <a href="#/console" data-view="console">Live Console</a>
+        <a href="#/docs" data-view="docs">Documentation</a>
+      </div>
+    </div>
+    <div class="footer-base"><div class="container">Built in Sudbury, Ontario · 100% open-source · $0 AI cost · <span id="year"></span></div></div>
+  </footer>
+</section>
+
+<!-- ============================ CONSOLE VIEW ============================ -->
+<section class="view" id="view-console">
+  <div class="console">
+    <!-- Console sub-header -->
+    <div class="console-bar">
+      <div class="cb-left">
+        <span class="cb-title">Operator Console</span>
+        <span class="cb-zone">Cluster: <b>North-3</b></span>
+        <span class="badge-sample" title="No real hardware connected — this runs on a built-in simulator">SAMPLE DATA · SIMULATION</span>
+      </div>
+      <div class="cb-right">
+        <span class="cb-clock" id="simClock">--:--:--</span>
+        <span class="live-dot" id="liveDot"><span></span>LIVE</span>
+        <a class="btn btn-ghost btn-sm" href="#/home" data-view="home">← Back to site</a>
+      </div>
+    </div>
+
+    <!-- Scenario toolbar -->
+    <div class="scenario-bar">
+      <span class="sc-label">Trigger a scenario:</span>
+      <button class="sc-btn is-active" data-scenario="normal">● Normal</button>
+      <button class="sc-btn" data-scenario="gas">☁ Gas build-up</button>
+      <button class="sc-btn" data-scenario="bearing">⚙ Bearing failure</button>
+      <button class="sc-btn" data-scenario="blast">💥 Blast clearance</button>
+      <button class="sc-btn sc-reset" data-scenario="reset">⟲ Reset</button>
+      <span class="sc-hint">In production these signals come from the Pico&nbsp;W sensors + a local LLM. Here they're simulated so you can feel the UX.</span>
+    </div>
+
+    <!-- Alert banner -->
+    <div class="alert-banner status-ok" id="alertBanner">
+      <div class="ab-state" id="abState">ALL CLEAR</div>
+      <div class="ab-body">
+        <div class="ab-headline" id="abHeadline">All monitored zones are within safe limits.</div>
+        <div class="ab-action" id="abAction" hidden><span class="ab-action-chip" id="abActionChip"></span></div>
+      </div>
+      <button class="ab-ack" id="abAck">Acknowledge</button>
+    </div>
+
+    <!-- Main grid -->
+    <div class="console-grid">
+
+      <!-- Zones -->
+      <section class="panel panel-zones">
+        <div class="panel-head"><h3>Zones</h3><span class="panel-sub">live status</span></div>
+        <div class="zones" id="zones"><!-- JS --></div>
+      </section>
+
+      <!-- Ventilation -->
+      <section class="panel panel-vent">
+        <div class="panel-head"><h3>Ventilation control</h3><span class="panel-sub">demand-based</span></div>
+        <div class="vent">
+          <div class="fan-wrap">
+            <svg class="fan" id="fanSvg" viewBox="0 0 100 100" width="120" height="120">
+              <circle cx="50" cy="50" r="48" class="fan-ring"/>
+              <g id="fanBlades" class="fan-blades">
+                <path d="M50 50 C50 30 42 18 50 6 C58 18 50 30 50 50Z"/>
+                <path d="M50 50 C70 50 82 42 94 50 C82 58 70 50 50 50Z"/>
+                <path d="M50 50 C50 70 58 82 50 94 C42 82 50 70 50 50Z"/>
+                <path d="M50 50 C30 50 18 58 6 50 C18 42 30 50 50 50Z"/>
+              </g>
+              <circle cx="50" cy="50" r="7" class="fan-hub"/>
+            </svg>
+            <div class="fan-readout"><span id="fanPct">40</span><small>%</small></div>
+          </div>
+          <div class="vent-controls">
+            <div class="seg" id="ventMode">
+              <button class="seg-btn is-active" data-mode="auto">Auto (VOD)</button>
+              <button class="seg-btn" data-mode="manual">Manual</button>
+            </div>
+            <label class="slider-label">Fan setpoint
+              <input type="range" min="0" max="100" value="40" id="fanSlider" disabled />
+            </label>
+            <div class="vent-meta">
+              <div><span>Airflow <em class="sim-badge">SIM</em></span><b id="ventAirflow">0.42 m³/s</b></div>
+              <div><span>Mode logic</span><b id="ventLogic">occupancy + air</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gauges -->
+      <section class="panel panel-gauges">
+        <div class="panel-head"><h3>Sensors — North-3</h3><span class="panel-sub">real-time</span></div>
+        <div class="gauges" id="gauges"><!-- JS --></div>
+      </section>
+
+      <!-- Trends -->
+      <section class="panel panel-trends">
+        <div class="panel-head"><h3>Trends</h3><span class="panel-sub">last 60s</span></div>
+        <div class="chart-legend" id="chartLegend"></div>
+        <div class="chart-wrap"><svg id="trendChart" viewBox="0 0 600 220" preserveAspectRatio="none"></svg></div>
+      </section>
+
+      <!-- Alert feed -->
+      <section class="panel panel-feed">
+        <div class="panel-head"><h3>AI alert feed</h3><span class="panel-sub">LLM-written</span></div>
+        <ul class="feed" id="feed"><!-- JS --></ul>
+      </section>
+
+      <!-- Copilot -->
+      <section class="panel panel-copilot">
+        <div class="panel-head"><h3>AI Copilot</h3><span class="panel-sub">ask in plain English</span></div>
+        <div class="copilot">
+          <div class="cp-messages" id="cpMessages"></div>
+          <div class="cp-suggest" id="cpSuggest"></div>
+          <form class="cp-form" id="cpForm">
+            <input type="text" id="cpInput" placeholder="e.g. Which zones are unsafe and why?" autocomplete="off" />
+            <button type="submit" class="btn btn-primary btn-sm">Ask</button>
+          </form>
+          <p class="cp-disclaimer">Demo copilot answers from the live simulation. In production this is a local open-source LLM (Llama&nbsp;3.2) over your real sensor history.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DOCS VIEW ============================ -->
+<section class="view" id="view-docs">
+  <div class="docs">
+    <aside class="docs-toc" id="docsToc" aria-label="Document contents">
+      <div class="toc-head">Contents</div>
+      <nav id="tocNav"></nav>
+    </aside>
+    <article class="docs-content" id="docContent">
+      <div class="docs-loading">Rendering the master project plan…</div>
+    </article>
+  </div>
+  <button class="to-top" id="toTop" title="Back to top" aria-label="Back to top">↑</button>
+</section>
+
+</main>
+
+<!-- ============================ SCRIPTS ============================ -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="js/plan-content.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/docs.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
