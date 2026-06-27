@@ -35,6 +35,7 @@
       <a href="#industry" class="nav-link" data-scroll>Industry</a>
       <a href="#/console" class="nav-link nav-cta-soft" data-view="console">▶ Live Console</a>
       <a href="#/docs" class="nav-link" data-view="docs">Documentation</a>
+      <a href="#/tracker" class="nav-link" data-view="tracker">Build Tracker</a>
     </nav>
 
     <div class="nav-actions">
@@ -470,6 +471,7 @@
         <a href="#industry" data-scroll>Industry</a>
         <a href="#/console" data-view="console">Live Console</a>
         <a href="#/docs" data-view="docs">Documentation</a>
+        <a href="#/tracker" data-view="tracker">Build Tracker</a>
       </div>
     </div>
     <div class="footer-base"><div class="container">Built in Sudbury, Ontario · 100% open-source · $0 AI cost · <span id="year"></span></div></div>
@@ -605,6 +607,201 @@
     </article>
   </div>
   <button class="to-top" id="toTop" title="Back to top" aria-label="Back to top">↑</button>
+</section>
+
+<!-- ============================ TRACKER VIEW ============================ -->
+<section class="view" id="view-tracker">
+  <div class="tracker">
+
+    <!-- Hero banner -->
+    <div class="tracker-hero">
+      <div class="container">
+        <span class="eyebrow">Cursor Hackathon Sudbury · Track 03 · Build the North 2026</span>
+        <h1>Build Tracker</h1>
+        <p class="lead">A transparent, judge-friendly view of implementation progress. All features listed here are working in the live demo right now unless otherwise noted.</p>
+        <div class="tracker-status-pills">
+          <span class="pill pill-ok">Backend: Running</span>
+          <span class="pill pill-ok">WebSocket: Live</span>
+          <span class="pill pill-ok">Frontend: Connected</span>
+          <span class="pill pill-accent">Hardware: Optional / Not Opened</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container tracker-body">
+
+      <!-- ── Current Build Status ─────────────────────────────────── -->
+      <section class="tk-section reveal">
+        <div class="tk-sec-head">
+          <h2>Current Build Status</h2>
+          <span class="tk-badge tk-done">Demo-Ready</span>
+        </div>
+        <div class="tk-status-card">
+          <div class="tk-big-status">
+            <span class="tk-status-dot tk-dot-ok"></span>
+            <div>
+              <div class="tk-status-title">Simulator-first · Fully functional without hardware</div>
+              <div class="tk-status-sub">All four mine zones are streaming live sensor data. The AI pipeline (anomaly detection, VOD fan logic, LLM alerts) is running end-to-end. Hardware is optional; the kit has not been opened yet.</div>
+            </div>
+          </div>
+          <div class="tk-meta-row">
+            <div class="tk-meta"><span>Backend</span><b>FastAPI + WebSocket on :8000</b></div>
+            <div class="tk-meta"><span>Zones</span><b>4 (Entry/Shaft, Active Stope, Equipment Bay, Refuge)</b></div>
+            <div class="tk-meta"><span>Scenarios</span><b>5 (normal, gas_buildup, bearing_failure, blast_clearance, reset)</b></div>
+            <div class="tk-meta"><span>Hardware status</span><b>Kit in box, not yet opened. Optional.</b></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Completed Milestones ──────────────────────────────────── -->
+      <section class="tk-section reveal">
+        <div class="tk-sec-head">
+          <h2>Completed Milestones</h2>
+        </div>
+
+        <div class="tk-group">
+          <div class="tk-group-title">Backend &amp; API</div>
+          <ul class="tk-list">
+            <li><span class="tk-badge tk-done">Done</span>FastAPI app with <code>GET /health</code>, <code>WS /ws</code>, <code>POST /scenario/{name}</code>, <code>POST /fan</code>, <code>POST /copilot</code></li>
+            <li><span class="tk-badge tk-done">Done</span>WebSocket streams all 4 zones at 0.5 s cadence with 14 sensor fields per reading: <code>ts, zone, vib_rms, temp_c, humidity, occupancy, distance_cm, co_ppm, no2_ppm, airflow, fan_pct, status, reasons, alert_text</code></li>
+            <li><span class="tk-badge tk-done">Done</span>SQLite readings log at <code>data/oreacle.db</code> with index on zone and timestamp</li>
+            <li><span class="tk-badge tk-done">Done</span>Makefile: <code>make install</code>, <code>make backend</code>, <code>make sim</code>, <code>make web</code></li>
+          </ul>
+        </div>
+
+        <div class="tk-group">
+          <div class="tk-group-title">Simulation &amp; AI Layer</div>
+          <ul class="tk-list">
+            <li><span class="tk-badge tk-done">Done</span>Four-zone mine simulator with per-zone realistic baselines, Gaussian noise, and occupancy variation</li>
+            <li><span class="tk-badge tk-done">Done</span>Five scenarios: <code>normal</code>, <code>gas_buildup</code>, <code>bearing_failure</code>, <code>blast_clearance</code>, <code>reset</code></li>
+            <li><span class="tk-badge tk-done">Done</span>Isolation Forest anomaly detection (scikit-learn) trained on 2,000 synthetic samples across all 4 zones</li>
+            <li><span class="tk-badge tk-done">Done</span>10-rule safety threshold system covering CO, NO₂, vibration, temperature, and airflow</li>
+            <li><span class="tk-badge tk-done">Done</span>Ventilation-on-Demand (VOD) fan setpoint: base + gas demand + occupancy + airflow compensation + temp + status floor</li>
+            <li><span class="tk-badge tk-done">Done</span>LLM alert generation via Ollama (<code>llama3.2:3b</code>) with deterministic template fallback when Ollama is offline</li>
+          </ul>
+        </div>
+
+        <div class="tk-group">
+          <div class="tk-group-title">Frontend Integration</div>
+          <ul class="tk-list">
+            <li><span class="tk-badge tk-done">Done</span>WebSocket connection with 3 s auto-retry; "Connected / Backend offline" status badge with pulsing dot</li>
+            <li><span class="tk-badge tk-done">Done</span>Live zone cards for all 4 zones showing status, CO, NO₂, vibration, temp, humidity, airflow, occupancy, fan %</li>
+            <li><span class="tk-badge tk-done">Done</span>Six live gauges for active zone, 60-second trend chart, and per-zone AI alert feed with deduplication</li>
+            <li><span class="tk-badge tk-done">Done</span>AI Copilot chat — POSTs to <code>/copilot</code> when backend is live; template fallback when offline</li>
+            <li><span class="tk-badge tk-done">Done</span>Fan slider with Auto (VOD) / Manual override modes; manual mode POSTs to <code>/fan</code></li>
+            <li><span class="tk-badge tk-done">Done</span>Graceful offline fallback: built-in JS simulator mirrors backend baselines so the console never crashes</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── In Progress ───────────────────────────────────────────── -->
+      <section class="tk-section reveal">
+        <div class="tk-sec-head">
+          <h2>In Progress</h2>
+          <span class="tk-badge tk-inprog">Active</span>
+        </div>
+        <ul class="tk-list">
+          <li><span class="tk-badge tk-inprog">In Progress</span>Demo rehearsal: end-to-end scenario walkthrough for judges</li>
+          <li><span class="tk-badge tk-inprog">In Progress</span>UI polish and presentation preparation</li>
+        </ul>
+      </section>
+
+      <!-- ── Optional Hardware Work ────────────────────────────────── -->
+      <section class="tk-section reveal">
+        <div class="tk-sec-head">
+          <h2>Optional Hardware Work</h2>
+          <span class="tk-badge tk-optional">Optional</span>
+        </div>
+        <div class="tk-hw-note">
+          <p>The <b>SunFounder Raspberry Pi Pico W Starter Kit is in the box and has not been opened yet.</b> This is intentional: OreAcle was designed simulator-first so the entire pipeline can be demonstrated end-to-end without physical hardware.</p>
+          <p>Opening and wiring the hardware is optional. If time permits before the demo, the kit will be assembled to replace the software simulator with real sensor readings. All backend code for USB serial ingest is already written and waiting.</p>
+        </div>
+        <div class="cards-3">
+          <article class="card reveal">
+            <div class="tk-hw-icon">MCU</div>
+            <h3>Raspberry Pi Pico W</h3>
+            <p>RP2040 @ 133 MHz, 2.4 GHz Wi-Fi, MicroPython. Edge node firmware is drafted, not yet deployed.</p>
+            <span class="tk-badge tk-optional" style="margin-top:12px;display:inline-flex">Optional</span>
+          </article>
+          <article class="card reveal">
+            <div class="tk-hw-icon">SEN</div>
+            <h3>Vibration, Air, Occupancy</h3>
+            <p>MPU6050 (vib/tilt), DHT11 (temp/humidity), PIR + HC-SR04 (occupancy). All present in the kit.</p>
+            <span class="tk-badge tk-optional" style="margin-top:12px;display:inline-flex">Optional</span>
+          </article>
+          <article class="card reveal">
+            <div class="tk-hw-icon">ACT</div>
+            <h3>Fan + Local Alarms</h3>
+            <p>DC motor (the physical fan), active buzzer, RGB LED, I²C LCD1602. Physical fan spinning from an AI command is the wow-factor.</p>
+            <span class="tk-badge tk-optional" style="margin-top:12px;display:inline-flex">Optional</span>
+          </article>
+        </div>
+        <div class="tk-hw-pending">
+          <div class="tk-group-title">If hardware is connected (time permitting):</div>
+          <ul class="tk-list">
+            <li><span class="tk-badge tk-pending">Pending</span>Deploy MicroPython firmware to Pico W and wire sensors on breadboard</li>
+            <li><span class="tk-badge tk-pending">Pending</span>Replace simulator readings with live USB serial ingest via <code>pyserial</code></li>
+            <li><span class="tk-badge tk-pending">Pending</span>Physical DC motor fan spinning in response to AI-commanded fan % setpoint</li>
+            <li><span class="tk-badge tk-pending">Pending</span>Buzzer and RGB LED local alarm triggered by ALERT status</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── Demo Readiness ────────────────────────────────────────── -->
+      <section class="tk-section reveal">
+        <div class="tk-sec-head">
+          <h2>Demo Readiness</h2>
+          <span class="tk-badge tk-done">Ready Now</span>
+        </div>
+        <p class="tk-sec-lead">Everything below works today on a laptop with no hardware and no internet connection. Run <code>make backend</code> in one terminal and open the Live Console.</p>
+        <div class="tk-demo-steps">
+          <div class="tk-step"><span class="tk-step-num">1</span><div><b>Start the backend:</b> <code>make backend</code> — FastAPI starts on :8000, simulator begins streaming immediately.</div></div>
+          <div class="tk-step"><span class="tk-step-num">2</span><div><b>Open the Live Console.</b> The status badge flips to "Connected" and all 4 zone cards populate with live data within one second.</div></div>
+          <div class="tk-step"><span class="tk-step-num">3</span><div><b>Press "Gas Buildup".</b> CO rises in Zone B. The Isolation Forest flags the anomaly. The VOD logic ramps the fan. An LLM-written alert appears in the feed.</div></div>
+          <div class="tk-step"><span class="tk-step-num">4</span><div><b>Press "Bearing Failure".</b> Zone C vibration spikes toward the ALERT threshold. Status switches. A new alert describes the mechanical risk and recommends action.</div></div>
+          <div class="tk-step"><span class="tk-step-num">5</span><div><b>Ask the AI Copilot:</b> "Which zones are unsafe and why?" The LLM answers using the last 20 real readings from SQLite.</div></div>
+          <div class="tk-step"><span class="tk-step-num">6</span><div><b>Press "Reset".</b> All zones return to normal baselines. The alert feed clears. The fan drops to the base VOD setpoint.</div></div>
+        </div>
+      </section>
+
+      <!-- ── Next Steps ────────────────────────────────────────────── -->
+      <section class="tk-section reveal">
+        <div class="tk-sec-head">
+          <h2>Next Steps</h2>
+        </div>
+        <div class="cards-2">
+          <article class="card reveal">
+            <div class="tk-badge tk-optional tk-card-label">Optional</div>
+            <h3>Hardware Assembly</h3>
+            <p>Wire the Pico W, sensors, and DC fan from the SunFounder kit. Replace the simulator with real readings. Show the physical fan respond to an AI command live in front of judges.</p>
+          </article>
+          <article class="card reveal">
+            <div class="tk-badge tk-pending tk-card-label">Stretch</div>
+            <h3>Voice Copilot</h3>
+            <p>Add <code>faster-whisper</code> for speech-to-text so judges can ask the AI copilot hands-free: "Is Zone B safe right now?" Runs locally, no API key needed.</p>
+          </article>
+          <article class="card reveal">
+            <div class="tk-badge tk-pending tk-card-label">Stretch</div>
+            <h3>Per-zone Fan Control</h3>
+            <p>Individual VOD fan setpoints per zone. The API already accepts a <code>zone</code> parameter on <code>POST /fan</code>; the UI slider only sets globally today.</p>
+          </article>
+          <article class="card reveal">
+            <div class="tk-badge tk-pending tk-card-label">Stretch</div>
+            <h3>Data Export</h3>
+            <p>Download the full readings log as CSV from the Live Console. SQLite at <code>data/oreacle.db</code> is already logging every reading; the export endpoint just needs to be wired up.</p>
+          </article>
+        </div>
+      </section>
+
+    </div><!-- /tracker-body -->
+
+    <!-- Back / forward navigation -->
+    <div class="container tracker-back reveal">
+      <a class="btn btn-ghost" href="#/home" data-view="home">← Back to site</a>
+      <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
+    </div>
+
+  </div>
 </section>
 
 </main>

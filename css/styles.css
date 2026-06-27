@@ -566,3 +566,96 @@ main{padding-top:var(--nav-h)}
    ============================================================ */
 [data-theme="light"] .conn-online{background:rgba(0,160,80,.10);border-color:rgba(0,160,80,.25)}
 [data-theme="light"] .conn-offline{background:rgba(200,0,30,.08);border-color:rgba(200,0,30,.20)}
+
+/* ============================================================
+   BUILD TRACKER
+   ============================================================ */
+.tracker{min-height:100vh;padding-bottom:80px}
+.tracker-hero{padding:60px 0 40px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.tracker-hero .eyebrow{margin-bottom:14px}
+.tracker-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:12px}
+.tracker-hero .lead{color:var(--muted);max-width:660px;margin-bottom:24px}
+.tracker-status-pills{display:flex;gap:8px;flex-wrap:wrap}
+.tracker-body{padding-top:48px}
+.tracker-back{display:flex;gap:12px;padding-top:16px;padding-bottom:16px}
+
+/* sections */
+.tk-section{margin-bottom:56px}
+.tk-sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:12px;
+  border-bottom:1px solid var(--line)}
+.tk-sec-head h2{margin:0;font-size:1.35rem}
+.tk-sec-lead{color:var(--muted);margin-bottom:20px;max-width:720px}
+
+/* status badges */
+.tk-badge{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;padding:.22em .65em;border-radius:var(--r-pill);
+  white-space:nowrap;flex-shrink:0}
+.tk-done{background:rgba(47,191,113,.14);color:var(--ok);border:1px solid rgba(47,191,113,.28)}
+.tk-inprog{background:rgba(255,176,32,.12);color:var(--accent);border:1px solid rgba(255,176,32,.28)}
+.tk-optional{background:rgba(139,108,255,.14);color:var(--accent-3);border:1px solid rgba(139,108,255,.28)}
+.tk-pending{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+
+/* pill variants */
+.pill-ok{border-color:rgba(47,191,113,.3);color:var(--ok);background:rgba(47,191,113,.10)}
+
+/* overall status card */
+.tk-status-card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px}
+.tk-big-status{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;
+  padding-bottom:20px;border-bottom:1px solid var(--line)}
+.tk-status-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.tk-dot-ok{background:var(--ok);box-shadow:0 0 0 4px rgba(47,191,113,.18)}
+.tk-dot-warn{background:var(--watch);box-shadow:0 0 0 4px rgba(255,176,32,.18)}
+.tk-status-title{font-family:var(--f-display);font-weight:700;font-size:1.1rem;margin-bottom:4px}
+.tk-status-sub{font-size:.88rem;color:var(--muted)}
+.tk-meta-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tk-meta{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.tk-meta span{display:block;font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:3px}
+.tk-meta b{font-size:.88rem;color:var(--text)}
+
+/* grouped checklist */
+.tk-group{margin-bottom:20px}
+.tk-group:last-child{margin-bottom:0}
+.tk-group-title{font-family:var(--f-display);font-size:.78rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.tk-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.tk-list li{display:flex;align-items:flex-start;gap:10px;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:.9rem;
+  line-height:1.5;color:var(--muted)}
+.tk-list li code{font-family:var(--f-mono);font-size:.82em;background:var(--bg);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .4em;color:var(--text)}
+
+/* hardware note */
+.tk-hw-note{background:var(--surface-2);border:1px solid rgba(255,176,32,.25);
+  border-left:4px solid var(--accent);border-radius:var(--r);padding:18px 20px;margin-bottom:24px}
+.tk-hw-note p{color:var(--muted);margin:0 0 8px;font-size:.92rem}
+.tk-hw-note p:last-child{margin-bottom:0}
+.tk-hw-note b{color:var(--text)}
+.tk-hw-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;
+  font-family:var(--f-mono);font-size:.72rem;font-weight:700;letter-spacing:.04em;
+  background:rgba(139,108,255,.12);color:var(--accent-3);border:1px solid rgba(139,108,255,.2)}
+.tk-hw-pending{margin-top:24px}
+
+/* demo walk-through */
+.tk-demo-steps{display:flex;flex-direction:column;gap:10px}
+.tk-step{display:flex;align-items:flex-start;gap:14px;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.tk-step-num{width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--bg);
+  font-family:var(--f-display);font-weight:700;font-size:.85rem;display:grid;place-items:center;
+  flex-shrink:0;margin-top:1px}
+.tk-step div{font-size:.92rem;color:var(--muted);line-height:1.55}
+.tk-step div b{color:var(--text)}
+.tk-step div code{font-family:var(--f-mono);font-size:.82em;background:var(--bg);
+  border:1px solid var(--line);border-radius:5px;padding:.1em .4em;color:var(--text)}
+
+/* two-column card grid */
+.cards-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tk-card-label{margin-bottom:10px;display:inline-flex}
+
+/* responsive */
+@media (max-width:680px){
+  .cards-2,.tk-meta-row{grid-template-columns:1fr}
+  .tracker-status-pills,.tracker-back{flex-direction:column;align-items:flex-start}
+}
+[data-theme="light"] .tk-meta{background:var(--surface)}
+[data-theme="light"] .tk-hw-note{background:rgba(255,176,32,.04)}
