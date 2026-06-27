@@ -1028,483 +1028,457 @@
 
 <!-- ============================ PITCH DECK VIEW ============================ -->
 <section class="view" id="view-deck">
-  <div class="ds-wrap">
+<div class="deck-root">
+  <div class="progress"><div id="progFill"></div></div>
+  <div id="stage">
 
-    <!-- Progress bar -->
-    <div class="ds-progress-rail"><div class="ds-progress-bar" id="deckBar"></div></div>
-
-    <!-- Top chrome: brand · counter · exit -->
-    <div class="ds-chrome">
-      <a class="ds-logo" href="#/home" data-view="home">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2 4 6v7c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" fill="#f6a623" opacity=".9"/><path d="M12 8l-4 7h8z" fill="#0b1018"/></svg>
-        <span><span class="ds-logo-amber">Ore</span>Acle</span>
-      </a>
-      <span class="ds-counter-txt"><span id="deckCurrent">1</span> / <span id="deckTotal">14</span></span>
-      <div class="ds-chrome-btns">
-        <a class="ds-btn-sm" href="#/console" data-view="console">▶ Live Demo</a>
-        <a class="ds-btn-sm" href="#/home" data-view="home">✕ Exit</a>
-      </div>
-    </div>
-
-    <!-- All 14 slides -->
-    <div class="ds-slides" id="deckSlides">
-
-      <!-- ── Slide 01: Title ──────────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 108px)">
-          <div class="ds-kicker ds-anim">Cursor Hackathon Sudbury · Track 03 · Build the North 2026</div>
-          <h1 class="ds-title-brand ds-anim"><span class="ds-amber">Ore</span>Acle</h1>
-          <p class="ds-tagline ds-anim">The offline AI oracle for underground mine intelligence.</p>
-          <div class="ds-chips ds-anim" style="justify-content:center">
-            <span class="ds-chip ds-chip-ok">$0 AI cost</span>
-            <span class="ds-chip ds-chip-info">100% offline</span>
-            <span class="ds-chip ds-chip-amber">Open-source</span>
-            <span class="ds-chip">$40 edge node</span>
+    <!-- 1. TITLE -->
+    <section class="slide" data-screen-label="01 Title">
+      <div class="pad" style="justify-content:center">
+        <div style="display:grid;grid-template-columns:1fr .98fr;gap:80px;align-items:center;width:100%">
+          <div>
+            <div class="kicker anim">Cursor Hackathon Sudbury 2026 · Track 03</div>
+            <div class="title-xl anim" style="transition-delay:90ms">OreAcle</div>
+            <div class="sub anim" style="transition-delay:170ms">The offline AI oracle for underground mine intelligence.</div>
+            <p class="lead anim" style="transition-delay:250ms;margin-top:28px;color:var(--muted);max-width:860px">Free, open-source AI safety and ventilation for underground mines. Proven end to end, from a real sensor to a real action, for <b style="color:var(--ink)">$0 in AI cost</b>.</p>
+            <div class="anim" style="transition-delay:330ms;display:flex;gap:14px;margin-top:38px;flex-wrap:wrap">
+              <span class="chip"><span class="dot d-ok"></span>$0 AI COST</span>
+              <span class="chip"><span class="dot d-ok"></span>100% OFFLINE</span>
+              <span class="chip"><span class="dot d-ok"></span>OPEN SOURCE</span>
+              <span class="chip"><span class="dot d-ok"></span>MVP LIVE NOW</span>
+            </div>
+            <div class="anim" style="transition-delay:410ms;margin-top:34px;font-family:var(--mono);font-size:27px;color:var(--muted)">Mihir Trivedi (solo) · mtrivedilu.github.io/OreAcle</div>
           </div>
-          <div class="ds-screen-frame ds-anim" style="max-width:680px;width:100%">
-            <div class="ds-screen-topbar">
-              <div class="ds-screen-dot"></div>
-              <div class="ds-screen-title">Live Operator Console — All Zones</div>
-            </div>
-            <div class="ds-zones-demo">
-              <div class="ds-zdemo z-ok"><div class="ds-zdemo-name">Z1 Entry/Shaft</div><div class="ds-zdemo-status">OK</div><div class="ds-zdemo-metrics"><span>CO: 12 ppm</span><span>Temp: 22°C</span><span>Fan: 40%</span></div></div>
-              <div class="ds-zdemo z-watch"><div class="ds-zdemo-name">Z2 Active Stope</div><div class="ds-zdemo-status">WATCH</div><div class="ds-zdemo-metrics"><span>CO: 38 ppm ↑</span><span>Vib: 0.12g</span><span>Fan: 68%</span></div></div>
-              <div class="ds-zdemo z-alert"><div class="ds-zdemo-name">Z3 Equip Bay</div><div class="ds-zdemo-status">ALERT</div><div class="ds-zdemo-metrics"><span>CO: 78 ppm!</span><span>Vib: 0.31g</span><span>Fan: 100%</span></div></div>
-              <div class="ds-zdemo z-ok"><div class="ds-zdemo-name">Z4 Refuge</div><div class="ds-zdemo-status">OK</div><div class="ds-zdemo-metrics"><span>CO: 8 ppm</span><span>Occ: 3</span><span>Fan: 35%</span></div></div>
-            </div>
+          <div class="shot anim" style="transition-delay:270ms">
+            <div class="shot-bar"><i></i><i></i><i></i></div>
+            <img src="75f988de-5590-4571-bb4a-f6dca118f571" alt="OreAcle operator console, all zones OK" style="display:block;width:100%;height:auto">
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ── Slide 02: Problem ────────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">The Problem</div>
-          <h2 class="ds-h2 ds-anim">Underground mines are data-rich. Interpretation is the missing layer.</h2>
-          <p class="ds-body ds-anim">A shift supervisor watches dozens of live numbers across multiple zones, expected to pattern-match and decide: evacuate? increase ventilation? call maintenance? That cognitive load is exactly the job AI should take over.</p>
-          <div class="ds-g3">
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Air Hazards</div>
-              <h3>Bad air</h3>
-              <p>Diesel exhaust (CO, NO₂), blasting gases, dust, and oxygen depletion. Often undetectable by smell until dangerously high levels are reached.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Equipment</div>
-              <h3>Failing equipment</h3>
-              <p>Pumps, fans, and drills vibrate differently for days before catastrophic failure. Miss the early signature and a $500K breakdown — or worse — follows.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Energy</div>
-              <h3>Wasted ventilation</h3>
-              <p>Fans can be 40%+ of a mine's energy bill. Too much wastes millions annually; too little endangers workers. Matching airflow to real-time occupancy is hard by hand.</p>
-            </div>
+    <!-- 2. PROBLEM -->
+    <section class="slide" data-screen-label="02 Problem">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">The Problem</div>
+          <h1 class="title anim" style="transition-delay:80ms">Two kilometres down, three hazards stay quiet</h1>
+        </div>
+        <div class="g3 fill anim" style="transition-delay:150ms">
+          <div class="card" style="border-top:5px solid var(--alert)">
+            <svg class="hzicon" viewBox="0 0 96 96" fill="none" stroke="var(--alert)" stroke-width="3.2" stroke-linecap="round"><circle cx="48" cy="54" r="24"></circle><circle cx="39" cy="50" r="4.5" fill="var(--alert)" stroke="none"></circle><circle cx="57" cy="56" r="4.5" fill="var(--alert)" stroke="none"></circle><circle cx="48" cy="64" r="4.5" fill="var(--alert)" stroke="none"></circle><path d="M30 30 Q48 16 66 30"></path><path d="M36 22 Q48 10 60 22"></path></svg>
+            <div class="ch">Bad air</div>
+            <div class="cb">Diesel exhaust produces CO and NO2. Blasting leaves toxic gases and dust. Oxygen drops without warning. A worker often cannot smell or feel the danger until it is already serious.</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--watch)">
+            <svg class="hzicon" viewBox="0 0 96 96" fill="none" stroke="var(--watch)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="48" cy="48" r="28"></circle><polyline points="32,48 40,33 48,62 56,33 64,48"></polyline></svg>
+            <div class="ch">Failing equipment</div>
+            <div class="cb">A pump, fan, or drill vibrates differently days before it fails. If nobody catches the pattern it fails catastrophically. The signal is already in the data. Nobody is reading it.</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--ok)">
+            <svg class="hzicon" viewBox="0 0 96 96" fill="var(--ok)"><g style="transform-origin:48px 48px;animation:spin 7s linear infinite"><ellipse cx="48" cy="28" rx="8.5" ry="18"></ellipse><ellipse cx="48" cy="28" rx="8.5" ry="18" transform="rotate(120 48 48)"></ellipse><ellipse cx="48" cy="28" rx="8.5" ry="18" transform="rotate(240 48 48)"></ellipse></g><circle cx="48" cy="48" r="10" fill="var(--bg)"></circle><circle cx="48" cy="48" r="6" fill="var(--ok)"></circle></svg>
+            <div class="ch">Wasted ventilation</div>
+            <div class="cb">Ventilation is 40% or more of a mine's energy bill. Fans full blast everywhere waste millions. Too little air where people work is a safety crisis. Smarter control saves both.</div>
+          </div>
+        </div>
+        <div class="card anim" style="transition-delay:330ms;flex:none;margin-top:28px;background:rgba(246,166,35,.05);border-color:rgba(246,166,35,.2);padding:28px 44px">
+          <p class="lead" style="font-size:33px">The mine measures everything. It just is not <b style="color:var(--ink)">understood</b> fast enough, <b style="color:var(--ink)">explained</b> clearly enough, or <b style="color:var(--ink)">acted on</b> automatically enough.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INDUSTRY TODAY -->
+    <section class="slide" data-screen-label="03 Industry today">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">The Industry Today</div>
+          <h1 class="title anim" style="transition-delay:80ms">The sensors already exist</h1>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:150ms;grid-template-rows:1fr 1fr">
+          <div class="card"><div class="ch">Maestro Digital Mine</div><div class="cb">Vigilante AQS air-quality stations have run in Vale since 2015, now in 70 plus mines globally. Creighton Mine sits about 2,400 m deep. Pioneered Ventilation-on-Demand commercially.</div></div>
+          <div class="card"><div class="ch">Newtrax / Sandvik + Glencore</div><div class="cb">Mining Data Platform watches people, equipment and environment, vendor-agnostic. July 2025: Sandvik and Glencore expanded Newtrax collision avoidance at Raglan (Canada) and Kamoto Copper (DRC).</div></div>
+          <div class="card"><div class="ch">Vale IROC, Sudbury</div><div class="cb">Since 2024 the Integrated Remote Operations Centre oversees all five Vale Ontario underground mines from surface with VOD that, per Vale's chief ventilation engineer, saves "millions of dollars."</div></div>
+          <div class="card"><div class="ch">Accutron Instruments</div><div class="cb">The MAQS Mine Air Quality Station is a commercial gas and air-quality system used across Northern Ontario mines, another example of world-class sensor hardware already in the ground.</div></div>
+        </div>
+        <p class="lead anim" style="transition-delay:330ms;flex:none;margin-top:28px;font-size:32px;color:var(--muted)">Sudbury is world-class at collecting mine data. <b style="color:var(--ink)">OreAcle does not compete with them. It completes them.</b></p>
+      </div>
+    </section>
+
+    <!-- 4. THE GAP -->
+    <section class="slide" data-screen-label="04 The gap">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">The Gap</div>
+          <h1 class="title anim" style="transition-delay:80ms">Data is not decisions</h1>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:160ms">
+          <div class="card" style="border-top:5px solid var(--watch)">
+            <div class="num">Gap 01</div>
+            <div class="ch">The AI interpretation layer is thin</div>
+            <div class="cb">Systems measure and display well. The leap from "here are the numbers" to "here is what is wrong, why, and what to do right now" still happens in a human's head, or is sold as an expensive add-on upgrade.</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--info)">
+            <div class="num">Gap 02</div>
+            <div class="ch">The interface is built for engineers</div>
+            <div class="cb">Dense dashboards assume you know what "38 ppm CO at 0.4 airflow" means. The frontline worker needs something clear: green, amber, red, what is happening, what to do, one action.</div>
+          </div>
+        </div>
+        <div class="card anim" style="transition-delay:340ms;flex:none;margin-top:28px;background:rgba(246,166,35,.06);border-color:rgba(246,166,35,.28);padding:32px 44px">
+          <p class="lead" style="font-size:35px">Vale and Glencore have the <b style="color:var(--watch)">eyes</b> (sensors) and the <b style="color:var(--watch)">muscles</b> (automation). OreAcle is the open-source, zero-cost <b style="color:var(--ink)">brain and friendly face</b> that connects them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SOLUTION -->
+    <section class="slide" data-screen-label="05 Solution">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">The Solution</div>
+          <h1 class="title anim" style="transition-delay:80ms">Sense. Think. Explain. Act.</h1>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:150ms;grid-template-rows:1fr 1fr">
+          <div class="card" style="border-top:5px solid var(--info)">
+            <div class="num">01 · Sense</div>
+            <div class="ch">Read the zone</div>
+            <div class="cb">A Raspberry Pi Pico W reads vibration, temperature, humidity and occupancy and streams them over USB serial. Gas values are injected in software; a real $10 gas sensor is a one-wire swap.</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--watch)">
+            <div class="num">02 · Think</div>
+            <div class="ch">Spot the danger</div>
+            <div class="cb">An Isolation Forest (scikit-learn) watches every channel together and flags abnormal combinations. A safety rules engine checks hard thresholds such as CO limits and heat-stress levels.</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--brand)">
+            <div class="num">03 · Explain</div>
+            <div class="ch">Say it in plain English</div>
+            <div class="cb">A local LLM (Ollama, Llama 3.2 3B, offline, $0) turns each anomaly into a short alert with the action and the reason, and powers a chat copilot that answers operator questions.</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--ok)">
+            <div class="num">04 · Act</div>
+            <div class="ch">Close the loop</div>
+            <div class="cb">Ventilation-on-Demand picks the fan speed from occupancy plus air quality and sends the command back to the board. A real, visible closed loop: sense to think to act.</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ── Slide 03: Industry Today ────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">Industry Today</div>
-          <h2 class="ds-h2 ds-anim">The monitoring infrastructure already exists at scale.</h2>
-          <p class="ds-body ds-anim">These companies collect the data and keep workers physically safe. OreAcle proposes the AI interpretation layer that sits on top of their infrastructure, vendor-neutral and free.</p>
-          <div class="ds-g4">
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Air Quality</div>
-              <h3>Maestro Digital Mine</h3>
-              <p>Vigilante AQS stations in Vale's Sudbury mines since 2015, including Creighton (2.4 km depth). Measures CO, NO₂, airflow, dust.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Fleet Telemetry</div>
-              <h3>Sandvik + Glencore</h3>
-              <p>Newtrax collision-avoidance and Mining Data Platform across Glencore's underground fleets at Raglan (Canada) and Kamoto (DRC), expanded July 2025.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Remote Ops</div>
-              <h3>Vale IROC + VOD</h3>
-              <p>Vale's Integrated Remote Operations Centre oversees all five Ontario underground mines from surface. Ventilation-on-Demand saves millions annually.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Air Quality</div>
-              <h3>Accutron MAQS</h3>
-              <p>Mine Air Quality Station measuring gas, airflow, and environmental conditions in Northern Ontario — the same parameters OreAcle interprets.</p>
-            </div>
+    <!-- 6. ARCHITECTURE -->
+    <section class="slide" data-screen-label="06 Architecture">
+      <div class="pad">
+        <div class="head" style="margin-bottom:28px">
+          <div class="kicker anim">System Architecture</div>
+          <h1 class="title anim" style="transition-delay:80ms;font-size:72px">One data contract, end to end</h1>
+        </div>
+        <div class="flow fill anim" style="transition-delay:160ms">
+          <div class="node a">
+            <div class="nt">Edge Node</div><div class="ntag">Pico W · MicroPython</div>
+            <ul>
+              <li>MPU6050: vibration and tilt</li>
+              <li>DHT11: temperature, humidity</li>
+              <li>Ultrasonic and PIR: occupancy</li>
+              <li>Buzzer, RGB LED, LCD: local alarm</li>
+              <li>DC fan and servo louver</li>
+            </ul>
+          </div>
+          <div class="conn"><div class="lbl">JSON over<br>USB serial</div><div class="arr"></div></div>
+          <div class="node b">
+            <div class="nt">The Brain</div><div class="ntag">laptop · all local · $0 AI</div>
+            <ul>
+              <li>Ingest via pyserial into SQLite</li>
+              <li>Isolation Forest anomaly detection</li>
+              <li>Safety rules and VOD control</li>
+              <li>Ollama LLM (Llama 3.2 3B)</li>
+              <li>FastAPI and WebSocket server</li>
+            </ul>
+          </div>
+          <div class="conn"><div class="lbl">WebSocket<br>(two-way)</div><div class="arr"></div></div>
+          <div class="node c">
+            <div class="nt">Operator Dashboard</div><div class="ntag">React web UI</div>
+            <ul>
+              <li>Live gauges and zone map</li>
+              <li>AI alert feed in plain English</li>
+              <li>AI copilot chat</li>
+              <li>Ventilation control and fan view</li>
+            </ul>
           </div>
         </div>
+        <div class="retn anim" style="transition-delay:290ms"><span class="ar">←</span><span class="rt"><b style="color:var(--brand)">Closed loop:</b> the Brain sends the fan setpoint back to the Edge Node, completing sense to think to act.</span></div>
+        <div class="json anim" style="transition-delay:370ms">{ <b>"ts"</b>:1750550400, <b>"zone"</b>:"Z3", <b>"vib_rms"</b>:0.07, <b>"temp_c"</b>:24.1, <b>"occupancy"</b>:2,
+  <b>"co_ppm"</b>:12, <b>"no2_ppm"</b>:0.4, <b>"airflow"</b>:0.42, <b>"fan_pct"</b>:40 }   // co / no2 / airflow are SIM</div>
       </div>
+    </section>
 
-      <!-- ── Slide 04: The Gap ────────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">The Gap</div>
-          <h2 class="ds-h2 ds-anim">The sensors exist. The AI brain and the friendly face don't.</h2>
-          <div class="ds-g2">
-            <div class="ds-card ds-anim">
-              <div class="ds-card-num">01</div>
-              <h3>Dashboards show numbers, not decisions</h3>
-              <p>Existing monitoring systems excel at data collection. Most don't translate raw readings into a prioritised action, explain the underlying risk in plain language, or recommend what to do next.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-num">02</div>
-              <h3>Open-source mine AI doesn't exist</h3>
-              <p>Mining AI tools are proprietary, subscription-based, or cloud-dependent — unavailable underground. Free, fully auditable, offline alternatives at this level of integration simply don't exist yet.</p>
-            </div>
+    <!-- 7. AI STACK -->
+    <section class="slide" data-screen-label="07 AI stack">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">The AI Stack</div>
+          <h1 class="title anim" style="transition-delay:80ms">Two kinds of AI, working together</h1>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:160ms">
+          <div class="card" style="border-top:5px solid var(--ok)">
+            <div class="num" style="color:var(--ok);font-size:29px">Classical ML · Detection</div>
+            <div class="ch">scikit-learn Isolation Forest</div>
+            <div class="cb">Tiny, instant, explainable. Watches all sensor channels together and flags "this combination is abnormal" even when no single value crossed a hard limit. No cloud, no GPU, no cost. Backed by threshold rules for known safety limits.</div>
           </div>
-          <div class="ds-highlight ds-anim">
-            <div class="ds-highlight-label">The gap OreAcle closes</div>
-            <p>An operator should be able to ask <em>"Is Zone B safe to bring in more workers?"</em> and get a direct, context-aware answer in plain English — from an AI that runs locally, costs nothing, and works at 2 km depth with no internet. That tool doesn't exist yet. OreAcle builds it.</p>
+          <div class="card" style="border-top:5px solid var(--brand)">
+            <div class="num" style="font-size:29px">Generative AI · Explanation</div>
+            <div class="ch">Ollama · Llama 3.2 3B</div>
+            <div class="cb">Turns each anomaly into a short plain-English alert with a recommended action, and answers operator questions in natural language over recent sensor data. Runs fully offline on a laptop. faster-whisper adds optional voice input.</div>
           </div>
         </div>
-      </div>
-
-      <!-- ── Slide 05: Solution ───────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">The Solution</div>
-          <h2 class="ds-h2 ds-anim">Sense → Think → Explain → Act. All running locally at $0.</h2>
-          <div class="ds-g4">
-            <div class="ds-card ds-card-amber ds-anim">
-              <div class="ds-step-num">01</div>
-              <h3>Sense</h3>
-              <p>Raspberry Pi Pico W edge node streams temperature, humidity, vibration, and occupancy data over USB at 2 Hz. No cloud. No API keys.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-step-num">02</div>
-              <h3>Think</h3>
-              <p>Isolation Forest (scikit-learn) learns what normal looks like per zone and flags abnormal <em>combinations</em>, even when no single number crosses a hard limit.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-step-num">03</div>
-              <h3>Explain</h3>
-              <p>Ollama runs Llama 3.2 3B locally to turn every anomaly into a plain-English alert and power a natural-language copilot — $0 per inference, offline forever.</p>
-            </div>
-            <div class="ds-card ds-card-ok ds-anim">
-              <div class="ds-step-num">04</div>
-              <h3>Act</h3>
-              <p>Ventilation-on-Demand automatically ramps the fan to match real-time gas levels, occupancy, and zone status. The physical fan spins on command.</p>
-            </div>
-          </div>
+        <div class="card anim" style="transition-delay:340ms;flex:none;margin-top:28px;background:rgba(62,207,142,.06);border-color:rgba(62,207,142,.28);padding:30px 44px">
+          <p class="lead" style="font-size:34px">Everything runs locally: <b style="color:var(--ok)">no API keys, no internet required, $0 cost.</b> Being offline is itself a selling point underground, where connectivity is poor and data is sensitive.</p>
         </div>
       </div>
+    </section>
 
-      <!-- ── Slide 06: Architecture ───────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner-wide">
-          <div class="ds-kicker ds-anim">Architecture</div>
-          <h2 class="ds-h2 ds-anim">Edge Node → Brain → Dashboard. One USB cable, zero cloud.</h2>
-          <div class="ds-flow ds-anim">
-            <div class="ds-flow-node">
-              <div class="ds-flow-node-label">Edge Node</div>
-              <div class="ds-flow-node-title">Raspberry Pi Pico W</div>
-              <div class="ds-flow-node-sub">MicroPython · ~$40</div>
-              <div class="ds-flow-node-items">
-                <div class="ds-flow-node-item">DHT11 · temp/humidity</div>
-                <div class="ds-flow-node-item">MPU6050 · vibration</div>
-                <div class="ds-flow-node-item">PIR + ultrasonic</div>
-                <div class="ds-flow-node-item">RGB LED · LCD · buzzer</div>
-                <div class="ds-flow-node-item">DC motor fan</div>
+    <!-- 8. LIVE DEMO -->
+    <section class="slide" data-screen-label="08 Live demo">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim" style="display:flex;align-items:center;gap:14px"><span class="dot d-alert" style="animation:pulse 1.4s ease infinite"></span>Live Demo</div>
+          <h1 class="title anim" style="transition-delay:80ms">Open it right now</h1>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:160ms">
+          <div style="display:flex;flex-direction:column;gap:28px">
+            <div class="card" style="border-top:5px solid var(--ok);flex:none">
+              <div class="num" style="color:var(--ok)">Live console</div>
+              <div style="font-family:var(--mono);font-size:33px;color:var(--ok);font-weight:700;margin-top:8px;letter-spacing:-.01em">mtrivedilu.github.io/OreAcle</div>
+              <div style="font-family:var(--mono);font-size:27px;color:var(--muted);margin-top:6px">#/console</div>
+            </div>
+            <div class="card" style="border-top:5px solid var(--alert);flex:none">
+              <div class="num" style="color:var(--alert)">Demo video (3 min)</div>
+              <div style="font-family:var(--mono);font-size:33px;color:var(--alert);font-weight:700;margin-top:8px">youtu.be/yd7dnXjNt_4</div>
+            </div>
+            <div class="card" style="flex:1;background:rgba(246,166,35,.05);border-color:rgba(246,166,35,.2)">
+              <div class="ch" style="font-size:32px">Trigger this yourself</div>
+              <div class="cb" style="font-size:29px">Hit "Gas Buildup" in the simulator panel. Watch the zone flip, the AI alert appear, and the fan climb to 95%. Ask the copilot anything.</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;justify-content:center">
+            <div style="display:flex;align-items:center;gap:22px">
+              <div class="zone ok">
+                <div class="zh"><span class="zn">Stope 3</span><span class="zs" style="color:var(--ok)">OK <span class="dot d-ok"></span></span></div>
+                <div class="zr">CO <b>13</b> ppm · NO2 <b>1.8</b> ppm<br>Airflow <b>0.42</b> · Fan <b>45%</b></div>
+              </div>
+              <div class="baarrow">➞</div>
+              <div class="zone alert">
+                <div class="zh"><span class="zn">Stope 3</span><span class="zs" style="color:var(--alert)">ALERT <span class="dot d-alert" style="animation:pulse 1.4s ease infinite"></span></span></div>
+                <div class="zr">CO <b style="color:var(--alert)">47</b> ppm · NO2 <b style="color:var(--alert)">5.1</b> ppm<br>Airflow <b>0.29</b> · Fan <b style="color:var(--ok)">95%</b></div>
               </div>
             </div>
-            <div class="ds-flow-conn">
-              <div class="ds-flow-arrow">→</div>
-              <div class="ds-flow-conn-label">USB serial<br/>JSON · 2 Hz</div>
+            <div class="card" style="flex:none;background:rgba(239,93,96,.06);border-color:rgba(239,93,96,.28);padding:28px 36px">
+              <div style="font-family:var(--mono);font-size:24px;color:var(--alert);margin-bottom:10px;letter-spacing:.06em">AI ALERT · ZONE 3</div>
+              <div style="font-size:28px;color:var(--ink);line-height:1.42">CO at 47 ppm exceeds the 35 ppm limit. Two workers present. Fan raised to 95%. Evacuate if CO does not fall within 5 minutes.</div>
             </div>
-            <div class="ds-flow-node">
-              <div class="ds-flow-node-label">The Brain</div>
-              <div class="ds-flow-node-title">MacBook / Laptop</div>
-              <div class="ds-flow-node-sub">all local · $0 AI cost</div>
-              <div class="ds-flow-node-items">
-                <div class="ds-flow-node-item">FastAPI ingest → SQLite</div>
-                <div class="ds-flow-node-item">Isolation Forest anomaly</div>
-                <div class="ds-flow-node-item">VOD fan setpoint logic</div>
-                <div class="ds-flow-node-item">Ollama · Llama 3.2 3B</div>
-                <div class="ds-flow-node-item">WebSocket push server</div>
-              </div>
-            </div>
-            <div class="ds-flow-conn">
-              <div class="ds-flow-arrow">⇄</div>
-              <div class="ds-flow-conn-label">WebSocket<br/>live push</div>
-            </div>
-            <div class="ds-flow-node">
-              <div class="ds-flow-node-label">Dashboard</div>
-              <div class="ds-flow-node-title">Browser (any device)</div>
-              <div class="ds-flow-node-sub">tablet · laptop · desktop</div>
-              <div class="ds-flow-node-items">
-                <div class="ds-flow-node-item">Zone cards + gauges</div>
-                <div class="ds-flow-node-item">AI alert feed (LLM)</div>
-                <div class="ds-flow-node-item">Trend charts (60 s)</div>
-                <div class="ds-flow-node-item">AI Copilot chat</div>
-                <div class="ds-flow-node-item">Fan control</div>
-              </div>
-            </div>
-          </div>
-          <div class="ds-json ds-anim">
-            <span style="color:#9aa7b6">// One reading — same JSON from simulator and real Pico W hardware:</span><br/>
-            {&nbsp;<span style="color:#62a8f0">"ts"</span>:<span style="color:#f6a623">1750550400</span>,&nbsp;<span style="color:#62a8f0">"zone"</span>:<span style="color:#3ecf8e">"Z3"</span>,&nbsp;<span style="color:#62a8f0">"vib_rms"</span>:<span style="color:#f6a623">0.07</span>,&nbsp;<span style="color:#62a8f0">"temp_c"</span>:<span style="color:#f6a623">24.1</span>,<br/>
-            &nbsp;&nbsp;<span style="color:#62a8f0">"humidity"</span>:<span style="color:#f6a623">58</span>,&nbsp;<span style="color:#62a8f0">"occupancy"</span>:<span style="color:#f6a623">2</span>,&nbsp;<span style="color:#62a8f0">"co_ppm"</span>:<span style="color:#f6a623">12</span>,&nbsp;<span style="color:#62a8f0">"no2_ppm"</span>:<span style="color:#f6a623">0.4</span>,&nbsp;<span style="color:#62a8f0">"fan_pct"</span>:<span style="color:#f6a623">40</span>&nbsp;}
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ── Slide 07: AI Stack ───────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">AI Stack</div>
-          <h2 class="ds-h2 ds-anim">Two AI techniques. $0 cost. No internet required.</h2>
-          <p class="ds-body ds-anim">Everything runs on the laptop with no API keys and nothing leaving the machine — critical underground where connectivity is poor and sensor data is sensitive.</p>
-          <div class="ds-g2">
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Anomaly Detection · ML</div>
-              <h3>Isolation Forest</h3>
-              <p style="color:#f6a623;font-family:var(--f-mono);font-size:.82rem;margin:.3em 0 .8em">scikit-learn</p>
-              <p>Learns what "normal" looks like per zone and flags abnormal <em>combinations</em> of readings — even when no single number crossed a hard threshold. Instant on CPU, fully explainable.</p>
-              <ul>
-                <li>Trained on 2,000 synthetic samples across 4 zones</li>
-                <li>Backed by 10 hard safety threshold rules</li>
-                <li>Sub-millisecond inference on any CPU</li>
+    <!-- 9. HARDWARE PROOF -->
+    <section class="slide" data-screen-label="09 Hardware proof">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">Hardware Proof</div>
+          <h1 class="title anim" style="transition-delay:80ms">Real sensor, real response</h1>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:160ms">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <div class="card" style="border-top:5px solid var(--ok);flex:none">
+              <div class="num" style="color:var(--ok)">Proven today</div>
+              <div class="ch" style="font-size:34px">Pico W + potentiometer</div>
+              <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:4px">
+                <li style="font-size:30px;color:var(--muted);padding-left:24px;position:relative"><span style="position:absolute;left:0;top:12px;width:9px;height:9px;border-radius:50%;background:var(--ok);display:block"></span>Pico W streams live OreAcle-format readings over USB serial</li>
+                <li style="font-size:30px;color:var(--muted);padding-left:24px;position:relative"><span style="position:absolute;left:0;top:12px;width:9px;height:9px;border-radius:50%;background:var(--ok);display:block"></span>Potentiometer knob sets airflow value in real time</li>
+                <li style="font-size:30px;color:var(--muted);padding-left:24px;position:relative"><span style="position:absolute;left:0;top:12px;width:9px;height:9px;border-radius:50%;background:var(--ok);display:block"></span>Crossing thresholds triggers OK, WATCH, ALERT in the live dashboard</li>
+                <li style="font-size:30px;color:var(--muted);padding-left:24px;position:relative"><span style="position:absolute;left:0;top:12px;width:9px;height:9px;border-radius:50%;background:var(--ok);display:block"></span>Fan percentage responds to the signal automatically</li>
               </ul>
             </div>
-            <div class="ds-card ds-card-amber ds-anim">
-              <div class="ds-card-tag">Plain-English Alerts + Copilot · LLM</div>
-              <h3>Llama 3.2 (3B)</h3>
-              <p style="color:#f6a623;font-family:var(--f-mono);font-size:.82rem;margin:.3em 0 .8em">via Ollama · runs locally</p>
-              <p>Turns every anomaly into a one-sentence plain-English alert with recommended action. Powers a chat copilot you can ask natural language questions.</p>
-              <ul>
-                <li>$0 per inference — model runs free once downloaded</li>
-                <li>Tuned to 2-sentence outputs for readability on shift</li>
-                <li>Deterministic template fallback if Ollama is offline</li>
-              </ul>
+            <div class="card" style="border-top:5px solid var(--watch);flex:none">
+              <div class="num">In progress</div>
+              <div class="cb" style="flex:none;font-size:28px">Physical DHT11 and MPU6050 sensors, DC fan motor, underground-ready enclosure. Same data contract: real sensors replace simulated values with no change to the brain or the UI.</div>
             </div>
           </div>
-          <div class="ds-highlight ds-anim">
-            <div class="ds-highlight-label">Why local AI matters underground</div>
-            <p>Cloud AI requires reliable internet (unavailable underground), sends sensitive operational data off-site, and bills per token at 24/7 industrial scale. OreAcle's local model runs forever free after a one-time download, with no external exposure.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Slide 08: Live Demo ──────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">Live Demo</div>
-          <h2 class="ds-h2 ds-anim">The full AI pipeline is running end-to-end right now.</h2>
-          <p class="ds-body ds-anim">No hardware required. Open the Live Console, trigger a scenario, and watch anomaly detection, VOD fan logic, and LLM alerts respond in real time to simulated mine sensor data.</p>
-          <div class="ds-screen-frame ds-anim">
-            <div class="ds-screen-topbar">
-              <div class="ds-screen-dot"></div>
-              <div class="ds-screen-title">Operator Console — Gas Buildup Scenario Active</div>
-            </div>
-            <div class="ds-zones-demo">
-              <div class="ds-zdemo z-ok"><div class="ds-zdemo-name">Z1 Entry/Shaft</div><div class="ds-zdemo-status">OK</div><div class="ds-zdemo-metrics"><span>CO: 11 ppm</span><span>Fan: 38%</span></div></div>
-              <div class="ds-zdemo z-alert"><div class="ds-zdemo-name">Z2 Active Stope</div><div class="ds-zdemo-status">ALERT</div><div class="ds-zdemo-metrics"><span>CO: 82 ppm ↑↑</span><span>Fan: 100%</span></div></div>
-              <div class="ds-zdemo z-watch"><div class="ds-zdemo-name">Z3 Equip Bay</div><div class="ds-zdemo-status">WATCH</div><div class="ds-zdemo-metrics"><span>CO: 34 ppm</span><span>Fan: 65%</span></div></div>
-              <div class="ds-zdemo z-ok"><div class="ds-zdemo-name">Z4 Refuge</div><div class="ds-zdemo-status">OK</div><div class="ds-zdemo-metrics"><span>CO: 7 ppm</span><span>Fan: 35%</span></div></div>
-            </div>
-          </div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px" class="ds-anim">
-            <a class="ds-btn-sm" href="#/console" data-view="console" style="font-size:.9rem;padding:.6em 1.3em;border-color:#f6a623;color:#f6a623">▶ Launch Live Console</a>
-            <a class="ds-btn-sm" href="docs/demo/OreAcle_ChatGPT_Local_LiveConsole_Demo_2026-06-27.mov" target="_blank" rel="noopener" style="font-size:.9rem;padding:.6em 1.3em">Watch Demo Recording (MOV)</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Slide 09: Build Status ───────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">Build Status</div>
-          <h2 class="ds-h2 ds-anim">What's built, what's in progress.</h2>
-          <table class="ds-tbl ds-anim">
-            <thead><tr><th>Feature</th><th>Status</th><th>Detail</th></tr></thead>
-            <tbody>
-              <tr class="ds-tbl-done"><td><b>FastAPI backend + WebSocket</b></td><td>✓ Done</td><td>4 zones · 0.5 s cadence · :8000</td></tr>
-              <tr class="ds-tbl-done"><td><b>4-zone mine simulator</b></td><td>✓ Done</td><td>5 scenarios: normal, gas buildup, bearing failure, blast, reset</td></tr>
-              <tr class="ds-tbl-done"><td><b>Isolation Forest anomaly detection</b></td><td>✓ Done</td><td>2,000 training samples · per-zone models · 10 safety rules</td></tr>
-              <tr class="ds-tbl-done"><td><b>Ventilation-on-Demand (VOD)</b></td><td>✓ Done</td><td>Fan setpoint: gas + occupancy + temp + airflow compensation</td></tr>
-              <tr class="ds-tbl-done"><td><b>Ollama LLM alerts + copilot</b></td><td>✓ Done</td><td>llama3.2:3b · template fallback when offline</td></tr>
-              <tr class="ds-tbl-done"><td><b>Live Console UI</b></td><td>✓ Done</td><td>Zone cards · gauges · trends · alert feed · fan control</td></tr>
-              <tr class="ds-tbl-done"><td><b>SQLite readings log</b></td><td>✓ Done</td><td>All 14 sensor fields · indexed by zone + timestamp</td></tr>
-              <tr class="ds-tbl-progress"><td><b>Pico W hardware POC Phase 1</b></td><td>⟳ In Progress</td><td>DHT11 + MPU6050 + USB JSON → backend</td></tr>
-              <tr class="ds-tbl-progress"><td><b>Hardware Phase 2 (DC fan, LCD, buzzer)</b></td><td>⟳ If time permits</td><td>Physical fan spin on AI command</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ── Slide 10: Why It Wins ────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">Judging Criteria</div>
-          <h2 class="ds-h2 ds-anim">Why OreAcle wins on every Track 03 criterion.</h2>
-          <table class="ds-tbl ds-anim">
-            <thead><tr><th>Criterion</th><th>OreAcle's answer</th></tr></thead>
-            <tbody>
-              <tr><td><b>Innovation</b></td><td>First open-source, offline AI interpretation layer for mine sensor data — two AI techniques (ML + LLM) on a single $40 edge node, $0 running cost</td></tr>
-              <tr><td><b>Industry relevance</b></td><td>Directly addresses Vale/Glencore/Maestro deployments in Sudbury. Tackles VOD, air quality, and vibration — exactly what Track 03 specifies</td></tr>
-              <tr><td><b>Technical execution</b></td><td>End-to-end working demo: real FastAPI backend + WebSocket + ML inference + LLM alerts + full operator UI — all running live right now</td></tr>
-              <tr><td><b>Offline / connectivity</b></td><td>100% air-gapped — no internet, no cloud, no API keys. Works at any mine depth, any connectivity environment</td></tr>
-              <tr><td><b>Commercial viability</b></td><td>$0 recurring AI cost. Open-source = no vendor lock-in. Hardware-agnostic JSON interface = drop-in for any existing sensor network</td></tr>
-              <tr><td><b>Key Logic alignment</b></td><td>OreAcle is the AI layer that plugs into Key Logic's embedded sensor products (ShafTrack, GeoSight, TesMan) without replacing them</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ── Slide 11: Commercial ─────────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">Commercial Model</div>
-          <h2 class="ds-h2 ds-anim">Built to deploy. $0 recurring cost. No vendor lock-in.</h2>
-          <div class="ds-g4">
-            <div class="ds-card ds-card-amber ds-anim">
-              <div class="ds-card-tag">Cost</div>
-              <h3>$0 AI runtime</h3>
-              <p>Models download once and run forever free. No API subscription, no per-token billing, no cloud charges at 24/7 industrial scale.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Connectivity</div>
-              <h3>100% offline</h3>
-              <p>No internet required underground. All inference runs locally on a laptop or ruggedized edge machine. Works at any mine depth.</p>
-            </div>
-            <div class="ds-card ds-card-info ds-anim">
-              <div class="ds-card-tag">Licensing</div>
-              <h3>Open-source</h3>
-              <p>Fully auditable codebase. Mines can inspect, modify, and deploy without vendor dependency or licensing fees. MIT-compatible.</p>
-            </div>
-            <div class="ds-card ds-anim">
-              <div class="ds-card-tag">Industry Fit</div>
-              <h3>Key Logic ready</h3>
-              <p>OreAcle's JSON interface is hardware-agnostic. It plugs onto ShafTrack, GeoSight, or any sensor that emits JSON — adding AI interpretation without replacing existing hardware.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Slide 12: Who Built It ───────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner">
-          <div class="ds-kicker ds-anim">Team &amp; Context</div>
-          <h2 class="ds-h2 ds-anim">Built solo for the Sudbury mining ecosystem.</h2>
-          <div class="ds-g2-wide ds-anim">
-            <div>
-              <div class="ds-card ds-card-amber" style="margin-bottom:14px">
-                <div class="ds-card-tag">Developer</div>
-                <h3>Mihir Trivedi</h3>
-                <p>Solo developer. Built the entire stack — backend, AI pipeline, hardware firmware, and frontend — for the Cursor Hackathon Sudbury, Track 03: Mining and Industrial Innovation. Student at Laurentian University.</p>
+          <div style="display:flex;flex-direction:column;gap:20px;justify-content:center">
+            <div style="background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:36px 40px">
+              <div style="font-family:var(--mono);font-size:24px;color:var(--muted);margin-bottom:28px;letter-spacing:.1em">HARDWARE FLOW</div>
+              <div style="display:flex;align-items:center;gap:0;margin-bottom:32px">
+                <div style="background:rgba(246,166,35,.1);border:2px solid var(--watch);border-radius:14px;padding:22px 28px;text-align:center;flex:1">
+                  <div style="font-family:var(--mono);font-size:26px;color:var(--watch);font-weight:700">PICO W</div>
+                  <div style="font-size:24px;color:var(--muted);margin-top:6px">~$10 board</div>
+                  <div style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="var(--watch)" stroke-width="2.5"></circle><line x1="18" y1="18" x2="18" y2="7" stroke="var(--watch)" stroke-width="2.5" stroke-linecap="round" transform="rotate(40 18 18)"></line><circle cx="18" cy="18" r="3" fill="var(--watch)"></circle></svg>
+                    <span style="font-size:23px;color:var(--muted)">potentiometer</span>
+                  </div>
+                </div>
+                <div style="padding:0 16px;text-align:center;flex:none">
+                  <div style="font-family:var(--mono);font-size:22px;color:var(--muted)">USB Serial</div>
+                  <div style="font-size:30px;color:var(--line2);margin:4px 0">→</div>
+                  <div style="font-family:var(--mono);font-size:20px;color:var(--faint)">JSON 2/s</div>
+                </div>
+                <div style="background:rgba(62,207,142,.09);border:2px solid var(--ok);border-radius:14px;padding:22px 28px;text-align:center;flex:1">
+                  <div style="font-family:var(--mono);font-size:26px;color:var(--ok);font-weight:700">BRAIN</div>
+                  <div style="font-size:24px;color:var(--muted);margin-top:6px">laptop · local</div>
+                </div>
               </div>
-              <div class="ds-card">
-                <div class="ds-card-tag">Hackathon Context</div>
-                <h3>Cursor Hackathon Sudbury — Build the North 2026</h3>
-                <p>Track 03: Mining and Industrial Innovation. OreAcle is an original proof-of-concept created for this event, with no pre-existing codebase. All development done during the hackathon window.</p>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:14px">
-              <div class="ds-card">
-                <div class="ds-card-tag">Academic Context</div>
-                <h3>Laurentian University · MERC</h3>
-                <p>Mining Engineering Research Centre, Sudbury. The academic backbone behind Northern Ontario mine safety research. OreAcle implements open-source versions of concepts studied here.</p>
-              </div>
-              <div class="ds-card">
-                <div class="ds-card-tag">Industry Context</div>
-                <h3>Key Logic Software · Vale · Glencore</h3>
-                <p>OreAcle is designed to complement existing Sudbury-area mining technology: Key Logic's sensor-data algorithms, Vale's IROC remote operations, and the data infrastructure already running underground.</p>
+              <div style="font-size:28px;color:var(--muted);margin-bottom:16px;text-align:center;font-family:var(--mono)">↓ responds in real time</div>
+              <div style="display:flex;gap:16px;justify-content:center">
+                <div style="display:flex;align-items:center;gap:10px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.3);border-radius:10px;padding:12px 20px"><span class="dot d-ok"></span><span style="font-family:var(--mono);font-size:25px;color:var(--ok)">OK · 40%</span></div>
+                <div style="display:flex;align-items:center;gap:10px;background:rgba(246,166,35,.1);border:1px solid rgba(246,166,35,.3);border-radius:10px;padding:12px 20px"><span class="dot d-watch"></span><span style="font-family:var(--mono);font-size:25px;color:var(--watch)">WATCH · 65%</span></div>
+                <div style="display:flex;align-items:center;gap:10px;background:rgba(239,93,96,.1);border:1px solid rgba(239,93,96,.3);border-radius:10px;padding:12px 20px"><span class="dot d-alert"></span><span style="font-family:var(--mono);font-size:25px;color:var(--alert)">ALERT · 95%</span></div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ── Slide 13: Appendix — Q&A ────────────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner-wide">
-          <div class="ds-appendix-label ds-anim">Appendix</div>
-          <div class="ds-kicker ds-anim">Anticipated Questions</div>
-          <h2 class="ds-h2 ds-anim">Q&amp;A</h2>
-          <div class="ds-g2">
-            <div class="ds-qa-card ds-anim">
-              <div class="ds-qa-q">Why not just use GPT-4 or Claude?</div>
-              <div class="ds-qa-a">Cloud AI requires reliable internet (unavailable underground), sends sensitive operational data off-site, and costs thousands per month at 24/7 multi-zone scale. Llama 3.2 3B on Ollama is free forever, offline, and fast enough for shift-level alerts on commodity hardware.</div>
-            </div>
-            <div class="ds-qa-card ds-anim">
-              <div class="ds-qa-q">The Pico W can't run AI — how does it work?</div>
-              <div class="ds-qa-a">Correct. The Pico W only senses (reads sensors) and acts (drives the fan, LED, LCD). All AI — Isolation Forest, VOD logic, and Ollama LLM — runs on the MacBook. The Pico streams raw JSON over USB; the laptop does all the thinking.</div>
-            </div>
-            <div class="ds-qa-card ds-anim">
-              <div class="ds-qa-q">What happens when Ollama isn't running?</div>
-              <div class="ds-qa-a">The backend has a deterministic template fallback that generates structured, human-readable alerts using the sensor values directly — no LLM required. The ML anomaly detection, VOD logic, and UI all continue to operate normally.</div>
-            </div>
-            <div class="ds-qa-card ds-anim">
-              <div class="ds-qa-q">Is the gas detection real?</div>
-              <div class="ds-qa-a">CO, NO₂, and airflow are software-simulated in this POC. Temperature, humidity, and vibration are real sensors being assembled. Swapping in a ~$10 MQ-7 gas sensor for CO is a single wire change to the Pico W — the backend ingest pipeline is already written to handle it.</div>
-            </div>
-            <div class="ds-qa-card ds-anim">
-              <div class="ds-qa-q">How does this scale to a real mine?</div>
-              <div class="ds-qa-a">The Pico W POC demonstrates the data contract and AI pipeline. A production deployment replaces the Pico W with industrial ARM/ESP32 nodes in IP67 enclosures and swaps USB for LoRa or Wi-Fi mesh. The FastAPI backend, ML models, LLM, and entire UI remain unchanged — only the edge node hardware upgrades.</div>
-            </div>
-          </div>
+    <!-- 10. STATUS -->
+    <section class="slide" data-screen-label="10 Status">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">Honest Status</div>
+          <h1 class="title anim" style="transition-delay:80ms">Built today, and in progress</h1>
+        </div>
+        <table class="tbl fill anim" style="transition-delay:160ms">
+          <tbody><tr>
+            <th style="color:var(--ok);font-size:28px">Done and verified · software MVP live</th>
+            <th style="color:var(--watch);font-size:28px">Done · hardware POC</th>
+            <th style="color:var(--muted);font-size:28px">In progress · next steps</th>
+          </tr>
+          <tr>
+            <td style="font-size:27px;line-height:1.75;vertical-align:top">
+              Four-zone mine simulator, live readings<br>
+              Real-time WebSocket at ~2 readings/sec<br>
+              Isolation Forest anomaly detection<br>
+              Safety rules: OK, WATCH, ALERT<br>
+              Ventilation-on-Demand auto fan control<br>
+              AI alert feed in plain English<br>
+              Copilot chat over live sensor data<br>
+              SQLite logging and full operator dashboard<br>
+              Live at mtrivedilu.github.io/OreAcle
+            </td>
+            <td style="font-size:27px;line-height:1.75;vertical-align:top">
+              Pico W streams readings in OreAcle format over USB serial<br>
+              Potentiometer drives live airflow value<br>
+              Status flips OK, WATCH, ALERT from real input<br>
+              Fan response follows real-time signal<br>
+              Data contract proven real end to end
+            </td>
+            <td style="font-size:27px;line-height:1.75;vertical-align:top">
+              DHT11 temp and humidity sensor (physical)<br>
+              MPU6050 vibration sensor (physical)<br>
+              Real DC fan motor response<br>
+              Underground-ready enclosure<br>
+              Multi-zone edge node deployment
+            </td>
+          </tr>
+        </tbody></table>
+        <p class="lead anim" style="transition-delay:300ms;flex:none;margin-top:24px;font-size:30px;color:var(--muted)">Same data contract throughout: real sensors swap in with <b style="color:var(--ink)">no change</b> to the brain or the UI.</p>
+      </div>
+    </section>
+
+    <!-- 11. WHY IT WINS -->
+    <section class="slide" data-screen-label="11 Why it wins">
+      <div class="pad">
+        <div class="head" style="margin-bottom:26px">
+          <div class="kicker anim">Why It Wins</div>
+          <h1 class="title anim" style="transition-delay:80ms;font-size:72px">Built for how this is judged</h1>
+        </div>
+        <table class="tbl fill anim" style="transition-delay:160ms">
+          <tbody><tr><th>Judging factor</th><th>How OreAcle scores</th></tr>
+          <tr><td class="f">Real problem, domain fit</td><td>Air quality, equipment health, ventilation cost: the three biggest daily mining pain points. Tied directly to Vale and Glencore deployments in Sudbury.</td></tr>
+          <tr><td class="f">Technical depth</td><td>Real ML anomaly detection, a real local LLM, and a closed-loop control design, integrated live. Not a mockup.</td></tr>
+          <tr><td class="f">AI usage</td><td>Two kinds: classical ML for detection, generative LLM for explanation. Open-source, offline, $0 per query.</td></tr>
+          <tr><td class="f">Live demo</td><td>Judges open the console themselves and trigger an alarm. The AI alert and fan response happen in real time.</td></tr>
+          <tr><td class="f">Practical UI</td><td>A genuinely usable, modern operator interface: the exact thing the industry currently lacks.</td></tr>
+          <tr><td class="f">Sponsor fit (Key Logic)</td><td>Software wrapped around mining hardware: Key Logic's exact business model.</td></tr>
+          <tr><td class="f">Cost and viability</td><td>$0 AI bill on hardware mines already own. Open-source, offline, named real companies, credible builder resume.</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <!-- 12. COMMERCIAL -->
+    <section class="slide" data-screen-label="12 Commercial">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">Commercial Angle</div>
+          <h1 class="title anim" style="transition-delay:80ms">$0 to run, on infrastructure they already have</h1>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:160ms;grid-template-rows:1fr 1fr">
+          <div class="card"><div class="ch">$0 AI bill</div><div class="cb">All inference runs locally on a laptop or edge server mines already own. No API subscriptions, no usage fees, no cloud dependency.</div></div>
+          <div class="card"><div class="ch">100% offline</div><div class="cb">Designed for poor-connectivity environments and sensitive operational data. Works in the deepest level of the mine without a single network packet leaving site.</div></div>
+          <div class="card"><div class="ch">Open-source, vendor-neutral</div><div class="cb">Works across the sensors Maestro, Newtrax, and Accutron already deploy. No vendor lock-in. The brain connects to any sensor that speaks the JSON contract.</div></div>
+          <div class="card"><div class="ch">Key Logic's business</div><div class="cb">Software intelligence wrapped around mining hardware. OreAcle is a working proof of that model, built with modern open-source AI at hackathon speed.</div></div>
+        </div>
+        <div class="card anim" style="transition-delay:340ms;flex:none;margin-top:28px;background:rgba(62,207,142,.06);border-color:rgba(62,207,142,.28);padding:28px 44px">
+          <p class="lead" style="font-size:34px">Everything you just saw is open-source and free to run, and it drops straight onto the sensor networks <b style="color:var(--ink)">Vale and Glencore</b> already have underground.</p>
         </div>
       </div>
+    </section>
 
-      <!-- ── Slide 14: Appendix — Glossary ───────────────────────── -->
-      <div class="ds-slide">
-        <div class="ds-inner-wide">
-          <div class="ds-appendix-label ds-anim">Appendix</div>
-          <div class="ds-kicker ds-anim">Glossary</div>
-          <h2 class="ds-h2 ds-anim">Key terms used throughout this presentation.</h2>
-          <div class="ds-gloss ds-anim">
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">VOD — Ventilation-on-Demand</div>
-              <div class="ds-gloss-def">Automatically adjusting fan speed to match real-time occupancy and air quality instead of running at a fixed rate. Saves 40–60% ventilation energy in mines.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">Isolation Forest</div>
-              <div class="ds-gloss-def">A scikit-learn ML model that detects anomalies by isolating data points that are "different" from learned normal patterns, without needing labelled examples of failures.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">Ollama</div>
-              <div class="ds-gloss-def">An open-source tool for running large language models (LLMs) locally on a laptop with no internet, no API key, and no per-token cost. OreAcle uses it to run Llama 3.2 3B.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">Llama 3.2 3B</div>
-              <div class="ds-gloss-def">Meta's open-source small language model (3 billion parameters). Fast enough for real-time alerts on a laptop CPU, with quality sufficient for one-sentence mine-safety communications.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">Pico W</div>
-              <div class="ds-gloss-def">Raspberry Pi Pico W: a dual-core microcontroller (~$10) with Wi-Fi and MicroPython support. The edge sensor node in OreAcle's hardware POC. Does not run AI — only sense and act.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">MPU6050</div>
-              <div class="ds-gloss-def">A 6-axis IMU sensor measuring acceleration and gyroscope data via I²C. OreAcle uses the accelerometer to detect equipment vibration anomalies indicating bearing wear or imminent failure.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">DHT11</div>
-              <div class="ds-gloss-def">A basic digital temperature and humidity sensor. Used in the Pico W POC to measure ambient conditions in the simulated mine zone for heat-stress and ventilation effectiveness monitoring.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">CO / NO₂</div>
-              <div class="ds-gloss-def">Carbon monoxide and nitrogen dioxide — the two primary gas hazards from diesel engines underground. CO above 25 ppm or NO₂ above 3 ppm triggers OreAcle's WATCH status; hard limits are higher.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">WebSocket</div>
-              <div class="ds-gloss-def">A persistent, bidirectional connection between the FastAPI backend and the browser. OreAcle uses it to push every sensor reading to the operator UI in real time without polling.</div>
-            </div>
-            <div class="ds-gloss-item">
-              <div class="ds-gloss-term">IROC</div>
-              <div class="ds-gloss-def">Vale's Integrated Remote Operations Centre in Sudbury — oversees all five Ontario underground mines from the surface, proving that remote mine monitoring at scale works today. OreAcle is the open-source AI layer for that paradigm.</div>
-            </div>
+    <!-- 13. WHO BUILT IT -->
+    <section class="slide" data-screen-label="13 Builder">
+      <div class="pad">
+        <div class="head">
+          <div class="kicker anim">Who Built It</div>
+          <h1 class="title anim" style="transition-delay:80ms">Four projects, one intersection</h1>
+          <p class="sub anim" style="transition-delay:140ms;font-size:36px;margin-top:12px">Mihir Trivedi, solo. Each project contributed a piece of OreAcle.</p>
+        </div>
+        <div class="g2 fill anim" style="transition-delay:200ms;grid-template-rows:1fr 1fr">
+          <div class="card" style="border-top:5px solid var(--info)"><div class="ch">LoopX</div><div class="cb">The Safe and Smart Mining Data Platform: real-time underground safety dashboards for autonomous mining equipment.</div></div>
+          <div class="card" style="border-top:5px solid var(--ok)"><div class="ch">Vale (via Minax)</div><div class="cb">An offline-first underground inspection app, built for environments where connectivity cannot be assumed.</div></div>
+          <div class="card" style="border-top:5px solid var(--brand)"><div class="ch">Laurentian MERC</div><div class="cb">Random Forest machine-learning research for ore characterization, published in Ore Geology Reviews. Applied ML in mining is not new to me.</div></div>
+          <div class="card" style="border-top:5px solid var(--alert)"><div class="ch">Flosonics</div><div class="cb">An LLM assistant built over live operational data, which is exactly what the OreAcle copilot does over sensor readings.</div></div>
+        </div>
+        <p class="lead anim" style="transition-delay:380ms;flex:none;margin-top:24px;font-family:var(--mono);font-size:26px;color:var(--muted)">Built with Cursor · github.com/mtrivediLU/OreAcle</p>
+      </div>
+    </section>
+
+    <!-- 14. FINAL ASK -->
+    <section class="slide" data-screen-label="14 Final ask">
+      <div class="pad cx">
+        <div class="kicker anim">The Ask</div>
+        <h1 class="title-xl anim" style="transition-delay:90ms;font-size:104px;max-width:1560px;text-align:center;text-wrap:balance">Try it. Ask me. Let's build this together.</h1>
+        <div class="g3 anim" style="transition-delay:200ms;margin-top:54px;width:100%">
+          <div class="card" style="border-top:5px solid var(--ok);text-align:left">
+            <div class="num" style="color:var(--ok)">Open the console</div>
+            <div class="ch" style="font-size:32px">Right now, on your phone</div>
+            <div style="font-family:var(--mono);font-size:28px;color:var(--ok);font-weight:700;margin-top:12px;line-height:1.3">mtrivedilu.github.io<br>/OreAcle/#/console</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--alert);text-align:left">
+            <div class="num" style="color:var(--alert)">Watch the demo</div>
+            <div class="ch" style="font-size:32px">3-minute YouTube walkthrough</div>
+            <div style="font-family:var(--mono);font-size:28px;color:var(--alert);font-weight:700;margin-top:12px">youtu.be/yd7dnXjNt_4</div>
+          </div>
+          <div class="card" style="border-top:5px solid var(--brand);text-align:left">
+            <div class="num">Talk to me</div>
+            <div class="ch" style="font-size:32px">I know this mine</div>
+            <div class="cb" style="font-size:29px;margin-top:12px">LoopX, Vale, Laurentian, Flosonics. OreAcle is working software, open-source, and ready for Sudbury today.</div>
           </div>
         </div>
+        <p class="lead anim" style="transition-delay:320ms;margin-top:48px;color:var(--muted);font-size:34px">OreAcle is <b style="color:var(--ink)">working software</b>, open-source, $0 to run, and ready for the Sudbury mining stack right now.</p>
       </div>
+    </section>
 
-    </div><!-- /deckSlides -->
+  </div>
 
-    <!-- Bottom navigation bar -->
-    <div class="ds-nav-bar">
-      <button class="ds-nav-btn" id="deckPrev" disabled>&#8592; Prev</button>
-      <span class="ds-hint">← → Arrow keys · Space · Page Up/Down · Home/End to navigate</span>
-      <button class="ds-nav-btn" id="deckNext">Next &#8594;</button>
+  <div class="nav">
+    <button id="deckPrev" aria-label="Previous">‹</button>
+    <span class="counter"><b id="curNum">1</b> / 14</span>
+    <button id="deckNext" aria-label="Next">›</button>
+    <button class="npill" id="deckNotesBtn" aria-label="Presenter notes">N · Notes</button>
+  </div>
+
+  <div class="notes" id="notesPanel">
+    <div class="notes-inner">
+      <div class="notes-label">Presenter notes · press N to close</div>
+      <div id="notesBody"></div>
     </div>
-
-  </div><!-- /ds-wrap -->
+  </div>
+</div>
+</x-dc>
 </section>
 
 </main>
