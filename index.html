@@ -483,10 +483,11 @@
     <div class="console-bar">
       <div class="cb-left">
         <span class="cb-title">Operator Console</span>
-        <span class="cb-zone">Cluster: <b>North-3</b></span>
-        <span class="badge-sample" title="No real hardware connected. This runs on a built-in simulator">SAMPLE DATA · SIMULATION</span>
+        <span class="cb-zone">Active zone: <b id="activeZoneName">Entry / Shaft</b></span>
+        <span class="badge-sample" id="simBadge" title="Simulator active when backend is offline">SAMPLE DATA · SIMULATION</span>
       </div>
       <div class="cb-right">
+        <span id="connStatus" class="conn-status conn-offline">Backend offline</span>
         <span class="cb-clock" id="simClock">--:--:--</span>
         <span class="live-dot" id="liveDot"><span></span>LIVE</span>
         <a class="btn btn-ghost btn-sm" href="#/home" data-view="home">← Back to site</a>
@@ -496,12 +497,12 @@
     <!-- Scenario toolbar -->
     <div class="scenario-bar">
       <span class="sc-label">Trigger a scenario:</span>
-      <button class="sc-btn is-active" data-scenario="normal">● Normal</button>
-      <button class="sc-btn" data-scenario="gas">☁ Gas build-up</button>
-      <button class="sc-btn" data-scenario="bearing">⚙ Bearing failure</button>
-      <button class="sc-btn" data-scenario="blast">💥 Blast clearance</button>
-      <button class="sc-btn sc-reset" data-scenario="reset">⟲ Reset</button>
-      <span class="sc-hint">In production these signals come from the Pico&nbsp;W sensors + a local LLM. Here they're simulated so you can feel the UX.</span>
+      <button class="sc-btn is-active" data-scenario="normal">Normal</button>
+      <button class="sc-btn" data-scenario="gas_buildup">Gas Buildup</button>
+      <button class="sc-btn" data-scenario="bearing_failure">Bearing Failure</button>
+      <button class="sc-btn" data-scenario="blast_clearance">Blast Clearance</button>
+      <button class="sc-btn sc-reset" data-scenario="reset">Reset</button>
+      <span class="sc-hint">Each button POSTs to the backend and drives the live sensor simulation. When offline, the built-in simulator responds instead.</span>
     </div>
 
     <!-- Alert banner -->
@@ -549,7 +550,7 @@
               <input type="range" min="0" max="100" value="40" id="fanSlider" disabled />
             </label>
             <div class="vent-meta">
-              <div><span>Airflow <em class="sim-badge">SIM</em></span><b id="ventAirflow">0.42 m³/s</b></div>
+              <div><span>Airflow</span><b id="ventAirflow">-- m/s</b></div>
               <div><span>Mode logic</span><b id="ventLogic">occupancy + air</b></div>
             </div>
           </div>
@@ -558,7 +559,7 @@
 
       <!-- Gauges -->
       <section class="panel panel-gauges">
-        <div class="panel-head"><h3>Sensors: North-3</h3><span class="panel-sub">real-time</span></div>
+        <div class="panel-head"><h3 id="gaugeZoneTitle">Sensors: Entry / Shaft</h3><span class="panel-sub">real-time</span></div>
         <div class="gauges" id="gauges"><!-- JS --></div>
       </section>
 
@@ -585,7 +586,7 @@
             <input type="text" id="cpInput" placeholder="e.g. Which zones are unsafe and why?" autocomplete="off" />
             <button type="submit" class="btn btn-primary btn-sm">Ask</button>
           </form>
-          <p class="cp-disclaimer">Demo copilot answers from the live simulation. In production this is a local open-source LLM (Llama&nbsp;3.2) over your real sensor history.</p>
+          <p class="cp-disclaimer" id="cpDisclaimer">Backend offline — copilot is answering from the built-in simulation.</p>
         </div>
       </section>
     </div>
