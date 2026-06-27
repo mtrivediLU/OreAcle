@@ -37,6 +37,7 @@
       <a href="#/docs" class="nav-link" data-view="docs">Documentation</a>
       <a href="#/deck" class="nav-link" data-view="deck">Pitch Deck</a>
       <a href="#/tracker" class="nav-link" data-view="tracker">Build Tracker</a>
+      <a href="#/hardware" class="nav-link" data-view="hardware">Hardware POC</a>
     </nav>
 
     <div class="nav-actions">
@@ -593,6 +594,7 @@
         <a href="#/docs" data-view="docs">Documentation</a>
         <a href="#/deck" data-view="deck">Pitch Deck</a>
         <a href="#/tracker" data-view="tracker">Build Tracker</a>
+        <a href="#/hardware" data-view="hardware">Hardware POC</a>
       </div>
     </div>
     <div class="footer-base"><div class="container">Built in Sudbury, Ontario · 100% open-source · $0 AI cost · <span id="year"></span></div></div>
@@ -891,7 +893,8 @@
           <article class="card reveal">
             <div class="tk-badge tk-inprog tk-card-label">In Progress</div>
             <h3>Hardware POC</h3>
-            <p>Pico W + DHT11 + MPU6050 sensor node being assembled. Phase 1 target: real temperature, humidity, and vibration readings streamed over USB JSON to replace the software simulator.</p>
+            <p>Pico W potentiometer edge node is live. Turn the knob to drive a calibrated airflow signal into the dashboard in real time.</p>
+            <a class="btn btn-ghost btn-sm" href="#/hardware" data-view="hardware" style="margin-top:14px">⚡ Open Hardware POC →</a>
           </article>
           <article class="card reveal">
             <div class="tk-badge tk-pending tk-card-label">Stretch</div>
@@ -917,6 +920,112 @@
     <div class="container tracker-back reveal">
       <a class="btn btn-ghost" href="#/home" data-view="home">← Back to site</a>
       <a class="btn btn-ghost" href="#/deck" data-view="deck">View Pitch Deck</a>
+      <a class="btn btn-ghost" href="#/hardware" data-view="hardware">⚡ Hardware POC</a>
+      <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ HARDWARE POC VIEW ============================ -->
+<section class="view" id="view-hardware">
+  <div class="tracker">
+
+    <!-- Hero banner -->
+    <div class="tracker-hero">
+      <div class="container">
+        <span class="eyebrow">Hardware Proof-of-Concept · Raspberry Pi Pico W</span>
+        <h1>Live Hardware POC</h1>
+        <p class="lead">Raspberry Pi Pico W edge node streaming calibrated airflow telemetry over USB. Plug in the Pico, click Connect, and turn the knob.</p>
+        <div class="hw-conn-row">
+          <button class="btn btn-primary" id="hwConnectBtn">Connect to Pico</button>
+          <span><span class="hw-dot" id="hwConnDot"></span><span class="hw-conn-text" id="hwConnText">Not connected</span></span>
+          <span class="hw-src-badge" id="hwSrcBadge" style="display:none">REAL SENSOR</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container tracker-body">
+
+      <!-- Airflow + Fan -->
+      <section class="tk-section">
+        <div class="cards-2">
+
+          <!-- Airflow card -->
+          <div class="card">
+            <div class="eyebrow" style="margin-bottom:12px">Calibrated Airflow Signal</div>
+            <div style="display:flex;align-items:baseline;gap:8px">
+              <span class="hw-big" id="hwAirflow">0.00</span>
+              <span style="font-size:1.3rem;color:var(--muted)">m/s</span>
+            </div>
+            <div class="hw-gauge"><div id="hwAirflowBar"></div></div>
+            <div style="font-size:.78rem;color:var(--muted);margin-top:7px">
+              Live Pico W potentiometer signal, smoothed for demo stability.
+            </div>
+            <div class="hw-status-row">
+              <div class="hw-light" id="hwLight"></div>
+              <div class="hw-status-text" id="hwStatus">--</div>
+            </div>
+          </div>
+
+          <!-- Fan card -->
+          <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+            <div class="eyebrow" style="align-self:flex-start">Ventilation Fan</div>
+            <svg class="hw-fan" id="hwFan" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <g fill="var(--accent-2)">
+                <circle cx="50" cy="50" r="8"/>
+                <path d="M50 50 C 50 20, 30 18, 28 36 C 40 38, 48 44, 50 50 Z"/>
+                <path d="M50 50 C 80 50, 82 30, 64 28 C 62 40, 56 48, 50 50 Z"/>
+                <path d="M50 50 C 50 80, 70 82, 72 64 C 60 62, 52 56, 50 50 Z"/>
+                <path d="M50 50 C 20 50, 18 70, 36 72 C 38 60, 44 52, 50 50 Z"/>
+              </g>
+            </svg>
+            <div style="font-size:2rem;font-weight:700;font-family:var(--f-display)" id="hwFanPct">--%</div>
+            <div style="font-size:.78rem;color:var(--muted);text-align:center">
+              Fan % increases as airflow decreases — mirrors VOD logic.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Sensor details -->
+      <section class="tk-section">
+        <div class="tk-sec-head">
+          <h2>Sensor Details</h2>
+        </div>
+        <div class="tk-status-card">
+          <div class="tk-meta-row">
+            <div class="tk-meta"><span>Zone</span><b id="hwZone">--</b></div>
+            <div class="tk-meta"><span>Source</span><b id="hwSource">--</b></div>
+            <div class="tk-meta"><span>Temperature</span><b id="hwTemp">--</b></div>
+            <div class="tk-meta"><span>Raw ADC</span><b id="hwRawAdc">--</b></div>
+            <div class="tk-meta"><span>Readings received</span><b id="hwCount">0</b></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section class="tk-section">
+        <div class="tk-sec-head">
+          <h2>About This Demo</h2>
+        </div>
+        <div class="tk-hw-note">
+          <p>The physical potentiometer is a <b>calibrated stand-in signal</b> for a real airflow sensor. It is not measuring actual airflow — it demonstrates the full data pipeline: ADC reading → USB JSON → Web Serial → live dashboard update.</p>
+          <p>Signal processing: 50-sample ADC average → exponential smoothing (α = 0.08) → deadband filter (±0.10 m/s) → clamped 0–5 m/s range. Status thresholds: <b style="color:var(--ok)">≥ 1.7 m/s → OK</b> · <b style="color:var(--watch)">≥ 0.8 m/s → WATCH</b> · <b style="color:var(--alert)">below → ALERT</b>. Fan % rises as airflow falls.</p>
+          <p>Firmware: <code>hardware/firmware/main_potentiometer.py</code> — upload to Pico as <code>main.py</code> via Thonny.</p>
+        </div>
+        <div class="note" id="hwHint" style="margin-top:16px">
+          Requires <b>Chrome or Edge</b> over <b>http://localhost</b>. Close Thonny first (port conflict), then click <b>Connect to Pico</b> and pick the <b>usbmodem</b> port.
+        </div>
+      </section>
+
+    </div><!-- /tracker-body -->
+
+    <!-- Back / forward navigation -->
+    <div class="container tracker-back reveal">
+      <a class="btn btn-ghost" href="#/home" data-view="home">← Back to site</a>
+      <a class="btn btn-ghost" href="#/tracker" data-view="tracker">Build Tracker</a>
       <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
     </div>
 
@@ -1412,6 +1521,7 @@
 <script src="js/dashboard.js"></script>
 <script src="js/docs.js"></script>
 <script src="js/deck.js"></script>
+<script src="js/hardware.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

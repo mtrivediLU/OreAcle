@@ -1098,3 +1098,23 @@ main{padding-top:var(--nav-h)}
 [data-theme="light"] .hiw-persona{background:var(--surface-2)}
 [data-theme="light"] .hiw-sees li{background:var(--surface)}
 [data-theme="light"] .hiw-flow-step{background:var(--surface)}
+
+/* ── Hardware POC view (.hw-*) ─────────────────────────────────────────── */
+.hw-conn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+.hw-dot{width:10px;height:10px;border-radius:50%;background:var(--faint);
+  display:inline-block;margin-right:6px;transition:background .3s}
+.hw-dot.hw-dot-on{background:var(--ok);box-shadow:0 0 0 3px rgba(47,191,113,.25)}
+.hw-src-badge{font-size:.7rem;font-weight:700;letter-spacing:.05em;background:rgba(54,214,231,.12);
+  color:var(--accent-2);border:1px solid rgba(54,214,231,.3);padding:.25em .65em;border-radius:20px}
+.hw-big{font-size:clamp(3rem,8vw,5rem);font-weight:700;line-height:1;font-family:var(--f-display)}
+.hw-gauge{height:14px;background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  overflow:hidden;margin-top:16px}
+.hw-gauge>div{height:100%;width:0%;background:var(--ok);transition:width .25s ease,background .25s ease}
+.hw-status-row{display:flex;align-items:center;gap:12px;margin-top:16px}
+.hw-light{width:22px;height:22px;border-radius:50%;background:var(--faint);
+  transition:background .3s,box-shadow .3s;flex-shrink:0}
+.hw-status-text{font-size:2rem;font-weight:700;font-family:var(--f-display);transition:color .3s}
+.hw-fan{width:110px;height:110px;animation:hw-spin 2s linear infinite}
+@keyframes hw-spin{to{transform:rotate(360deg)}}
+.hw-conn-text{color:var(--muted);font-size:.875rem}
+@media(prefers-reduced-motion:reduce){.hw-fan{animation:none}}

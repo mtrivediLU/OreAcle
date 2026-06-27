@@ -1,0 +1,200 @@
+<!--
+  LEGACY / STANDALONE FALLBACK
+  ─────────────────────────────────────────────────────────────────────────────
+  This file is kept as a standalone fallback for cases where the main app is
+  not being served over http://localhost (e.g. opening via file:// in a pinch).
+
+  The primary integrated version lives in the main OreAcle app:
+    Route:  #/hardware
+    HTML:   index.html  (#view-hardware section)
+    JS:     js/hardware.js
+    CSS:    css/styles.css  (.hw-* rules)
+
+  Do not use this file for new development — update the integrated version.
+  ─────────────────────────────────────────────────────────────────────────────
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OreAcle Live Hardware Panel</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --line:#222c3a; --text:#e6edf3; --muted:#8b97a7;
+    --ok:#2ecc71; --watch:#f1c40f; --alert:#e74c3c; --accent:#3aa0ff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--text);min-height:100vh;padding:28px;}
+  h1{font-size:22px;margin:0 0 2px;}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:20px;}
+  .bar{display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;}
+  button{background:var(--accent);color:#fff;border:0;border-radius:8px;
+         padding:11px 18px;font-size:15px;font-weight:600;cursor:pointer;}
+  button:disabled{opacity:.4;cursor:not-allowed;}
+  .dot{width:10px;height:10px;border-radius:50%;background:#555;display:inline-block;margin-right:6px;}
+  .dot.on{background:var(--ok);}
+  .status-pill{font-size:13px;color:var(--muted);}
+  .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;max-width:1000px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .card h2{margin:0 0 14px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .big{font-size:64px;font-weight:700;line-height:1;}
+  .unit{font-size:20px;color:var(--muted);margin-left:6px;}
+  .gauge{height:16px;background:#0b0e13;border-radius:10px;overflow:hidden;margin-top:18px;border:1px solid var(--line);}
+  .gauge > div{height:100%;width:0%;background:var(--ok);transition:width .2s ease,background .2s ease;}
+  .statusbox{display:flex;align-items:center;gap:14px;margin-top:6px;}
+  .light{width:26px;height:26px;border-radius:50%;background:#333;box-shadow:0 0 0 0 rgba(0,0,0,0);}
+  .statustext{font-size:38px;font-weight:700;}
+  .fanwrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+  .fan{width:120px;height:120px;animation:spin 2s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .rows{margin-top:8px;font-size:14px;color:var(--muted);}
+  .rows div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);}
+  .rows b{color:var(--text);font-weight:600;}
+  .hint{margin-top:18px;color:var(--muted);font-size:13px;max-width:1000px;line-height:1.5;}
+  .err{color:var(--alert);}
+  .src-badge{font-size:11px;background:#1d2735;color:var(--accent);padding:2px 8px;border-radius:20px;margin-left:8px;}
+</style>
+</head>
+<body>
+  <h1>OreAcle Live Hardware Panel <span class="src-badge" id="srcBadge" style="display:none">REAL SENSOR</span></h1>
+  <div class="sub">Reads the Raspberry Pi Pico W directly over USB. Turn the knob and watch the airflow, fan, and status react live.</div>
+
+  <div class="bar">
+    <button id="connectBtn">Connect to Pico</button>
+    <span class="status-pill"><span class="dot" id="connDot"></span><span id="connText">Not connected</span></span>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Calibrated Airflow Signal</h2>
+      <div><span class="big" id="airflow">0.0</span><span class="unit">m/s</span></div>
+      <div class="gauge"><div id="airflowBar"></div></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:8px">Live Pico W potentiometer signal, smoothed for demo stability.</div>
+      <div class="statusbox">
+        <div class="light" id="light"></div>
+        <div class="statustext" id="status">--</div>
+      </div>
+    </div>
+
+    <div class="card fanwrap">
+      <h2 style="align-self:flex-start">Ventilation fan</h2>
+      <svg class="fan" id="fan" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#3aa0ff">
+          <circle cx="50" cy="50" r="8"/>
+          <path d="M50 50 C 50 20, 30 18, 28 36 C 40 38, 48 44, 50 50 Z"/>
+          <path d="M50 50 C 80 50, 82 30, 64 28 C 62 40, 56 48, 50 50 Z"/>
+          <path d="M50 50 C 50 80, 70 82, 72 64 C 60 62, 52 56, 50 50 Z"/>
+          <path d="M50 50 C 20 50, 18 70, 36 72 C 38 60, 44 52, 50 50 Z"/>
+        </g>
+      </svg>
+      <div style="font-size:30px;font-weight:700" id="fanPct">--%</div>
+    </div>
+  </div>
+
+  <div class="card rows" style="max-width:1000px;margin-top:18px">
+    <div><span>Zone</span><b id="zone">--</b></div>
+    <div><span>Source</span><b id="source">--</b></div>
+    <div><span>Temperature</span><b id="temp">--</b></div>
+    <div><span>Raw ADC</span><b id="rawAdc">--</b></div>
+    <div><span>Readings received</span><b id="count">0</b></div>
+  </div>
+
+  <div class="hint" id="hint">
+    Tip: this page must be opened over <b>http://localhost</b> (not by double clicking the file) and works in
+    <b>Chrome or Edge</b>. Close Thonny first so the USB port is free. Then click Connect and pick the
+    <b>usbmodem</b> port.
+  </div>
+
+<script>
+const $ = id => document.getElementById(id);
+let keepReading = false;
+
+function setConn(on, text){
+  $("connDot").classList.toggle("on", on);
+  $("connText").textContent = text;
+}
+
+function colorFor(status){
+  if(status === "OK") return getComputedStyle(document.documentElement).getPropertyValue('--ok');
+  if(status === "WATCH") return getComputedStyle(document.documentElement).getPropertyValue('--watch');
+  return getComputedStyle(document.documentElement).getPropertyValue('--alert');
+}
+
+function render(d){
+  const airflow = Number(d.airflow);
+  const fanPct = Number(d.fan_pct);
+  const status = d.status || "--";
+  const col = colorFor(status).trim();
+
+  $("airflow").textContent = airflow.toFixed(1);
+  const pct = Math.max(0, Math.min(100, (airflow/5)*100));
+  const bar = $("airflowBar");
+  bar.style.width = pct + "%";
+  bar.style.background = col;
+
+  $("light").style.background = col;
+  $("light").style.boxShadow = "0 0 18px 2px " + col;
+  $("status").textContent = status;
+  $("status").style.color = col;
+
+  $("fanPct").textContent = fanPct + "%";
+  // Higher fan percentage = faster spin. 30% -> ~2s, 100% -> ~0.25s.
+  const dur = Math.max(0.25, 2.2 - (fanPct/100)*1.95);
+  $("fan").style.animationDuration = dur.toFixed(2) + "s";
+
+  $("zone").textContent = d.zone || "--";
+  $("source").textContent = d.source || "--";
+  $("temp").textContent = (d.temp_c != null ? d.temp_c + " °C" : "--");
+  $("rawAdc").textContent = (d.raw_adc != null ? d.raw_adc : "--");
+  if(d.source === "pico_w") $("srcBadge").style.display = "inline-block";
+}
+
+async function connect(){
+  if(!("serial" in navigator)){
+    $("hint").innerHTML = '<span class="err">Web Serial is not supported in this browser. Use Chrome or Edge, opened over http://localhost.</span>';
+    return;
+  }
+  try{
+    const port = await navigator.serial.requestPort();
+    await port.open({ baudRate: 115200 });
+    setConn(true, "Connected");
+    $("connectBtn").disabled = true;
+    keepReading = true;
+
+    const decoder = new TextDecoderStream();
+    port.readable.pipeTo(decoder.writable);
+    const reader = decoder.readable.getReader();
+    let buffer = "";
+    let count = 0;
+
+    while(keepReading){
+      const { value, done } = await reader.read();
+      if(done) break;
+      buffer += value;
+      let nl;
+      while((nl = buffer.indexOf("\n")) >= 0){
+        const line = buffer.slice(0, nl).trim();
+        buffer = buffer.slice(nl + 1);
+        if(line.startsWith("{")){
+          try{
+            const d = JSON.parse(line);
+            render(d);
+            count++;
+            $("count").textContent = count;
+          }catch(e){ /* ignore partial/garbled line */ }
+        }
+      }
+    }
+  }catch(err){
+    setConn(false, "Connection failed");
+    $("hint").innerHTML = '<span class="err">' + err.message +
+      '</span><br>Make sure Thonny is closed and the Pico is plugged in, then try again.';
+  }
+}
+
+$("connectBtn").addEventListener("click", connect);
+</script>
+</body>
+</html>

@@ -20,7 +20,7 @@
   }
 
   /* ---------- view router ---------- */
-  const VIEWS = { home: "view-home", console: "view-console", docs: "view-docs", tracker: "view-tracker", deck: "view-deck" };
+  const VIEWS = { home: "view-home", console: "view-console", docs: "view-docs", tracker: "view-tracker", deck: "view-deck", hardware: "view-hardware" };
   let current = "home";
 
   function showView(name, sectionId) {
@@ -34,6 +34,7 @@
     if (window.MGConsole) { name === "console" ? window.MGConsole.start() : window.MGConsole.stop(); }
     if (name === "docs" && window.MGDocs) window.MGDocs.render();
     if (window.MGDeck) { name === "deck" ? window.MGDeck.start() : window.MGDeck.stop(); }
+    if (window.MGHardware) { name === "hardware" ? window.MGHardware.start() : window.MGHardware.stop(); }
     // full-immersion deck mode: hide navbar while presenting
     document.documentElement.classList.toggle("deck-mode", name === "deck");
 
@@ -59,7 +60,8 @@
     if (raw === "/console") return showView("console");
     if (raw === "/docs") return showView("docs");
     if (raw === "/tracker") return showView("tracker");
-    if (raw === "/deck") return showView("deck");
+    if (raw === "/deck")     return showView("deck");
+    if (raw === "/hardware") return showView("hardware");
     if (raw && raw !== "/home" && document.getElementById(raw)) return showView("home", raw);
     return showView("home");
   }
