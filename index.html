@@ -35,6 +35,7 @@
       <a href="#industry" class="nav-link" data-scroll>Industry</a>
       <a href="#/console" class="nav-link nav-cta-soft" data-view="console">▶ Live Console</a>
       <a href="#/docs" class="nav-link" data-view="docs">Documentation</a>
+      <a href="#/deck" class="nav-link" data-view="deck">Pitch Deck</a>
       <a href="#/tracker" class="nav-link" data-view="tracker">Build Tracker</a>
     </nav>
 
@@ -69,7 +70,8 @@
       <p class="hero-sub">OreAcle watches a mine's sensors, detects danger before a human would, explains it in plain English, recommends the action, and drives the ventilation fan itself, all running locally on a laptop at <strong>$0 AI cost</strong>.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
-        <a class="btn btn-ghost" href="#/docs" data-view="docs">Read the Full Plan</a>
+        <a class="btn btn-ghost" href="#/deck" data-view="deck">View Pitch Deck</a>
+        <a class="btn btn-ghost" href="#/docs" data-view="docs">Full Plan</a>
       </div>
       <div class="hero-stats">
         <div class="stat"><div class="stat-num">$0</div><div class="stat-label">AI running cost</div></div>
@@ -471,6 +473,7 @@
         <a href="#industry" data-scroll>Industry</a>
         <a href="#/console" data-view="console">Live Console</a>
         <a href="#/docs" data-view="docs">Documentation</a>
+        <a href="#/deck" data-view="deck">Pitch Deck</a>
         <a href="#/tracker" data-view="tracker">Build Tracker</a>
       </div>
     </div>
@@ -623,7 +626,7 @@
           <span class="pill pill-ok">Backend: Running</span>
           <span class="pill pill-ok">WebSocket: Live</span>
           <span class="pill pill-ok">Frontend: Connected</span>
-          <span class="pill pill-accent">Hardware: Optional / Not Opened</span>
+          <span class="pill pill-accent">Hardware POC: Active</span>
         </div>
       </div>
     </div>
@@ -640,15 +643,15 @@
           <div class="tk-big-status">
             <span class="tk-status-dot tk-dot-ok"></span>
             <div>
-              <div class="tk-status-title">Simulator-first · Fully functional without hardware</div>
-              <div class="tk-status-sub">All four mine zones are streaming live sensor data. The AI pipeline (anomaly detection, VOD fan logic, LLM alerts) is running end-to-end. Hardware is optional; the kit has not been opened yet.</div>
+              <div class="tk-status-title">Software MVP complete · Hardware POC in progress</div>
+              <div class="tk-status-sub">All four mine zones stream live data end-to-end. Anomaly detection, VOD fan logic, LLM alerts, and copilot are fully operational. Pico W sensor node hardware POC is now being assembled.</div>
             </div>
           </div>
           <div class="tk-meta-row">
             <div class="tk-meta"><span>Backend</span><b>FastAPI + WebSocket on :8000</b></div>
             <div class="tk-meta"><span>Zones</span><b>4 (Entry/Shaft, Active Stope, Equipment Bay, Refuge)</b></div>
             <div class="tk-meta"><span>Scenarios</span><b>5 (normal, gas_buildup, bearing_failure, blast_clearance, reset)</b></div>
-            <div class="tk-meta"><span>Hardware status</span><b>Kit in box, not yet opened. Optional.</b></div>
+            <div class="tk-meta"><span>Hardware status</span><b>Pico W + DHT11 + MPU6050 — hardware POC in progress.</b></div>
           </div>
         </div>
       </section>
@@ -701,48 +704,38 @@
           <span class="tk-badge tk-inprog">Active</span>
         </div>
         <ul class="tk-list">
+          <li><span class="tk-badge tk-inprog">In Progress</span>Hardware POC Phase 1: Pico W + DHT11 + MPU6050 sensor node streaming USB JSON to backend</li>
           <li><span class="tk-badge tk-inprog">In Progress</span>Demo rehearsal: end-to-end scenario walkthrough for judges</li>
-          <li><span class="tk-badge tk-inprog">In Progress</span>UI polish and presentation preparation</li>
+          <li><span class="tk-badge tk-inprog">In Progress</span>Site polish and pitch deck preparation</li>
         </ul>
       </section>
 
-      <!-- ── Optional Hardware Work ────────────────────────────────── -->
+      <!-- ── Hardware POC ──────────────────────────────────────────── -->
       <section class="tk-section reveal">
         <div class="tk-sec-head">
-          <h2>Optional Hardware Work</h2>
-          <span class="tk-badge tk-optional">Optional</span>
+          <h2>Hardware POC</h2>
+          <span class="tk-badge tk-inprog">In Progress</span>
         </div>
         <div class="tk-hw-note">
-          <p>The <b>SunFounder Raspberry Pi Pico W Starter Kit is in the box and has not been opened yet.</b> This is intentional: OreAcle was designed simulator-first so the entire pipeline can be demonstrated end-to-end without physical hardware.</p>
-          <p>Opening and wiring the hardware is optional. If time permits before the demo, the kit will be assembled to replace the software simulator with real sensor readings. All backend code for USB serial ingest is already written and waiting.</p>
+          <p>The SunFounder Raspberry Pi Pico W Starter Kit is being used to build a working edge sensor node. The goal is to replace the software simulator with real sensor readings streamed over USB JSON to the MacBook backend. All backend ingest code is already written and ready to receive live serial data from the Pico.</p>
         </div>
-        <div class="cards-3">
-          <article class="card reveal">
-            <div class="tk-hw-icon">MCU</div>
-            <h3>Raspberry Pi Pico W</h3>
-            <p>RP2040 @ 133 MHz, 2.4 GHz Wi-Fi, MicroPython. Edge node firmware is drafted, not yet deployed.</p>
-            <span class="tk-badge tk-optional" style="margin-top:12px;display:inline-flex">Optional</span>
-          </article>
-          <article class="card reveal">
-            <div class="tk-hw-icon">SEN</div>
-            <h3>Vibration, Air, Occupancy</h3>
-            <p>MPU6050 (vib/tilt), DHT11 (temp/humidity), PIR + HC-SR04 (occupancy). All present in the kit.</p>
-            <span class="tk-badge tk-optional" style="margin-top:12px;display:inline-flex">Optional</span>
-          </article>
-          <article class="card reveal">
-            <div class="tk-hw-icon">ACT</div>
-            <h3>Fan + Local Alarms</h3>
-            <p>DC motor (the physical fan), active buzzer, RGB LED, I²C LCD1602. Physical fan spinning from an AI command is the wow-factor.</p>
-            <span class="tk-badge tk-optional" style="margin-top:12px;display:inline-flex">Optional</span>
-          </article>
-        </div>
-        <div class="tk-hw-pending">
-          <div class="tk-group-title">If hardware is connected (time permitting):</div>
+        <div class="tk-group">
+          <div class="tk-group-title">Phase 1 — In Progress</div>
           <ul class="tk-list">
-            <li><span class="tk-badge tk-pending">Pending</span>Deploy MicroPython firmware to Pico W and wire sensors on breadboard</li>
-            <li><span class="tk-badge tk-pending">Pending</span>Replace simulator readings with live USB serial ingest via <code>pyserial</code></li>
-            <li><span class="tk-badge tk-pending">Pending</span>Physical DC motor fan spinning in response to AI-commanded fan % setpoint</li>
-            <li><span class="tk-badge tk-pending">Pending</span>Buzzer and RGB LED local alarm triggered by ALERT status</li>
+            <li><span class="tk-badge tk-inprog">In Progress</span>Raspberry Pi Pico W edge node flashed with MicroPython firmware</li>
+            <li><span class="tk-badge tk-inprog">In Progress</span>DHT11 temperature and humidity sensor wired and reading</li>
+            <li><span class="tk-badge tk-inprog">In Progress</span>MPU6050 vibration and tilt sensor wired via I²C (address 0x68)</li>
+            <li><span class="tk-badge tk-inprog">In Progress</span>USB JSON stream from Pico W to MacBook backend via <code>pyserial</code></li>
+            <li><span class="tk-badge tk-inprog">In Progress</span>RGB LED status indicator driven by zone safety status (green / amber / red)</li>
+          </ul>
+        </div>
+        <div class="tk-group" style="margin-top:16px">
+          <div class="tk-group-title">Phase 2 — If Time Permits</div>
+          <ul class="tk-list">
+            <li><span class="tk-badge tk-pending">Pending</span>DC motor fan controlled by AI-commanded fan % setpoint (physical demo wow-factor)</li>
+            <li><span class="tk-badge tk-pending">Pending</span>I²C LCD1602 local status readout ("VENT UP", "CO ALERT")</li>
+            <li><span class="tk-badge tk-pending">Pending</span>Active buzzer local alarm triggered on ALERT status</li>
+            <li><span class="tk-badge tk-pending">Pending</span>PIR motion sensor + HC-SR04 ultrasonic distance for occupancy detection</li>
           </ul>
         </div>
       </section>
@@ -762,6 +755,13 @@
           <div class="tk-step"><span class="tk-step-num">5</span><div><b>Ask the AI Copilot:</b> "Which zones are unsafe and why?" The LLM answers using the last 20 real readings from SQLite.</div></div>
           <div class="tk-step"><span class="tk-step-num">6</span><div><b>Press "Reset".</b> All zones return to normal baselines. The alert feed clears. The fan drops to the base VOD setpoint.</div></div>
         </div>
+        <div class="tk-demo-rec">
+          <div class="tk-group-title">Demo Recording</div>
+          <div class="tk-demo-rec-row">
+            <a href="docs/demo/OreAcle_ChatGPT_Local_LiveConsole_Demo_2026-06-27.mov" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">Watch Console Demo (MOV)</a>
+            <span class="tk-demo-rec-note">Recorded 2026-06-27 · Live console + backend walkthrough · local playback</span>
+          </div>
+        </div>
       </section>
 
       <!-- ── Next Steps ────────────────────────────────────────────── -->
@@ -771,9 +771,9 @@
         </div>
         <div class="cards-2">
           <article class="card reveal">
-            <div class="tk-badge tk-optional tk-card-label">Optional</div>
-            <h3>Hardware Assembly</h3>
-            <p>Wire the Pico W, sensors, and DC fan from the SunFounder kit. Replace the simulator with real readings. Show the physical fan respond to an AI command live in front of judges.</p>
+            <div class="tk-badge tk-inprog tk-card-label">In Progress</div>
+            <h3>Hardware POC</h3>
+            <p>Pico W + DHT11 + MPU6050 sensor node being assembled. Phase 1 target: real temperature, humidity, and vibration readings streamed over USB JSON to replace the software simulator.</p>
           </article>
           <article class="card reveal">
             <div class="tk-badge tk-pending tk-card-label">Stretch</div>
@@ -798,7 +798,295 @@
     <!-- Back / forward navigation -->
     <div class="container tracker-back reveal">
       <a class="btn btn-ghost" href="#/home" data-view="home">← Back to site</a>
+      <a class="btn btn-ghost" href="#/deck" data-view="deck">View Pitch Deck</a>
       <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ PITCH DECK VIEW ============================ -->
+<section class="view" id="view-deck">
+  <div class="deck">
+
+    <!-- Deck hero -->
+    <div class="deck-hero">
+      <div class="container">
+        <span class="eyebrow">Cursor Hackathon Sudbury · Track 03 · Build the North 2026</span>
+        <h1>OreAcle: The Pitch</h1>
+        <p class="lead">An open-source, offline AI interpretation and operator copilot for underground mine safety. Built for Track 03: Mining and Industrial Innovation.</p>
+        <div class="deck-nav-pills">
+          <a class="btn btn-ghost btn-sm" href="#/home" data-view="home">← Back to site</a>
+          <a class="btn btn-ghost btn-sm" href="#/tracker" data-view="tracker">Build Tracker</a>
+          <a class="btn btn-primary btn-sm" href="#/console" data-view="console">▶ Live Console</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 01 — The Problem -->
+    <div class="deck-slide">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">01</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">The Challenge</span>
+          <h2 class="deck-h2">Underground mines are already data-rich. Interpretation is the missing layer.</h2>
+          <p class="deck-body">Modern mines deploy CO sensors, vibration monitors, air-quality stations, and occupancy trackers continuously across every zone. A shift supervisor is expected to watch dozens of live numbers, pattern-match in real time, and decide: evacuate? increase ventilation? call maintenance? That cognitive overhead is exactly the job AI should handle.</p>
+          <div class="deck-cards">
+            <div class="deck-card">
+              <div class="deck-card-label">Interpretation gap</div>
+              <p>Raw sensor numbers don't come with priority, context, or a recommended action. A reading is only meaningful once compared to thresholds, trend history, and zone context simultaneously.</p>
+            </div>
+            <div class="deck-card">
+              <div class="deck-card-label">Connectivity constraints</div>
+              <p>Underground mines have poor or no internet connectivity. Cloud AI tools are often unavailable at the point of decision and raise data-sovereignty concerns for sensitive operational data.</p>
+            </div>
+            <div class="deck-card">
+              <div class="deck-card-label">Cost unpredictability</div>
+              <p>Commercial AI APIs charge per token. A continuous 24/7 multi-zone deployment generating thousands of alerts per shift accumulates unpredictable, recurring subscription costs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 — Industry Context -->
+    <div class="deck-slide deck-slide-alt">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">02</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">Proven Deployments</span>
+          <h2 class="deck-h2">The monitoring infrastructure already exists at scale.</h2>
+          <p class="deck-body">OreAcle proposes the AI interpretation and operator-interface layer that sits on top of these proven systems. The sensors, the telemetry, and the remote operations infrastructure are already deployed underground.</p>
+          <div class="deck-industry-grid">
+            <div class="deck-ind-card">
+              <div class="deck-ind-tag">Air Quality</div>
+              <b>Maestro Digital Mine</b>
+              <p>Vigilante AQS stations running in Vale's Sudbury operations since 2015, including Creighton Mine at 2.4 km depth. Measures CO, NO₂, airflow, dust.</p>
+              <a href="https://www.maestrodigitalmine.com/products/vigilante-aqs-air-quality-station" target="_blank" rel="noopener">Vigilante AQS</a>
+            </div>
+            <div class="deck-ind-card">
+              <div class="deck-ind-tag">Fleet Telemetry</div>
+              <b>Sandvik + Glencore</b>
+              <p>Newtrax collision-avoidance and Mining Data Platform across Glencore's mixed underground fleets at Raglan (Canada) and Kamoto (DRC), expanded July 2025.</p>
+              <a href="https://www.mining.sandvik/en/digital-solutions/operations-and-connected-fleet/mixed-fleet-telemetry/" target="_blank" rel="noopener">Newtrax platform</a>
+            </div>
+            <div class="deck-ind-card">
+              <div class="deck-ind-tag">Remote Operations</div>
+              <b>Vale IROC + VOD</b>
+              <p>Integrated Remote Operations Centre overseeing all five Ontario underground mines from surface. Ventilation-on-Demand systems save millions annually.</p>
+              <a href="https://im-mining.com/2024/01/11/vale-base-metals-iroc-in-sudbury-now-overseeing-all-five-of-its-ontario-mines/" target="_blank" rel="noopener">IROC overview</a>
+            </div>
+            <div class="deck-ind-card">
+              <div class="deck-ind-tag">Air Quality</div>
+              <b>Accutron MAQS</b>
+              <p>Mine Air Quality Station measuring gas concentrations, airflow, and environmental conditions in Northern Ontario mines — the same parameters OreAcle interprets.</p>
+              <a href="https://accutroninstruments.com/maqs-mine-air-quality-station-2/" target="_blank" rel="noopener">MAQS product</a>
+            </div>
+            <div class="deck-ind-card">
+              <div class="deck-ind-tag">Hackathon Sponsor</div>
+              <b>Key Logic Software</b>
+              <p>Sudbury: embedded systems and sensor-data algorithms for Minewise ShafTrack, GeoSight NX-150, and TesMan remote loading. Software wrapped around mining hardware.</p>
+              <a href="https://www.keylogicsoftware.com" target="_blank" rel="noopener">Key Logic</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 — The Gap -->
+    <div class="deck-slide">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">03</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">The Opportunity</span>
+          <h2 class="deck-h2">Open-source, offline AI interpretation is the missing layer.</h2>
+          <blockquote class="deck-quote">"OreAcle proposes an open-source, local-first interpretation and copilot layer on top of existing mining sensor infrastructure. The sensors and the telemetry are there; the free, offline tool that turns raw numbers into a prioritized, plain-English decision is not."</blockquote>
+          <div class="deck-gap-cols">
+            <div class="deck-gap-item">
+              <div class="deck-gap-num">1</div>
+              <div>
+                <b>Dashboards show numbers, not decisions</b>
+                <p>Existing monitoring systems excel at data collection and display. Most don't translate readings into a prioritized action or explain the underlying risk in plain language the operator can act on immediately.</p>
+              </div>
+            </div>
+            <div class="deck-gap-item">
+              <div class="deck-gap-num">2</div>
+              <div>
+                <b>Open-source mine AI is sparse</b>
+                <p>Mining AI tools are mostly proprietary, subscription-based, or require cloud connectivity not reliably available underground. Free, auditable, fully offline alternatives don't exist at this level of integration.</p>
+              </div>
+            </div>
+            <div class="deck-gap-item">
+              <div class="deck-gap-num">3</div>
+              <div>
+                <b>Operators need a plain-English copilot</b>
+                <p>A supervisor should be able to ask "Is Zone B safe right now?" and get a direct, context-aware answer without leaving the console or consulting a manual. That interface doesn't exist as a free, offline tool.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 — Our Approach -->
+    <div class="deck-slide deck-slide-alt">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">04</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">The Solution</span>
+          <h2 class="deck-h2">Sense, Think, Explain, Act — all running locally at $0.</h2>
+          <div class="deck-pillars">
+            <div class="deck-pillar">
+              <div class="deck-pillar-ic">01</div>
+              <h3>Offline-first</h3>
+              <p>Runs entirely on a laptop or ruggedized edge machine. No internet required. No data leaves the mine network. Works at any depth, in any connectivity environment.</p>
+            </div>
+            <div class="deck-pillar">
+              <div class="deck-pillar-ic">02</div>
+              <h3>$0 AI runtime cost</h3>
+              <p>Isolation Forest (scikit-learn) for anomaly detection. Llama 3.2 3B via Ollama for plain-English alerts and copilot chat. Models downloaded once, run forever free.</p>
+            </div>
+            <div class="deck-pillar">
+              <div class="deck-pillar-ic">03</div>
+              <h3>Mine-specific intelligence</h3>
+              <p>Threshold rules for CO, NO₂, vibration, temperature, and airflow. Ventilation-on-Demand fan setpoints driven by real-time gas readings, occupancy, and zone status.</p>
+            </div>
+            <div class="deck-pillar">
+              <div class="deck-pillar-ic">04</div>
+              <h3>Lightweight hardware</h3>
+              <p>Raspberry Pi Pico W at ~$40 all-in as the edge sensor node. The same software pipeline accepts any JSON-emitting sensor — industrial hardware is a drop-in swap.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 — Why $0 AI Matters -->
+    <div class="deck-slide">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">05</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">Economics</span>
+          <h2 class="deck-h2">The AI cost model matters for 24/7 industrial deployments.</h2>
+          <div class="deck-compare">
+            <div class="deck-compare-col deck-compare-old">
+              <div class="deck-compare-head">Cloud AI APIs</div>
+              <ul class="deck-compare-list">
+                <li>Per-token billing — unpredictable cost at 24/7 scale</li>
+                <li>Requires reliable internet connectivity underground</li>
+                <li>Sensor data transmitted off-site (sovereignty risk)</li>
+                <li>Vendor lock-in; pricing changes without notice</li>
+                <li>Latency depends on network quality and API availability</li>
+              </ul>
+            </div>
+            <div class="deck-compare-col deck-compare-new">
+              <div class="deck-compare-head">OreAcle — Local AI</div>
+              <ul class="deck-compare-list">
+                <li><b>$0/month</b> — models run free once downloaded</li>
+                <li>Fully offline — no connectivity required underground</li>
+                <li>All sensor data stays on-site, no external exposure</li>
+                <li>Open-source, fully auditable, no vendor dependency</li>
+                <li>Sub-second response on commodity CPU hardware</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 — Software POC -->
+    <div class="deck-slide deck-slide-alt">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">06</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">Software POC — Working Now</span>
+          <h2 class="deck-h2">The full AI pipeline is running end-to-end in simulation today.</h2>
+          <p class="deck-body">No hardware required to see OreAcle in action. The entire pipeline from sensor reading to LLM alert runs on a single MacBook. Open the Live Console and trigger any scenario.</p>
+          <div class="deck-poc-grid">
+            <div class="deck-poc-item"><span class="tk-badge tk-done">Live</span><span>FastAPI backend streaming 4 mine zones via WebSocket at 0.5 s cadence</span></div>
+            <div class="deck-poc-item"><span class="tk-badge tk-done">Live</span><span>Isolation Forest anomaly detection trained on zone-specific synthetic data</span></div>
+            <div class="deck-poc-item"><span class="tk-badge tk-done">Live</span><span>Ventilation-on-Demand: fan setpoint driven by gas, occupancy, temp, and airflow</span></div>
+            <div class="deck-poc-item"><span class="tk-badge tk-done">Live</span><span>LLM alerts via Ollama (llama3.2:3b) with deterministic template fallback</span></div>
+            <div class="deck-poc-item"><span class="tk-badge tk-done">Live</span><span>SQLite readings log, 5 demo scenarios, AI Copilot chat interface</span></div>
+            <div class="deck-poc-item"><span class="tk-badge tk-done">Live</span><span>Live Console: zone cards, gauges, trend chart, alert feed, fan control</span></div>
+          </div>
+          <div class="deck-poc-cta">
+            <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
+            <a class="btn btn-ghost" href="docs/demo/OreAcle_ChatGPT_Local_LiveConsole_Demo_2026-06-27.mov" target="_blank" rel="noopener">Watch Demo Recording (MOV)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 — Hardware POC -->
+    <div class="deck-slide">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">07</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">Hardware POC — In Progress</span>
+          <h2 class="deck-h2">Building the physical edge sensor node with the Pico W kit.</h2>
+          <p class="deck-body">The SunFounder Raspberry Pi Pico W Starter Kit is being used to build a working proof-of-concept edge node. The backend's USB serial ingest pipeline is already written and ready to receive live data.</p>
+          <div class="deck-hw-phases">
+            <div class="deck-hw-phase">
+              <div class="deck-phase-head"><span class="tk-badge tk-inprog">Phase 1 — In Progress</span></div>
+              <ul class="deck-hw-list">
+                <li>Raspberry Pi Pico W edge node with MicroPython firmware</li>
+                <li>DHT11 temperature and humidity sensor readings</li>
+                <li>MPU6050 vibration and tilt sensor via I²C</li>
+                <li>USB JSON stream from Pico W to MacBook backend</li>
+                <li>RGB LED status indicator (green / amber / red)</li>
+              </ul>
+            </div>
+            <div class="deck-hw-phase">
+              <div class="deck-phase-head"><span class="tk-badge tk-pending">Phase 2 — If Time Permits</span></div>
+              <ul class="deck-hw-list">
+                <li>DC motor fan controlled by AI-commanded fan % setpoint</li>
+                <li>I²C LCD1602 local status readout</li>
+                <li>Active buzzer local alarm on ALERT status</li>
+                <li>PIR motion + HC-SR04 ultrasonic occupancy detection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 — Hardware Roadmap -->
+    <div class="deck-slide deck-slide-alt">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">08</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">Production Path</span>
+          <h2 class="deck-h2">The sensor-to-AI pipeline is hardware-agnostic. Only the nodes scale up.</h2>
+          <p class="deck-body">The Pico W POC uses commodity hobbyist hardware as a proof of concept. A production underground deployment swaps to industrial equivalents with the same JSON interface. The backend, AI layer, and frontend remain unchanged.</p>
+          <div class="deck-hw-table">
+            <div class="deck-hw-table-head"><span>POC (current kit)</span><span>Production path</span></div>
+            <div class="deck-hw-row"><span>Raspberry Pi Pico W (~$40 total)</span><span>Industrial ARM/ESP32 in IP67 ruggedized enclosure</span></div>
+            <div class="deck-hw-row"><span>DHT11 (temp / humidity)</span><span>Industrial thermocouples + capacitive humidity sensors</span></div>
+            <div class="deck-hw-row"><span>MPU6050 (vibration / tilt)</span><span>High-precision MEMS accelerometers mounted on equipment</span></div>
+            <div class="deck-hw-row"><span>USB serial to MacBook</span><span>LORA, Wi-Fi mesh, or PoE depending on mine topology</span></div>
+            <div class="deck-hw-row"><span>DC motor "fan" demo</span><span>Modulating actuators on industrial ventilation infrastructure</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 — Try It -->
+    <div class="deck-slide deck-cta-slide">
+      <div class="container deck-slide-inner">
+        <div class="deck-slide-num" aria-hidden="true">09</div>
+        <div class="deck-slide-content">
+          <span class="eyebrow">Try It Now</span>
+          <h2 class="deck-h2">See the full pipeline before the hardware ships.</h2>
+          <p class="deck-body">Run <code>make backend</code> in one terminal, open the console in a browser, and trigger any scenario. Watch anomaly detection, VOD fan logic, and LLM alerts respond in real time to simulated mine sensor data. No hardware required.</p>
+          <div class="deck-final-ctas">
+            <a class="btn btn-primary" href="#/console" data-view="console">▶ Launch Live Console</a>
+            <a class="btn btn-ghost" href="#/tracker" data-view="tracker">Build Tracker</a>
+            <a class="btn btn-ghost" href="#/docs" data-view="docs">Full Documentation</a>
+          </div>
+          <p class="deck-footer-note">OreAcle is fully open-source. Built by Mihir Trivedi for the Cursor Hackathon Sudbury, "Build the North", Track 03: Mining and Industrial Innovation.</p>
+        </div>
+      </div>
     </div>
 
   </div>

@@ -20,7 +20,7 @@
   }
 
   /* ---------- view router ---------- */
-  const VIEWS = { home: "view-home", console: "view-console", docs: "view-docs", tracker: "view-tracker" };
+  const VIEWS = { home: "view-home", console: "view-console", docs: "view-docs", tracker: "view-tracker", deck: "view-deck" };
   let current = "home";
 
   function showView(name, sectionId) {
@@ -56,6 +56,7 @@
     if (raw === "/console") return showView("console");
     if (raw === "/docs") return showView("docs");
     if (raw === "/tracker") return showView("tracker");
+    if (raw === "/deck") return showView("deck");
     if (raw && raw !== "/home" && document.getElementById(raw)) return showView("home", raw);
     return showView("home");
   }
