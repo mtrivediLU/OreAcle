@@ -33,6 +33,9 @@
     // lifecycle hooks
     if (window.MGConsole) { name === "console" ? window.MGConsole.start() : window.MGConsole.stop(); }
     if (name === "docs" && window.MGDocs) window.MGDocs.render();
+    if (window.MGDeck) { name === "deck" ? window.MGDeck.start() : window.MGDeck.stop(); }
+    // full-immersion deck mode: hide navbar while presenting
+    document.documentElement.classList.toggle("deck-mode", name === "deck");
 
     // nav highlight for top-level views
     $$(".nav-link[data-view]").forEach(a => a.classList.toggle("active", a.getAttribute("data-view") === name && name !== "home"));
